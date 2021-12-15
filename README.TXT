@@ -8,5 +8,5 @@ PROJECT TITLE:
 PURPOSE OF PROJECT:
 VERSION or DATE:
 HOW TO START THIS PROJECT:
-AUTHORS: Kevin Wang, Eric Zhang, Victoria Zhang
+AUTHORS: Kevin Wang, Eric Zhang, Victoria Zhang, Tanya Gu
 USER INSTRUCTIONS:
