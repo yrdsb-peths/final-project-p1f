@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Card
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Cards\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=id
+comment1.target=Card(int)
+comment1.text=\r\n\ \r\n\ cards[0][0]\ \=\ top\ left\r\n\ cards[0][1]\ \=\ top\ right\r\n\ \r\n\ if\ cards[index][0].active\ and\ cards[index][1].active\:\r\n\ \ \ \ YOU\ PICKED\ A\ CARD\ WOOHOO\r\n\ \r\n\ \r\n\ A\ *\ *\ A\r\n\ *\ *\ *\ *\r\n\ *\ *\ *\ *\r\n\ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=cd
+comment3.target=void\ cardFlip(Card)
+comment4.params=
+comment4.target=void\ checkMatch()
+numComments=5
