@@ -11,7 +11,7 @@ public class Card extends Actor
     int id;
     boolean active = false;
     boolean dead = false; 
-    ArrayList<Card> cards = new ArrayList<Card>();
+    static ArrayList<Card> activeCards = new ArrayList<Card>();
     //Card cards = new Card[6][2];
 
     /*
@@ -47,11 +47,13 @@ public class Card extends Actor
          * 
          * 
          */
-        if (isTouching(Player.class) && !this.dead) {
+        if (isTouching(Player.class) && !this.dead && !this.active) {
             this.active = true;
+            
             cardFlip(this);
-            cards.add(this);
-            if(cards.size() == 2) {
+            activeCards.add(this);
+            //System.out.println(activeCards.size());
+            if(activeCards.size() == 2) {
                 checkMatch();    
             }
         }
@@ -61,32 +63,36 @@ public class Card extends Actor
     public void cardFlip(Card cd) {
         if (cd.active) {
             setImage("Cards/Card" + (3 + this.id) + ".png");
+            cd.active = false;
             Greenfoot.delay(15);
         } else if (!cd.active) {
             setImage("Cards/Card1.png");
+            cd.active = true;
         } else if (cd.dead) {
             setImage("Cards/Card7.png");
+            
         }
     }
 
     public void checkMatch() {
-        if (cards.get(0).id == cards.get(1).id) {
+        //System.out.println(cards.get(0).id +" " + cards.get(1).id);
+        if (activeCards.get(0).id == activeCards.get(1).id) {
             //add coin + spin coin
             /*((MemoryMatch)getWorld()).coinCount ++;
             getWorld().getObjects(Coins.class).get(0).coinSpin = true;
             ((MemoryMatch)getWorld()).updateCoins();*/
 
-            cards.get(0).dead = true;
-            cards.get(1).dead = true;
-            cardFlip(cards.get(0)); //set dead image
-            cardFlip(cards.get(1));
-            cards.clear();
+            //cards.get(0).dead = true;
+            //cards.get(1).dead = true;
+            cardFlip(activeCards.get(0)); //set dead image
+            cardFlip(activeCards.get(1));
+            activeCards.clear();
         } else {
-            cards.get(0).active = false;
-            cards.get(1).active = false;
-            cardFlip(cards.get(0)); //flip back
-            cardFlip(cards.get(1));
-            cards.clear();
+            //cards.get(0).active = false;
+            //cards.get(1).active = false;
+            cardFlip(activeCards.get(0)); //flip back
+            cardFlip(activeCards.get(1));
+            activeCards.clear();
         }
 
     }
