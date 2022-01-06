@@ -12,8 +12,7 @@ public class Card extends Actor
     boolean active = false;
     boolean dead = false; 
     static ArrayList<Card> activeCards = new ArrayList<Card>();
-    //Card cards = new Card[6][2];
-
+    
     /*
      * 
      * cards[0][0] = top left
@@ -47,53 +46,42 @@ public class Card extends Actor
          * 
          * 
          */
-        if (isTouching(Player.class) && !this.dead && !this.active) {
-            this.active = true;
-            
-            cardFlip(this);
-            activeCards.add(this);
-            //System.out.println(activeCards.size());
-            if(activeCards.size() == 2) {
-                checkMatch();    
+        if (isTouching(Player.class) && !this.dead && !this.active) { 
+            flip();
+            activeCards.add(this); 
+            if(activeCards.size() == 2) { 
+                checkMatch();
             }
-        }
-
+        } 
     }
 
-    public void cardFlip(Card cd) {
-        if (cd.active) {
-            setImage("Cards/Card" + (3 + this.id) + ".png");
-            cd.active = false;
-            Greenfoot.delay(15);
-        } else if (!cd.active) {
-            setImage("Cards/Card1.png");
-            cd.active = true;
-        } else if (cd.dead) {
+    public void flip() {
+        this.active = !this.active;
+        
+        if (this.dead) {
+            System.out.println("death " + this.id);
             setImage("Cards/Card7.png");
-            
+        } else if (this.active) {
+            setImage("Cards/Card" + (3 + this.id) + ".png");
+        } else if (!this.active) {
+            setImage("Cards/Card1.png");
         }
     }
 
     public void checkMatch() {
-        //System.out.println(cards.get(0).id +" " + cards.get(1).id);
-        if (activeCards.get(0).id == activeCards.get(1).id) {
+        Card a = activeCards.get(0), b = activeCards.get(1); 
+        if (a.id == b.id) {
             //add coin + spin coin
             /*((MemoryMatch)getWorld()).coinCount ++;
             getWorld().getObjects(Coins.class).get(0).coinSpin = true;
             ((MemoryMatch)getWorld()).updateCoins();*/
 
-            //cards.get(0).dead = true;
-            //cards.get(1).dead = true;
-            cardFlip(activeCards.get(0)); //set dead image
-            cardFlip(activeCards.get(1));
-            activeCards.clear();
-        } else {
-            //cards.get(0).active = false;
-            //cards.get(1).active = false;
-            cardFlip(activeCards.get(0)); //flip back
-            cardFlip(activeCards.get(1));
-            activeCards.clear();
+            a.dead = true;
+            b.dead = true;
         }
+        a.flip(); // flip to dead or not collected
+        b.flip();
+        activeCards.clear();
 
     }
 }

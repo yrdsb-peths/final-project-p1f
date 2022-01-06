@@ -42,7 +42,22 @@ public class MemoryMatch extends MiniGame
         addObject(new Card(3), 380,120);
         addObject(new Card(2), 535,120);
         addObject(new Card(2), 690,120);
-
+        
+        Vector2[][] positions = new Vector2[4][3];
+        for (int i=0;i<4;i++) {
+            for (int j=0;j<3;j++) {
+                int x = i*160 + 100;
+                int y = j*160 + 100;
+                positions[i][j] = new Vector2(x,y);
+            }
+        }
+        
+        for (int i=1;i<=3;i++) {
+            int iX = Utils.random(3);
+            int iY = Utils.random(2);
+            Vector2 pos = positions[iX][iY];
+            addObject(new Card(i), pos.getX(), pos.getY()); 
+        } 
     }
     
     public void act() {
