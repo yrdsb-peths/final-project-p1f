@@ -7,7 +7,9 @@ comment1.text=\r\n\ \r\n\ cards[0][0]\ \=\ top\ left\r\n\ cards[0][1]\ \=\ top\ 
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ flip()
+comment3.target=void\ cdTimeCountDown()
 comment4.params=
-comment4.target=void\ checkMatch()
-numComments=5
+comment4.target=void\ flip()
+comment5.params=
+comment5.target=void\ checkMatch()
+numComments=6
