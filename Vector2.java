@@ -105,6 +105,18 @@ public class Vector2 {
      * @return y
      */
     public int getY() { return Math.round(this.y); }
+    
+    /**
+     * Return exact x value
+     * @return x
+     */
+    public float getExactX() { return this.x; }
+    
+    /**
+     * Return exact y value
+     * @return y
+     */
+    public float getExactY() { return this.y; }
 
     /**
      * Sets the x value

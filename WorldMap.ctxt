@@ -1,7 +1,12 @@
 #BlueJ class context
 comment0.target=WorldMap
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ WorldMap\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ WorldMap\ here.\r\n\ \r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=WorldMap()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ WorldMap.\r\n\ \r\n
-numComments=2
+comment2.params=
+comment2.target=MiniGame\ getRandomMiniGame()
+comment2.text=\r\n\ return\ instance\ of\ a\ random\ minigame\r\n
+comment3.params=
+comment3.target=void\ setupPath()
+comment3.text=\r\n\ create\ all\ nodes\ in\ path\r\n
+numComments=4

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=GameNode
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ GameNode\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=x\ y
+comment1.target=GameNode(float,\ float)
+comment2.params=character
+comment2.target=void\ activate(MapCharacter)
+numComments=3
