@@ -22,7 +22,6 @@ public class FlagManSign extends FlagMan
         else{
             setImage(rightSign);
         }
-        Greenfoot.delay(10);
         // Add your action code here.
     }    
 }
