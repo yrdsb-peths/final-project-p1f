@@ -11,11 +11,12 @@ public class FlagMan extends Actor
     GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
     GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
     protected static boolean left = true;
-    protected SimpleTimer timer = new SimpleTimer();
+    //protected SimpleTimer timer = new SimpleTimer();
     public FlagMan(){
         lFlagMan.scale(80, 80);
         rFlagMan.scale(80, 80);
-        timer.mark();
+        setImage(lFlagMan);
+        //timer.mark();
     }
     /**
      * Act - do whatever the FlagMan wants to do. This method is called whenever
@@ -23,11 +24,11 @@ public class FlagMan extends Actor
      */
     public void act() 
     {
-        if(timer.millisElapsed() % 100 == 0)
+        if(SimonSayer.needToCheck)
         {
             //Set to !left because the program is too slow to sync flagman with flagman sign
             //If your computer doesn't sync, try removing the !
-            if(!left){ 
+            if(SimonSayer.direction){ 
                 setImage(lFlagMan);
             }
             else{

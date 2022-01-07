@@ -8,14 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerSays extends Actor
 {
-    GreenfootImage idle = new GreenfootImage("WalkF1.png");
-    GreenfootImage left = new GreenfootImage("WalkL2.png");
-    GreenfootImage right = new GreenfootImage("WalkR2.png");
+    GreenfootImage idle = new GreenfootImage("WalkL2.png");
+    GreenfootImage left = new GreenfootImage("WalkL1.png");
+    GreenfootImage right = new GreenfootImage("WalkR1.png");
     GreenfootImage fail = new GreenfootImage("failureMario.png");
     private boolean inTheGame = true;
     
-    public static boolean needToCheck = false;
-    public static boolean checkLeft = false;
     public PlayerSays(){
         idle.scale(100, 100);
         left.scale(100, 100);

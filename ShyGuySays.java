@@ -28,11 +28,14 @@ public class ShyGuySays extends World
     {
         FlagMan flagMan = new FlagMan();
         addObject(flagMan, 200, 480);
-        
+
         PlayerSays player = new PlayerSays();
         addObject(player, 600, 460);
-        
+
         FlagManSign flagSign = new FlagManSign();
         addObject(flagSign, 185, 254);
+
+        SimonSayer simon = new SimonSayer();
+        addObject(simon, 0, 0);
     }
 }

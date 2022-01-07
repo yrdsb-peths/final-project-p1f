@@ -10,16 +10,19 @@ public class FlagManSign extends FlagMan
 {
     GreenfootImage leftSign = new GreenfootImage("signLeft.png");
     GreenfootImage rightSign = new GreenfootImage("signRight.png");
+    public FlagManSign(){
+        setImage(leftSign);
+    }
     /**
      * Act - do whatever the FlagManSign wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        if(FlagMan.left){
+        if(SimonSayer.needToCheck && SimonSayer.direction){
             setImage(leftSign);
         }
-        else{
+        else if(SimonSayer.needToCheck){
             setImage(rightSign);
         }
         // Add your action code here.
