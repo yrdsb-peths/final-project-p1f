@@ -22,7 +22,7 @@ public class Animation
         this.fps = fps;
         this.frames = new GreenfootImage[numberFrames][2];
         for (int i=0;i<numberFrames;i++) {
-            GreenfootImage img = new GreenfootImage(filepath + " (" + String.valueOf(i+1) + ").png");
+            GreenfootImage img = new GreenfootImage(filepath + "" + String.valueOf(i+1) + ".png");
             int w = img.getWidth();
             int h = img.getHeight();
             img.scale((int)(w * scale), (int)(h * scale)); 

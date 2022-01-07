@@ -48,6 +48,7 @@ public class WorldMap extends World
      * create all nodes in path
      */
     private void setupPath() {
+        path = new ArrayList<MapNode>();
         // simple 4 node path for now
         path.add(new GoodNode(100, 100));
         path.add(new GameNode(100, 500));

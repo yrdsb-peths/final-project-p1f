@@ -13,7 +13,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  */
 public abstract class SmoothMover extends Actor
 { 
-    private Vector2 pos;
+    private Vector2 pos = new Vector2();
 
     /**
      * Move forward by the specified distance.
@@ -37,6 +37,17 @@ public abstract class SmoothMover extends Actor
     }
     
     /**
+     * Move towards Vector2 position
+     * Return true when finished
+     */
+    public boolean move(Vector2 target, float speed) {
+        float eps = 0.1f;
+        Vector2 d = Vector2.sub(target, this.pos);
+        setLocation(pos.getExactX() + d.getExactX(), pos.getExactY() + d.getExactY()); 
+        return Vector2.distance(this.pos, target) < eps;
+    }
+    
+    /**
      * Set the location using exact coordinates.
      */
     public void setLocation(float x, float y) 
@@ -52,7 +63,7 @@ public abstract class SmoothMover extends Actor
      */
     @Override
     public void setLocation(int x, int y) {
-        setLocation(x, y);
+        setLocation((float)x, (float)y);
     }
 
     /**
