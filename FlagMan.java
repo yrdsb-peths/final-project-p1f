@@ -37,5 +37,5 @@ public class FlagMan extends Actor
             left = !left;
         }
     }    
-    
+    //Static var to player, player then checks and sends back?
 }
