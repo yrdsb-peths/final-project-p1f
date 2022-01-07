@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=Coins
-comment0.text=\r\n\ When\ boolean\ 'coinSpin'\ is\ set\ to\ true,\ the\ coin\ icon\ starts\ spinning\ for\ 2\ seconds\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Coins()
-comment1.text=\r\n\ Constructor\ for\ Coins\ Class\ -\ sets\ the\ image\r\n
-comment2.params=
-comment2.target=void\ act()
-numComments=3

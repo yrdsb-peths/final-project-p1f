@@ -8,12 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FlagManSign extends FlagMan
 {
+    GreenfootImage leftSign = new GreenfootImage("signLeft.png");
+    GreenfootImage rightSign = new GreenfootImage("signRight.png");
     /**
      * Act - do whatever the FlagManSign wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
+        if(FlagMan.left){
+            setImage(leftSign);
+        }
+        else{
+            setImage(rightSign);
+        }
+        Greenfoot.delay(10);
         // Add your action code here.
     }    
 }
