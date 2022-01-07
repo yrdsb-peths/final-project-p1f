@@ -11,11 +11,14 @@ public class PlayerSays extends Actor
     GreenfootImage idle = new GreenfootImage("WalkF1.png");
     GreenfootImage left = new GreenfootImage("WalkL2.png");
     GreenfootImage right = new GreenfootImage("WalkR2.png");
-    
+    GreenfootImage fail = new GreenfootImage("failureMario.png");
+    private boolean inTheGame = true;
     public PlayerSays(){
         idle.scale(100, 100);
         left.scale(100, 100);
         right.scale(100, 100);
+        fail.scale(100, 100);
+        
         setImage(idle);
     }
     /**
@@ -24,11 +27,19 @@ public class PlayerSays extends Actor
      */
     public void act()
     {
-        if(Greenfoot.isKeyDown("a")){
-            setImage(left);
-        }
-        if(Greenfoot.isKeyDown("d")){
-            setImage(right);
+        if(inTheGame){
+            if(Greenfoot.isKeyDown("a")){
+                setImage(left);
+            }
+            if(Greenfoot.isKeyDown("d")){
+                setImage(right);
+            }
+            //The g is for Debug purposes only.
+            //Remove when done.
+            if(Greenfoot.isKeyDown("g")){
+                inTheGame = false; 
+                setImage(fail);
+            }
         }
     }
 }
