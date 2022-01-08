@@ -25,11 +25,10 @@ public class MemoryMatch extends MiniGame
      * Constructor for objects of class MemoryMatch.
      * 
      */
-    public MemoryMatch()
-    {
+    public MemoryMatch() {
         prepare();
         prepareCards();
-        addObject(getObjects(Card.class).get(0).cdTimeCount, 40, 15);
+        addObject(getObjects(Card.class).get(0).cdTimeCount, 40, 15); // to be removed later
     }
 
     public void prepare() {

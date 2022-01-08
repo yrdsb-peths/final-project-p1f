@@ -1,6 +1,6 @@
 #Greenfoot project file
 class.Counter.image=Wood.png
-class.MemoryMatch.image=resized-image-Promo\ (1).jpeg
+class.MemoryMatch.image=MemoryMatchBKG2.jpeg
 dependency1.from=MiniGame
 dependency1.to=WorldMap
 dependency1.type=UsesDependency
@@ -49,10 +49,10 @@ dependency8.type=UsesDependency
 dependency9.from=Card
 dependency9.to=SimpleTimer
 dependency9.type=UsesDependency
-editor.fx.0.height=744
-editor.fx.0.width=1382
-editor.fx.0.x=-8
-editor.fx.0.y=-8
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 height=744
 package.numDependencies=16
 package.numTargets=14
