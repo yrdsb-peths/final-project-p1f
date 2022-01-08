@@ -6,17 +6,21 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  * 
- * Need: return to world when cards all flipped
- *       card flip delay
- *       background
+ * Need: card flip delay
  */
 public class MemoryMatch extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int time = 60;
-    Label coinLabel;
+    private int gameTime = 60;
+    private Label coinLabel;
     int coinCount;
+    GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
+    
+    private SimpleTimer winTim = new SimpleTimer();
+    private Counter winTimeCount = new Counter();
+    private int waitTime = 5;
+    private boolean wait;
     /**
      * Constructor for objects of class MemoryMatch.
      * 
@@ -30,10 +34,10 @@ public class MemoryMatch extends MiniGame
 
     public void prepare() {
         addObject(timeCount,100,65);
-        timeCount.setValue(time); 
+        timeCount.setValue(gameTime); 
+        winTimeCount.setValue(waitTime);
 
-        GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
-        //bgm.playLoop();
+        //bgm.play();
 
         addObject(new Coin(), 220, 70);
         coinLabel = new Label(coinCount,50);
@@ -45,7 +49,7 @@ public class MemoryMatch extends MiniGame
     }
 
     public void prepareCards() {
-        int[] cardVal = {1,1,1,1,2,2,3,3,3,3,1,1,2,2,3,3};
+        int[] cardVal = {1,1,2,2,3,3,3,3,4,4,5,5};
         shuffle(cardVal);
         int i = 0;
         for (int x=100; x<=900; x+=155) {
@@ -86,7 +90,8 @@ public class MemoryMatch extends MiniGame
 
     public void act() {
         timeCountDown();
-        
+        waitTimeCountDown();
+        checkCoin();    
     }
 
     /**
@@ -104,6 +109,29 @@ public class MemoryMatch extends MiniGame
             Greenfoot.setWorld(new WorldMap()); 
         }
 
+    }
+    
+    public void waitTimeCountDown() {
+        if (wait) {
+            if(winTim.millisElapsed() > 1000) { //time count down every second
+                winTimeCount.add(-1);
+                winTim.mark();
+            }
+    
+            if (winTim.millisElapsed() * 1000 == winTimeCount.getValue()) { //if time limit is reached
+                Greenfoot.setWorld(new WorldMap()); 
+                wait= false;
+            }
+        }
+    }
+    
+    public void checkCoin() {
+        if (coinCount == 6) {
+            Greenfoot.playSound("IWin.wav");
+            bgm.stop();
+            wait = true;
+            coinCount++; //so the method doesn't run o&o again, not good tho
+        }
     }
 
     public void updateCoins() {

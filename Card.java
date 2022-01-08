@@ -67,7 +67,7 @@ public class Card extends Actor
         if (this.dead) {
             setImage("Cards/Card" + (3 + this.id) + ".png");
             //wait
-            setImage("Cards/Card7.png");            
+            setImage("Cards/Card9.png");            
         } else if (this.active) {
             setImage("Cards/Card" + (3 + this.id) + ".png");
         } else if (!this.active) {
@@ -85,7 +85,7 @@ public class Card extends Actor
             getWorld().getObjects(Coin.class).get(0).timeCount.setValue(2); //spin for 2s
             getWorld().getObjects(Coin.class).get(0).coinSpin = true;
             ((MemoryMatch)getWorld()).updateCoins();
-            //Greenfoot.playSound("Laughter.wav");
+            Greenfoot.playSound("Laughter.wav");
 
             a.dead = true;
             b.dead = true;
