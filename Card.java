@@ -36,7 +36,6 @@ public class Card extends Actor
         setImage("Cards/Card1.png");
         cdTimeCount.setValue(2);
     }
-
     public void act() {
         if (isTouching(Player.class) && !this.dead && !this.active) { 
             flip();
@@ -50,7 +49,6 @@ public class Card extends Actor
             cdTimeCountDown();   
         }
     }
-    
     public void cdTimeCountDown() {
         if(cdTim.millisElapsed() > 1000) { //time count down every second
             cdTimeCount.add(-1);
@@ -76,13 +74,11 @@ public class Card extends Actor
             setImage("Cards/Card1.png");
         }
     }
-
     public void checkMatch() {
         Card a = activeCards.get(0), b = activeCards.get(1); 
         if (a.id == b.id) {
-            //add coin + spin coin
-            ((MemoryMatch)getWorld()).coinCount ++;
-            getWorld().getObjects(Coin.class).get(0).timeCount.setValue(2); //spin for 2s
+            ((MemoryMatch)getWorld()).coinCount ++; //add coin
+            getWorld().getObjects(Coin.class).get(0).timeCount.setValue(2); //coin spin for 2s
             getWorld().getObjects(Coin.class).get(0).coinSpin = true;
             ((MemoryMatch)getWorld()).updateCoins();
             Greenfoot.playSound("Laughter.wav");
