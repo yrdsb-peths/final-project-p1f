@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Coin extends Actor
 {
-    GreenfootImage[] coin = new GreenfootImage[9];
+    GreenfootImage[] coin = new GreenfootImage[8];
     boolean coinSpin = false;
     SimpleTimer tim = new SimpleTimer();
     Counter timeCount = new Counter();
