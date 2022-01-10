@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ShyGuySays extends World
 {
-
+    GreenfootSound main = new GreenfootSound("Mario Party (Music) - Dodging Danger.mp3");
     /**
      * Constructor for objects of class ShyGuySays.
      * 
@@ -18,6 +18,25 @@ public class ShyGuySays extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         prepare();
+    }
+    private boolean addedLabel = false;
+    Label s = new Label("Simon says turn: ", 40);
+    public void act(){
+        //3...2...1...start!
+        main.playLoop();
+        if(FlagMan.simonSaid && !addedLabel){
+            addObject(s, 200, 200);
+            addedLabel = true;
+        }
+        else if(addedLabel){
+            try{
+                //REMOVING too much!!!
+                removeObject(s);
+                //to clear the output box
+                //System.out.println("removed label!");
+            }
+            catch(Exception e){System.out.println("no label to remove!");}
+        }
     }
 
     /**
@@ -34,8 +53,5 @@ public class ShyGuySays extends World
 
         FlagManSign flagSign = new FlagManSign();
         addObject(flagSign, 185, 254);
-
-        SimonSayer simon = new SimonSayer();
-        addObject(simon, 0, 0);
     }
 }

@@ -12,7 +12,12 @@ public class PlayerSays extends Actor
     GreenfootImage left = new GreenfootImage("WalkL1.png");
     GreenfootImage right = new GreenfootImage("WalkR1.png");
     GreenfootImage fail = new GreenfootImage("failureMario.png");
+    GreenfootSound death = new GreenfootSound("death.mp3");
     private boolean inTheGame = true;
+    //to prevent the player from changing their mind
+    private boolean canMove = false;
+    //Direction of the player. Is a string so the player cant lose at the start of the game
+    private String meDirection = "";
     
     public PlayerSays(){
         idle.scale(100, 100);
@@ -28,18 +33,50 @@ public class PlayerSays extends Actor
      */
     public void act()
     {
+        //Kind of janky. fix later.
+        //GOOD NOW?
         if(inTheGame){
-            if(Greenfoot.isKeyDown("a")){
+            if(FlagMan.needToCheck){
+                canMove = true;
+            }
+            if(Greenfoot.isKeyDown("a") && canMove){
                 setImage(left);
+                meDirection = "left";
+                canMove = false;
             }
-            if(Greenfoot.isKeyDown("d")){
+            if(Greenfoot.isKeyDown("d") && canMove){
                 setImage(right);
+                meDirection = "right";
+                canMove = false;
             }
-            //The g is for Debug purposes only.
-            //Remove when done.
-            if(Greenfoot.isKeyDown("g")){
-                inTheGame = false; 
-                setImage(fail);
+            if(!FlagMan.needToCheck){
+                setImage(idle);
+                meDirection = "";
+            }
+            else if(FlagMan.direction){
+                //kills on start! please fix!
+                if(meDirection.equals("left")){
+                    //System.out.println("correct!");
+                }
+                else{
+                    inTheGame = false; 
+                    setImage(fail);  
+                    meDirection = "";
+                    death.play();
+                    //System.out.println("wrong!");
+                }
+            }
+            else{
+                if(meDirection.equals("right")){
+                    //System.out.println("correct!");
+                }
+                else{
+                    inTheGame = false; 
+                    setImage(fail);  
+                    meDirection = "";
+                    death.play();
+                    //System.out.println("wrong!");
+                }
             }
         }
     }

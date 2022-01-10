@@ -19,10 +19,10 @@ public class FlagManSign extends FlagMan
      */
     public void act() 
     {
-        if(SimonSayer.needToCheck && SimonSayer.direction){
+        if(FlagMan.needToCheck && FlagMan.direction){
             setImage(leftSign);
         }
-        else if(SimonSayer.needToCheck){
+        else if(FlagMan.needToCheck){
             setImage(rightSign);
         }
         // Add your action code here.
