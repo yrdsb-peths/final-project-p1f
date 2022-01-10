@@ -43,7 +43,7 @@ public class MemoryMatch extends MiniGame
         addObject(coinLabel,290,70);
         
 
-        Player player = new Player();
+        HumanPlayer player = new HumanPlayer();
         addObject(player, 80,340);
     }
 
