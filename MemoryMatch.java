@@ -15,7 +15,7 @@ public class MemoryMatch extends MiniGame
     private int gameTime = 60;
     private Label coinLabel;
     int coinCount;
-    GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
+    private static GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
     
     private SimpleTimer winTim = new SimpleTimer();
     private Counter winTimeCount = new Counter();
