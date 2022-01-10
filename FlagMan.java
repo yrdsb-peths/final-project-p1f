@@ -10,7 +10,8 @@ public class FlagMan extends Actor
 {
     public static boolean needToCheck = false;
     //left is true,right is false
-    public static boolean direction;
+    //make string
+    public static String direction;
     //did simon say? 
     public static boolean simonSaid = true;
     
@@ -25,6 +26,7 @@ public class FlagMan extends Actor
         setImage(lFlagMan);
         timer.mark();
     }
+    //record the last time it was checked
     private int lastTimeChecked;    
     /**
      * Act - do whatever the FlagMan wants to do. This method is called whenever
@@ -35,43 +37,42 @@ public class FlagMan extends Actor
         //supposed to switch every now and then, make longer when done testing
         //add an animation before the switch
         //part 1
-        if(timer.millisElapsed() % 100 == 0){
+        if(timer.millisElapsed() % 50 == 0){
             lastTimeChecked = timer.millisElapsed();
-            needToCheck = true;
             //RANDOMIZING DIRECTION!!!
             if(Greenfoot.getRandomNumber(2) > 0){simonSaid = true;}
             else{simonSaid = false;}
             if(Greenfoot.getRandomNumber(2) > 0){
-                direction = true;
-            }
-            else{
-                direction = false;
-            }
-            System.out.println("timer debug: " + String.valueOf(timer.millisElapsed()));
-            System.out.println("needToCheck debug" + String.valueOf(needToCheck));
-            System.out.println("direction debug" + String.valueOf(direction));
-            System.out.println("simon says debug" + String.valueOf(simonSaid));
-        }
-        //thirty milliseconds later, stop the check
-        if(timer.millisElapsed() - 50 == lastTimeChecked){
-            System.out.println("time elapsed: " + timer.millisElapsed());
-            needToCheck = false;
-        }
-        
-        //part 2
-        if(FlagMan.needToCheck)
-        {
-            //Set to !left because the program is too slow to sync flagman with flagman sign
-            //If your computer doesn't sync, try removing the !
-            if(FlagMan.direction){ 
+                //show flag and allow movement
+                left = true;
                 setImage(lFlagMan);
             }
             else{
+                left = false;
                 setImage(rFlagMan);
             }
-            // Add your action code here.
-            left = !left;
+            System.out.println("timer debug: " + String.valueOf(timer.millisElapsed()));
+            System.out.println("needToCheck debug" + String.valueOf(needToCheck));
+            System.out.println("direction debug" + direction);
+            System.out.println("simon says debug" + String.valueOf(simonSaid));
+        }
+        //give them some time to move
+        if(timer.millisElapsed() - 10 == lastTimeChecked){
+            System.out.println("time elapsed since first: " + timer.millisElapsed());
+            //check
+            if(left) direction = "left";
+            else direction = "right";
+            //start checking now
+            needToCheck = true;
+        }
+        
+        //now stop checking
+        if(timer.millisElapsed() - 2000 == lastTimeChecked){
+            System.out.println("time elapsed since last: " + timer.millisElapsed());
+            needToCheck = false;
+            direction = "";
         }
     }    
     //Static var to player, player then checks and sends back?
 }
+

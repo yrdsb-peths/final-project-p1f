@@ -36,7 +36,7 @@ public class PlayerSays extends Actor
         //Kind of janky. fix later.
         //GOOD NOW?
         if(inTheGame){
-            if(FlagMan.needToCheck){
+            if(!FlagMan.needToCheck){
                 canMove = true;
             }
             if(Greenfoot.isKeyDown("a") && canMove){
@@ -49,12 +49,27 @@ public class PlayerSays extends Actor
                 meDirection = "right";
                 canMove = false;
             }
-            if(!FlagMan.needToCheck){
-                setImage(idle);
-                meDirection = "";
+            if(FlagMan.needToCheck){
+                //to catch "" error
+                //try removing it
+                if(!FlagMan.direction.equals("")){
+                    if(meDirection.equals(FlagMan.direction))
+                    {
+                        
+                    }
+                    else
+                    {
+                        inTheGame = false; 
+                        setImage(fail);  
+                        meDirection = "";
+                        death.play();
+                    }
+                }
             }
-            else if(FlagMan.direction){
+            /**
+            if(FlagMan.direction.equals("left") && FlagMan.needToCheck){
                 //kills on start! please fix!
+                //Still kills!
                 if(meDirection.equals("left")){
                     //System.out.println("correct!");
                 }
@@ -78,6 +93,7 @@ public class PlayerSays extends Actor
                     //System.out.println("wrong!");
                 }
             }
+            */
         }
     }
 }

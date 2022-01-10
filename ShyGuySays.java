@@ -23,7 +23,8 @@ public class ShyGuySays extends World
     Label s = new Label("Simon says turn: ", 40);
     public void act(){
         //3...2...1...start!
-        main.playLoop();
+        //uncomment when done
+        //main.playLoop();
         if(FlagMan.simonSaid && !addedLabel){
             addObject(s, 200, 200);
             addedLabel = true;

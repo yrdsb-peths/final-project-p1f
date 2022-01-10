@@ -19,7 +19,8 @@ public class FlagManSign extends FlagMan
      */
     public void act() 
     {
-        if(FlagMan.needToCheck && FlagMan.direction){
+        //not changing orientation
+        if(FlagMan.needToCheck && FlagMan.direction.equals("left")){
             setImage(leftSign);
         }
         else if(FlagMan.needToCheck){
