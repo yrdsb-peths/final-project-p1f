@@ -10,8 +10,13 @@ public class GoodNode extends MapNode
         super(x, y);
     }
 
+    public void pass(MapCharacter character) {
+        // -1 dice
+    }
+    
     public void activate(MapCharacter character) {
-        
+        // do good to player
+        System.out.println(character.getName() + " landed on a good node");
     }
     
 }

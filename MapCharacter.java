@@ -12,6 +12,9 @@ public abstract class MapCharacter extends SmoothMover
     protected Animation lWalk, rWalk, lIdle, rIdle;
     private int pathIdx;
     
+    private enum GameState { DICE, MOVE };
+    public GameState gameState;
+    
     private enum State { IDLE, WALK };
     private State state;
     

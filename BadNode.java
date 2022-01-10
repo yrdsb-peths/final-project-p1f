@@ -9,6 +9,10 @@ public class BadNode extends MapNode
     public BadNode(float x, float y) {
         super(x,y);
     } 
+
+    public void pass(MapCharacter character) {
+        // -1 dice
+    } 
     
     public void activate(MapCharacter character) {
         // do something bad to character

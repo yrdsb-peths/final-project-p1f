@@ -15,4 +15,7 @@ public class MapPlayer extends MapCharacter
         lIdle = new Animation(this, "Mario/WalkL", 1, 3, 1);
         rIdle = new Animation(this, "Mario/WalkR", 1, 3, 1);
     }
+    
+    
+    
 }

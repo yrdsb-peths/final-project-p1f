@@ -10,8 +10,13 @@ public class GameNode extends MapNode
         super(x, y);
     }
 
+    public void pass(MapCharacter character) {
+        // -1 dice
+    }
+    
     public void activate(MapCharacter character) {
-        
+        // start minigame
+        System.out.println(character.getName() + " landed on a minigame node");
     }
     
 }

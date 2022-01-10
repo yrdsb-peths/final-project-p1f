@@ -10,6 +10,7 @@ public class Animation
     private GreenfootImage[] frames;
     private int numberFrames;
     private int fps;
+    private boolean shuffle;
 
     /**
      * Constructor for Animation
@@ -36,14 +37,24 @@ public class Animation
     }
     
     private long frame = 0;
+    private int frameIdx = 0;
     /**
      * Animate method (should called on every act())
      */
     public void animate() {
         frame++;
         int fr = 60 / fps;
-        frame %= fr * numberFrames;
-        actor.setImage(frames[(int)(frame / fr)]);
+        if (frame == fr * numberFrames) {
+            frame = 0;
+            if (shuffle) {
+                int prev = frameIdx;
+                while (frameIdx == prev) 
+                    frameIdx = Utils.random(0, numberFrames-1);
+            } else {
+                frameIdx = (int)(frame / fr);
+            }
+        }
+        actor.setImage(frames[frameIdx]);
     }
     
     /**
@@ -53,6 +64,13 @@ public class Animation
     protected boolean finishedAnim() {
         int fr = 60 / fps;
         return (frame+1 == fr*numberFrames);
+    }
+    
+    /**
+     * Set shuffle true
+     */
+    public void shuffle() {
+        this.shuffle = true;
     }
     
     /**
@@ -68,6 +86,21 @@ public class Animation
      */
     public int getFPS() { 
         return this.fps;
+    } 
+    
+    /**
+     * return current frame index
+     * @return frameIdx
+     */
+    public int getFrame() {
+        return this.frameIdx;
+    }
+    
+    /**
+     * set to some frame
+     */
+    public void setFrame(int f) {
+        actor.setImage(frames[f]);
     }
     
 }

@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  * Write a description of class WorldMap here.
@@ -9,21 +11,51 @@ import java.util.ArrayList;
  */
 public class WorldMap extends World
 {
-    
+    public static WorldMap instance;
     ArrayList<MapNode> path;
-    MapCharacter[] players;
+    ArrayList<MapCharacter> playersRef;
+    Queue<MapCharacter> players;
+    Dice dice;
+    MapCharacter currentPlayer;
+    int rounds = 15, round = 0;
     
+    /**
+     * WorldMap Constructor
+     *
+     */
     public WorldMap() {
         super(1000, 600, 1);
-        
+        instance = this;
+        setBackground(new GreenfootImage("WorldMap.png"));
         setupPath();
         
-        players = new MapCharacter[2];
-        players[0] = new MapPlayer();
-        players[1] = new MapNPC();
+        playersRef = new ArrayList<MapCharacter>();
+        playersRef.add(new MapPlayer());
+        playersRef.add(new MapNPC());
         
-        for (Actor p : players) {
+        for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY());
+        }
+        
+        players = new LinkedList<MapCharacter>();
+        currentPlayer = null; 
+        
+        dice = new Dice(200, 500);
+    }
+    
+    public void act() {
+        dice.rollResult();
+        if (players.size() == 0) {
+            if (round == rounds) {
+                // who wins
+                return;
+            } else {
+                // reinitialize queue
+                for (MapCharacter p : playersRef)
+                    players.add(p);
+                round++;
+                // +1 minigame every round ?
+            }
         }
         
     }
@@ -49,10 +81,21 @@ public class WorldMap extends World
      */
     private void setupPath() {
         path = new ArrayList<MapNode>();
-        // simple 4 node path for now
-        path.add(new GoodNode(100, 100));
-        path.add(new GameNode(100, 500));
-        path.add(new BadNode(500, 500));
-        path.add(new GameNode(500, 100));
+        path.add(new EmptyNode(340, 70));
+        path.add(new GoodNode(340, 250));
+        path.add(new GameNode(340, 375));
+        path.add(new EmptyNode(340, 415));
+        path.add(new BadNode(525, 415));
+        path.add(new GoodNode(660, 415));
+        path.add(new GoodNode(800, 415));
+        path.add(new EmptyNode(910, 415));
+        path.add(new GameNode(910, 365));
+        path.add(new BadNode(910, 260));
+        path.add(new EmptyNode(870, 260));
+        path.add(new GoodNode(870, 150));
+        path.add(new EmptyNode(870, 70));
+        path.add(new GoodNode(790, 10));
+        path.add(new GameNode(630, 10));
+        path.add(new BadNode(490, 10));
     }
 }
