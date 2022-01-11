@@ -8,25 +8,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FlagMan extends Actor
 {
-    public static boolean needToCheck = false;
-    //left is true,right is false
-    //make string
-    public static String direction;
-    private SimpleTimer timer = new SimpleTimer();
-    GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
-    GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
-    public FlagMan(){
-        lFlagMan.scale(80, 80);
-        rFlagMan.scale(80, 80);
-        setImage(lFlagMan);
-        timer.mark();
-    }
-    //record the last time it was checked
-    private int lastTimeChecked;    
+    //too many errors, starting over
+    
     /**
-     * Act - do whatever the FlagMan wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+     * public static boolean needToCheck = false;
+     * //left is true,right is false
+     * //make string
+     * public static String direction;
+     * private SimpleTimer timer = new SimpleTimer();
+     * GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
+     * GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
+     * public FlagMan(){
+     *     lFlagMan.scale(80, 80);
+     *     rFlagMan.scale(80, 80);
+     *     setImage(lFlagMan);
+     *     timer.mark();
+     *  }
+     *  //record the last time it was checked
+     *  private int lastTimeChecked;    
+     *  /**
+           * Act - do whatever the FlagMan wants to do. This method is called whenever
+             * the 'Act' or 'Run' button gets pressed in the environment.
+               */
+              /**
     public void act() 
     {
         //supposed to switch every now and then, make longer when done testing
@@ -63,7 +67,8 @@ public class FlagMan extends Actor
             needToCheck = false;
             direction = "";
         }
-    }    
+    }   
+    */
     //Static var to player, player then checks and sends back?
 }
 
