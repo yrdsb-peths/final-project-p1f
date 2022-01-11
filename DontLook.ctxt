@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=DontLook
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DontLook\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=DontLook()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ DontLook.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ prepare()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ timeCountDown()
+comment4.text=\r\n\ Called\ every\ act;\ updates\ the\ time\ counter\ every\ second.\r\n\ If\ time\ limit\ is\ reached...\r\n
+comment5.params=
+comment5.target=void\ updateCoins()
+numComments=6
