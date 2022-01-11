@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Arrow extends Actor
 {
     int arrowType;
+    
     Arrow() {
         setArrow();
     }
     public void setArrow() {
         arrowType = (Greenfoot.getRandomNumber(4) + 1);
-
         switch(arrowType) {
             case 1:
                 setImage("Arrows/Up1.png");

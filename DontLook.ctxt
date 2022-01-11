@@ -13,4 +13,6 @@ comment4.target=void\ timeCountDown()
 comment4.text=\r\n\ Called\ every\ act;\ updates\ the\ time\ counter\ every\ second.\r\n\ If\ time\ limit\ is\ reached...\r\n
 comment5.params=
 comment5.target=void\ updateCoins()
-numComments=6
+comment6.params=
+comment6.target=void\ checkMatch()
+numComments=7
