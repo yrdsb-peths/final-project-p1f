@@ -52,48 +52,18 @@ public class PlayerSays extends Actor
             if(FlagMan.needToCheck){
                 //to catch "" error
                 //try removing it
-                if(!FlagMan.direction.equals("")){
-                    if(meDirection.equals(FlagMan.direction))
-                    {
-                        
-                    }
-                    else
-                    {
-                        inTheGame = false; 
-                        setImage(fail);  
-                        meDirection = "";
-                        death.play();
-                    }
+                if(meDirection.equals(FlagMan.direction))
+                {
+                    System.out.println("correct!");
                 }
-            }
-            /**
-            if(FlagMan.direction.equals("left") && FlagMan.needToCheck){
-                //kills on start! please fix!
-                //Still kills!
-                if(meDirection.equals("left")){
-                    //System.out.println("correct!");
-                }
-                else{
+                else
+                {
                     inTheGame = false; 
                     setImage(fail);  
                     meDirection = "";
                     death.play();
-                    //System.out.println("wrong!");
                 }
-            }
-            else{
-                if(meDirection.equals("right")){
-                    //System.out.println("correct!");
-                }
-                else{
-                    inTheGame = false; 
-                    setImage(fail);  
-                    meDirection = "";
-                    death.play();
-                    //System.out.println("wrong!");
-                }
-            }
-            */
+            }        
         }
     }
 }

@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class ShyGuySays here.
  * 
@@ -16,36 +15,10 @@ public class ShyGuySays extends World
     public ShyGuySays()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1000, 600, 1); 
-        prepare();
-    }
-    private boolean addedLabel = false;
-    Label s = new Label("Simon says turn: ", 40);
-    public void act(){
-        //3...2...1...start!
-        //uncomment when done
-        //main.playLoop();
-        if(FlagMan.simonSaid && !addedLabel){
-            addObject(s, 200, 200);
-            addedLabel = true;
-        }
-        else if(addedLabel){
-            try{
-                //REMOVING too much!!!
-                removeObject(s);
-                //to clear the output box
-                //System.out.println("removed label!");
-            }
-            catch(Exception e){System.out.println("no label to remove!");}
-        }
-    }
-
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
+        super(1000, 600, 1);
+        //Delete when done
+        main.setVolume(10);
+        
         FlagMan flagMan = new FlagMan();
         addObject(flagMan, 200, 480);
 
@@ -54,5 +27,10 @@ public class ShyGuySays extends World
 
         FlagManSign flagSign = new FlagManSign();
         addObject(flagSign, 185, 254);
+    }
+    private boolean addedLabel = false;
+    public void act(){
+        //3...2...1...start!
+        main.playLoop();
     }
 }

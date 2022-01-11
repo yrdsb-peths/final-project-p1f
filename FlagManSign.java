@@ -20,12 +20,18 @@ public class FlagManSign extends FlagMan
     public void act() 
     {
         //not changing orientation
-        if(FlagMan.needToCheck && FlagMan.direction.equals("left")){
-            setImage(leftSign);
+        //NULL POINTER  EXCEPTION???
+        //make it switch sign later
+        /**
+        if(FlagMan.needToCheck = true){
+            if(FlagMan.direction.equals("left")){
+                setImage(leftSign);
+            }
+            else if(FlagMan.direction.equals("right")){
+                setImage(rightSign);
+            }
+            System.out.println("switched sign");
         }
-        else if(FlagMan.needToCheck){
-            setImage(rightSign);
-        }
-        // Add your action code here.
+        */
     }    
 }
