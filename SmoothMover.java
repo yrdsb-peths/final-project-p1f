@@ -13,8 +13,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  */
 public abstract class SmoothMover extends Actor
 { 
-    private Vector2 pos = new Vector2();
-
+    protected Vector2 pos = new Vector2();
+    protected Vector2 lastMove = new Vector2();
+    
     /**
      * Move forward by the specified distance.
      * (Overrides the method in Actor).
@@ -40,22 +41,33 @@ public abstract class SmoothMover extends Actor
      * Move towards Vector2 position
      * Return true when finished
      */
-    public boolean move(Vector2 target, float speed) {
-        float eps = 0.1f;
+    public boolean moveTowards(Vector2 target, float speed) { 
+        if (Vector2.distance(this.pos, target) < speed) return true; 
         Vector2 d = Vector2.sub(target, this.pos);
-        setLocation(pos.getExactX() + d.getExactX(), pos.getExactY() + d.getExactY()); 
-        return Vector2.distance(this.pos, target) < eps;
+        d = d.normalize();
+        d = d.mult(speed);
+        lastMove = d;
+        setLocation(pos.getExactX() + d.getExactX(), pos.getExactY() + d.getExactY());
+        return false;
+    }
+    
+    /**
+     * Set positiong using vector2 coordinates
+     */
+    public void setLocation(Vector2 v)
+    {
+        setLocation(v.getExactX(), v.getExactY());
     }
     
     /**
      * Set the location using exact coordinates.
      */
     public void setLocation(float x, float y) 
-    {
+    { 
         pos.setX(x);
         pos.setY(y);
         super.setLocation(Math.round(x), Math.round(y));
-    }
+    } 
     
     /**
      * Set the location using integer coordinates.
@@ -65,7 +77,7 @@ public abstract class SmoothMover extends Actor
     public void setLocation(int x, int y) {
         setLocation((float)x, (float)y);
     }
-
+    
     /**
      * Return the exact x-coordinate (as a float).
      */

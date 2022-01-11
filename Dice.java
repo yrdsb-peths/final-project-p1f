@@ -16,7 +16,7 @@ public class Dice extends Actor
     
     public Dice(int x, int y) {
         // upload dice here
-        rollAnim = new Animation(this, "Dice/", 6, 60, 1); // (this, "", 6, 5, 1);
+        rollAnim = new Animation(this, "Dice/", 6, 20, 1); // (this, "", 6, 5, 1);
         rollAnim.shuffle();
         paused = true;
         timer = new SimpleTimer();
@@ -32,9 +32,12 @@ public class Dice extends Actor
      * start rolling dice
      */
     public void roll() {
-        paused = false;
-        timer.mark();
-        WorldMap.instance.addObject(this, pos.getX(), pos.getY());
+        // if not rolling, then roll
+        if (paused) {
+            paused = false;
+            timer.mark();
+            WorldMap.instance.addObject(this, pos.getX(), pos.getY());
+        }
     }
     
     /**

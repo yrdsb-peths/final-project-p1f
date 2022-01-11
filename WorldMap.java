@@ -16,8 +16,9 @@ public class WorldMap extends World
     ArrayList<MapCharacter> playersRef;
     Queue<MapCharacter> players;
     Dice dice;
-    MapCharacter currentPlayer;
+    MapCharacter player; // current player
     int rounds = 15, round = 0;
+    SimpleTimer timer;
     
     /**
      * WorldMap Constructor
@@ -30,34 +31,60 @@ public class WorldMap extends World
         setupPath();
         
         playersRef = new ArrayList<MapCharacter>();
-        playersRef.add(new MapPlayer());
-        playersRef.add(new MapNPC());
+        playersRef.add(new MapPlayer("Mario"));
+        playersRef.add(new MapNPC("Luigi"));
         
         for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY());
         }
         
         players = new LinkedList<MapCharacter>();
-        currentPlayer = null; 
+        player = null;
         
         dice = new Dice(200, 500);
+        timer = new SimpleTimer();
+        timer.mark();
     }
     
-    public void act() {
-        dice.rollResult();
+    public void act() { 
         if (players.size() == 0) {
             if (round == rounds) {
                 // who wins
                 return;
             } else {
                 // reinitialize queue
-                for (MapCharacter p : playersRef)
+                for (MapCharacter p : playersRef) {
                     players.add(p);
+                }
                 round++;
                 // +1 minigame every round ?
             }
         }
-        
+        if (player == null) {
+            player = players.remove();
+        } 
+        // take turn
+        if (player.getState() == MapCharacter.State.DICE) {
+            dice.roll();
+            int steps = dice.rollResult(); 
+            if (steps != 0) {
+                player.setSteps(steps);
+                player.setState(MapCharacter.State.MOVE);
+                timer.mark();
+            }
+        } else if (player.getState() == MapCharacter.State.MOVE) {
+            // if finished path
+            if (player.followPath()) {
+                timer.mark();
+                player.setState(MapCharacter.State.IDLE);
+                player = null;
+            }
+        } else {
+            // maybe declare which player's turn it is
+            if (timer.millisElapsed() > 2000) {
+                player.setState(MapCharacter.State.DICE);
+            }
+        } 
     }
 
     /**
@@ -81,14 +108,15 @@ public class WorldMap extends World
      */
     private void setupPath() {
         path = new ArrayList<MapNode>();
-        path.add(new EmptyNode(340, 70));
+        path.add(new EmptyNode(335, 70));
+        path.add(new GoodNode(340, 120));
         path.add(new GoodNode(340, 250));
         path.add(new GameNode(340, 375));
         path.add(new EmptyNode(340, 415));
         path.add(new BadNode(525, 415));
         path.add(new GoodNode(660, 415));
         path.add(new GoodNode(800, 415));
-        path.add(new EmptyNode(910, 415));
+        path.add(new EmptyNode(915, 415));
         path.add(new GameNode(910, 365));
         path.add(new BadNode(910, 260));
         path.add(new EmptyNode(870, 260));
@@ -97,5 +125,9 @@ public class WorldMap extends World
         path.add(new GoodNode(790, 10));
         path.add(new GameNode(630, 10));
         path.add(new BadNode(490, 10));
+    }
+    
+    public ArrayList<MapNode> getPath() {
+        return this.path;
     }
 }

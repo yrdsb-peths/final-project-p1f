@@ -30,7 +30,17 @@ public class Vector2 {
      */
     public Vector2(int x, int y) {
         this.x = x; this.y = y;
-    }        
+    }
+    
+    /**
+     * Copy constructor Vector2 
+     * 
+     * @param Vector2 v
+     */
+    public Vector2(Vector2 v) {
+        this.x = v.getExactX();
+        this.y = v.getExactY();
+    }
     
     /**
      * Return addition of vector a and vector b

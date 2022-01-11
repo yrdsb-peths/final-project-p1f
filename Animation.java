@@ -24,6 +24,7 @@ public class Animation
         this.numberFrames = numberFrames;
         this.fps = fps;
         this.frames = new GreenfootImage[numberFrames];
+        this.shuffle = false;
         for (int i=0;i<numberFrames;i++) {
             GreenfootImage img = new GreenfootImage(filepath + "" + String.valueOf(i+1) + ".png");
             int w = img.getWidth();
@@ -45,14 +46,16 @@ public class Animation
         frame++;
         int fr = 60 / fps;
         if (frame == fr * numberFrames) {
-            frame = 0;
-            if (shuffle) {
+            frame = 0; 
+        }
+        if (shuffle) {
+            if (frame % fr == 0) {
                 int prev = frameIdx;
                 while (frameIdx == prev) 
                     frameIdx = Utils.random(0, numberFrames-1);
-            } else {
-                frameIdx = (int)(frame / fr);
             }
+        } else {
+            frameIdx = (int)(frame / fr);
         }
         actor.setImage(frames[frameIdx]);
     }

@@ -12,4 +12,6 @@ comment3.text=\r\n\ return\ instance\ of\ a\ random\ minigame\r\n
 comment4.params=
 comment4.target=void\ setupPath()
 comment4.text=\r\n\ create\ all\ nodes\ in\ path\r\n
-numComments=5
+comment5.params=
+comment5.target=java.util.ArrayList\ getPath()
+numComments=6

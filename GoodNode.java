@@ -11,7 +11,7 @@ public class GoodNode extends MapNode
     }
 
     public void pass(MapCharacter character) {
-        // -1 dice
+        character.decreaseStep();
     }
     
     public void activate(MapCharacter character) {

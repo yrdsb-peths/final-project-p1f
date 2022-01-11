@@ -11,11 +11,12 @@ public class BadNode extends MapNode
     } 
 
     public void pass(MapCharacter character) {
-        // -1 dice
+        character.decreaseStep();
     } 
     
     public void activate(MapCharacter character) {
         // do something bad to character
         System.out.println(character.getName() + " landed on a bad node");
     }
+    
 }

@@ -12,10 +12,11 @@ public abstract class MapNode
         
     }
     
-    public abstract void pass(MapCharacter character); // called for every number on dice
+    public abstract void pass(MapCharacter character); // called for when player passes by
     public abstract void activate(MapCharacter character); // called when player lands here
     
     public int getX() { return this.pos.getX(); }
     public int getY() { return this.pos.getY(); }
+    public Vector2 getPos() { return this.pos; }
     
 }
