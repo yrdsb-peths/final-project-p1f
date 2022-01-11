@@ -13,14 +13,13 @@ public class DontLook extends MiniGame
     private int time = 4;
     Label coinLabel;
     int coinCount;
-    
     Arrow arrow;
+    Player player;
     /**
      * Constructor for objects of class DontLook.
      * 
      */
-    public DontLook()
-    {
+    public DontLook() {
         prepare();
     }
     public void prepare() {
@@ -31,7 +30,7 @@ public class DontLook extends MiniGame
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,220,50);
         
-        Player player = new Player();
+        player = new Player();
         addObject(player, getWidth()/2,getHeight()/2);
         
         arrow = new Arrow();
@@ -44,15 +43,21 @@ public class DontLook extends MiniGame
      * Called every act; updates the time counter every second.
      * If time limit is reached...
      */
-    public void timeCountDown()
-    {    
+    public void timeCountDown() {    
         if(tim.millisElapsed() > 1000) { //time count down every second
-            Greenfoot.playSound("Second.wav");
+            Greenfoot.playSound("Second.wav"); 
             timeCount.add(-1);
             tim.mark();
         }
         
         if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
+            if (player.checkPlayer() != arrow.arrowType) {
+                coinCount++;
+                updateCoins();
+            } else {
+                System.out.println("F");
+                //play sound
+            }
             arrow.setArrow();
             Greenfoot.playSound("Beep.wav");
             timeCount.setValue(time); 
