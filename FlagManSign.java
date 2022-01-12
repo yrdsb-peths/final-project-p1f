@@ -20,16 +20,15 @@ public class FlagManSign extends FlagMan
     
     
     private SimpleTimer timer = new SimpleTimer();
+    
     public FlagManSign(){
         setImage(leftSign);
+        timer.mark();
     }
     public void act(){
         //good check method
         if(Greenfoot.isKeyDown("g")){
             check = true;
-            //System.out.println(check);
-            //System.out.println(PlayerSays.playerDirection);
-            //System.out.println(FlagManSign.direction);
             if(!PlayerSays.playerDirection.equals(FlagManSign.direction))
             {
                 if(PlayerSays.alive){
@@ -45,9 +44,10 @@ public class FlagManSign extends FlagMan
         {
             check = false;
         }
-        if(Greenfoot.isKeyDown("f")){
+        if(timer.millisElapsed() % 1000 == 0){
             int getDir = Greenfoot.getRandomNumber(2);
             System.out.println(getDir);
+            System.out.println(timer.millisElapsed());
             if(getDir > 0){
                 FlagManSign.direction = "right";
                 setImage(rightSign);

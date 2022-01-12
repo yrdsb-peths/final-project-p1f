@@ -8,9 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerSays extends Actor
 {
-    //too many errors, starting over
-    
-    
     GreenfootImage left = new GreenfootImage("WalkL1.png");
     GreenfootImage right = new GreenfootImage("WalkR1.png");
     GreenfootImage fail = new GreenfootImage("failureMario.png");
@@ -21,11 +18,13 @@ public class PlayerSays extends Actor
         left.scale(100, 100);
         right.scale(100, 100);
         fail.scale(100, 100);
-        
         setImage(left);
     }
     
     public void act(){
+        if(Greenfoot.isKeyDown("g")){
+            System.out.println(alive);
+        }
         if(alive){
             if(Greenfoot.isKeyDown("a")){
                 PlayerSays.playerDirection = "left";
@@ -39,7 +38,6 @@ public class PlayerSays extends Actor
         else{
             setImage(fail);
         }
-        
     }
     /**
     private boolean inTheGame = true;
