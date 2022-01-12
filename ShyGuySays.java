@@ -8,6 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ShyGuySays extends World
 {
     GreenfootSound main = new GreenfootSound("Mario Party (Music) - Dodging Danger.mp3");
+    
+    static PlayerSays player = new PlayerSays();
+    static FlagManSign flagSign = new FlagManSign();
+    static FlagMan flagMan = new FlagMan();
+    
+    //initializing the player
+    GreenfootImage left = new GreenfootImage("WalkL1.png");
+    GreenfootImage leftSign = new GreenfootImage("signLeft.png");
+    
     /**
      * Constructor for objects of class ShyGuySays.
      * 
@@ -19,13 +28,18 @@ public class ShyGuySays extends World
         //Delete when done
         main.setVolume(10);
         
-        FlagMan flagMan = new FlagMan();
         addObject(flagMan, 200, 480);
-
-        PlayerSays player = new PlayerSays();
+        
+        //making sure player does not die on startup
+        left.scale(100, 100);
+        player.alive = true;
         addObject(player, 600, 460);
-
-        FlagManSign flagSign = new FlagManSign();
+        player.playerDirection = "left";
+        player.setImage(left);
+        
+        flagSign.check = false;
+        flagSign.direction = "left";
+        flagSign.setImage(leftSign);
         addObject(flagSign, 185, 254);
     }
     private boolean addedLabel = false;

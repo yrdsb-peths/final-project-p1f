@@ -29,8 +29,7 @@ public class FlagManSign extends FlagMan
         //good check method
         if(Greenfoot.isKeyDown("g")){
             check = true;
-            if(!PlayerSays.playerDirection.equals(FlagManSign.direction))
-            {
+            if(!PlayerSays.playerDirection.equals(FlagManSign.direction)){
                 if(PlayerSays.alive){
                     bad.play();
                 }
@@ -44,7 +43,17 @@ public class FlagManSign extends FlagMan
         {
             check = false;
         }
-        if(timer.millisElapsed() % 1000 == 0){
+        if(timer.millisElapsed() % 900 == 0){
+            if(FlagManSign.direction.equals("right")){
+                FlagManSign.direction = "left";
+                setImage(leftSign);
+            }
+            else{
+                FlagManSign.direction = "right";
+                setImage(rightSign);
+            }
+            System.out.println(FlagManSign.direction);
+            /**
             int getDir = Greenfoot.getRandomNumber(2);
             System.out.println(getDir);
             System.out.println(timer.millisElapsed());
@@ -56,6 +65,7 @@ public class FlagManSign extends FlagMan
                 FlagManSign.direction = "left";
                 setImage(leftSign);
             }
+            */
         }
     }
     /**
