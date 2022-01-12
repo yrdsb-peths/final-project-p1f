@@ -32,11 +32,13 @@ public class DontLook extends MiniGame
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,220,50);
 
-        player = new Player();
-        addObject(player, getWidth()/2,getHeight()/2);
+        addObject(new Level(), getWidth()/2, 40);
 
         arrow = new Arrow();
         addObject(arrow, getWidth()/2, 200);
+
+        player = new Player();
+        addObject(player, getWidth()/2,460);
     }
 
     public void act() {
@@ -66,6 +68,9 @@ public class DontLook extends MiniGame
     }
 
     public void updateCoins() {
+        getObjects(Coins.class).get(0).timeCount.setValue(2); 
+        getObjects(Coins.class).get(0).coinSpin = true;
+        coinCount++;
         removeObject(coinLabel);
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,60,140);
@@ -73,7 +78,6 @@ public class DontLook extends MiniGame
 
     public void checkMatch() {
         if (player.checkPlayer() != arrow.arrowType) {
-            coinCount++;
             updateCoins();
         } else {
             Greenfoot.playSound("Bad.wav");

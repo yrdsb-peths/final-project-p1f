@@ -16,8 +16,7 @@ public class Coins extends Actor
     /**
      * Constructor for Coins Class - sets the image
      */
-    public Coins()
-    {
+    public Coins() {
         timeCount.setValue(2); //spin time is 2s
         for (int i = 0; i < coin.length; i++) {
             coin[i] = new GreenfootImage("images/Coins/Coin" + (i+1) + ".png");
@@ -29,8 +28,7 @@ public class Coins extends Actor
      * Called every act; Make the images animated
      */
     int imageIndex = 0;
-    public void act()
-    {
+    public void act()  {
         if (coinSpin) {
             setImage(coin[imageIndex]);
             imageIndex = (imageIndex + 1) % coin.length;
