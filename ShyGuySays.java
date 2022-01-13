@@ -35,8 +35,8 @@ public class ShyGuySays extends World
         //making sure player does not die on startup
         left.scale(100, 100);
         player.alive = true;
+        player.setDirection(true);
         addObject(player, 600, 460);
-        player.playerDirection = "left";
         player.setImage(left);
         
         flagSign.setImage(leftSign);

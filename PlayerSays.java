@@ -11,7 +11,9 @@ public class PlayerSays extends Actor
     GreenfootImage left = new GreenfootImage("WalkL1.png");
     GreenfootImage right = new GreenfootImage("WalkR1.png");
     GreenfootImage fail = new GreenfootImage("failureMario.png");
-    public static String playerDirection;
+    
+    private enum PlayerDirection{ LEFT, RIGHT};
+    private static PlayerDirection playerDirection = PlayerDirection.LEFT;
     public static boolean alive;
     
     public PlayerSays(){
@@ -26,11 +28,11 @@ public class PlayerSays extends Actor
         }
         if(this.alive){
             if(Greenfoot.isKeyDown("a")){
-                this.playerDirection = "left";
+                PlayerSays.playerDirection = PlayerDirection.LEFT;
                 setImage(left);
             }
             if(Greenfoot.isKeyDown("d")){
-                this.playerDirection = "right";
+                PlayerSays.playerDirection = PlayerDirection.RIGHT;
                 setImage(right);
             }
         }
@@ -39,8 +41,17 @@ public class PlayerSays extends Actor
         }
     }
     
-    public String getDirection(){
-        return this.playerDirection;
+    public static String getDirection(){
+        return String.valueOf(PlayerSays.playerDirection);
+    }
+    
+    public static void setDirection(boolean isLeft){
+        if(isLeft){
+            PlayerSays.playerDirection = PlayerDirection.LEFT;
+        }
+        else{
+            PlayerSays.playerDirection = PlayerDirection.RIGHT;
+        }
     }
     /**
     private boolean inTheGame = true;

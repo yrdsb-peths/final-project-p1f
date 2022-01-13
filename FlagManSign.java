@@ -34,7 +34,8 @@ public class FlagManSign extends FlagMan
         //good check method
         if(Greenfoot.isKeyDown("g")){
             check = true;
-            if(!PlayerSays.playerDirection.equals(FlagManSign.direction)){
+            if(!String.valueOf(PlayerSays.getDirection()).equals(String.valueOf(FlagManSign.direction)))
+            {
                 if(PlayerSays.alive){
                     bad.play();
                 }
@@ -58,8 +59,6 @@ public class FlagManSign extends FlagMan
             }
             timer.mark();
             nextCheck = Greenfoot.getRandomNumber(2000) + 4000; // [4000, 6000]
-            
-            System.out.println(FlagManSign.direction);
             /**
             int getDir = Greenfoot.getRandomNumber(2);
             System.out.println(getDir);
