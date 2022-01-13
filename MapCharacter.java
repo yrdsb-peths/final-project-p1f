@@ -16,17 +16,15 @@ public abstract class MapCharacter extends SmoothMover
     private State state;
     
     private enum Direction { LEFT, RIGHT };
-    private Direction dir; 
+    private Direction dir;
     
     public MapCharacter() {
-        this("Unnamed"); 
+        this("Unnamed");
     }
     
     public MapCharacter(String name) {
         this.name = name;
         pathIdx = 0;
-        // Vector2 startPos = WorldMap.instance.getPath().get(0).getPos();
-        // pos = new Vector2(startPos); 
         dir = Direction.LEFT;
         state = State.IDLE;
         setupAnim();
@@ -67,14 +65,36 @@ public abstract class MapCharacter extends SmoothMover
                 case RIGHT: rWalk.animate(); break;
             }
         }
-    } 
+    }
     
-    protected abstract void setupAnim();
-    public abstract void dice();
+    /**
+     * based on name
+     */
+    private void setupAnim() {
+        String file = "";
+        switch (name) { 
+            case "Mario": file = "Mario/anim/L"; break;
+            case "Luigi": file = "Luigi/anim/L"; break;
+            case "Red": file = "koopa/redL"; break;
+            case "Green": file = "koopa/greenL"; break;
+            case "Yellow": file = "koopa/yellowL"; break;
+            case "Purple": file = "koopa/purpleL"; break;
+            case "Silver": file = "koopa/silverL"; break;
+            default: file = "Mario/anim/L"; break;
+        } 
+        lWalk = new Animation(this, file, 2, 5, 3);
+        rWalk = new Animation(this, file, 2, 5, 3, true);
+        lIdle = new Animation(this, file, 1, 5, 3);
+        rIdle = new Animation(this, file, 1, 5, 3, true);
+    }
+    public abstract void startDice(Dice dice);
+    public abstract boolean stopDice(Dice dice);
+    public abstract boolean closePopUp();
     
     public String getName() { return this.name; }
     public State getState() { return this.state; }
     public void setState(State state) { this.state = state; }
     public void setSteps(int steps) { this.steps = steps; }
     public void decreaseStep() { this.steps--; }
+    public GreenfootImage getRightImage() { return rWalk.getImage(0); }
 }

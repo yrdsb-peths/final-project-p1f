@@ -11,17 +11,29 @@ public class MapPlayer extends MapCharacter
     
     public MapPlayer(String name) {
         super(name);
+    } 
+    
+    /**
+     * 
+     * return true when player clicks
+     * @param dice
+     */
+    public boolean stopDice(Dice dice) {
+        return Greenfoot.mouseClicked(dice);
     }
     
-    protected void setupAnim() {
-        lWalk = new Animation(this, "Mario/anim/right", 2, 5, 3, true);
-        rWalk = new Animation(this, "Mario/anim/right", 2, 5, 3);
-        lIdle = new Animation(this, "Mario/anim/right", 1, 5, 3, true);
-        rIdle = new Animation(this, "Mario/anim/right", 1, 5, 3);
-    }
+    /**
+     * do nothing when dice starts rolling
+     */
+    public void startDice(Dice dice) {}
     
-    public void dice() {
-        
+    /**
+     * dont close pop up,
+     * will be handled by button in PopUp
+     * @return false
+     */
+    public boolean closePopUp() {
+        return false;
     }
-    
+
 }

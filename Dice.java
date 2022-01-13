@@ -10,64 +10,41 @@ public class Dice extends Actor
 {
     private Animation rollAnim;
     private boolean paused;
-    private SimpleTimer timer;
-    private Vector2 pos;
-    private int value;
     
-    public Dice(int x, int y) {
+    public Dice() {
         // upload dice here
-        rollAnim = new Animation(this, "Dice/", 6, 20, 1); // (this, "", 6, 5, 1);
+        rollAnim = new Animation(this, "Dice/", 6, 20, 2);
         rollAnim.shuffle();
-        paused = true;
-        timer = new SimpleTimer();
-        pos = new Vector2(x, y);
+        startRoll();
     }
     
     public void act() {
-        if (paused) return;
+        rollAnim.periodicResize(paused); 
         rollAnim.animate();
     }
-    
+
     /**
-     * start rolling dice
+     * stops the roll
      */
-    public void roll() {
-        // if not rolling, then roll
-        if (paused) {
-            paused = false;
-            timer.mark();
-            WorldMap.instance.addObject(this, pos.getX(), pos.getY());
-        }
+    public void stopRoll() {
+        paused = true;
+        rollAnim.pause();
     }
-    
+
     /**
-     * -1 to the dice value
+     * starts a roll
      */
-    public void countDown() {
-        value--;
-        rollAnim.setFrame(value);
+    public void startRoll() {
+        paused = false;
+        rollAnim.resume();
     }
     
     /**
      * return 0 if not finished roll
      * return 1-6 when finished roll
      */
-    public int rollResult() {
-        if (timer.millisElapsed() >= 3000) {
-            paused = true;
-            value = rollAnim.getFrame()+1;
-        } else {
-            value = 0;
-        }
-        return value;
-    }
-    
-    /**
-     * return is rolling or not
-     * return true if not paused
-     */
-    public boolean isRoll() {
-        return !paused;
+    public int rollResult() { 
+        return rollAnim.getFrame()+1;
     }
     
     /**

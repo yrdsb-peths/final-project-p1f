@@ -9,30 +9,49 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PopUp extends Actor
 {
     
-    private GreenfootImage panel;
+    protected GreenfootImage panel;
     private Button exitButton;
-    private Boolean canClose;
+    protected Boolean canClose;
+    private Boolean closed;
     
     public PopUp() {
         panel = new GreenfootImage(WorldMap.instance.getWidth(), WorldMap.instance.getHeight());
         panel.setColor(new Color(0, 0, 0, 200));
         panel.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-        setImage(panel); 
+        canClose = true;
+        closed = false;
+        setImage(panel);
     }
 
-    boolean firstAct = true;
+    boolean isFirstAct = true;
     public void act() {
-        if (firstAct) {
-            firstAct = false;
-            setLocation(panel.getWidth()/2, panel.getHeight()/2);
-            exitButton = new Button("Exit");
-            WorldMap.instance.addObject(exitButton, 850, 550);
+        if (isFirstAct) {
+            firstAct();
         }
-        if (exitButton.clicked()) {
+        if (canClose && exitButton.clicked()) {
             // hide the pop up
-            getWorld().removeObject(exitButton);
-            getWorld().removeObject(this);
+            onExit();
         }
+    }
+
+    protected void onExit() {
+        closed = true;
+        getWorld().removeObject(exitButton);
+        getWorld().removeObject(this);
+    }
+
+    /**
+     * called on the first act update after popup is added to the world
+     */
+    public void firstAct() {
+        isFirstAct = false;
+        setLocation(panel.getWidth()/2, panel.getHeight()/2);
+        exitButton = new Button("  continue");
+        WorldMap.instance.addObject(exitButton, 850, 550);
+    }
+
+    public boolean isClosed() {
+        return closed;
     }
     
 }

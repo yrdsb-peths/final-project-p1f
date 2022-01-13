@@ -16,13 +16,12 @@ public class WorldMap extends World
     private ArrayList<MapNode> path;
     private ArrayList<MapCharacter> playersRef;
     private Queue<MapCharacter> players;
-    private Dice dice;
+    private DicePopUp dicePopUp;
     private MapCharacter player; // current player
     private int rounds = 15+1;
     private Label roundsText;
-    private Label turnText;
     private SimpleTimer timer;
-    
+     
     /**
      * WorldMap Constructor
      *
@@ -36,6 +35,8 @@ public class WorldMap extends World
         playersRef = new ArrayList<MapCharacter>();
         playersRef.add(new MapPlayer("Mario"));
         playersRef.add(new MapNPC("Luigi"));
+        playersRef.add(new MapNPC("Yellow"));
+        playersRef.add(new MapNPC("Purple"));
         
         for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY());
@@ -43,17 +44,13 @@ public class WorldMap extends World
         
         players = new LinkedList<MapCharacter>();
         player = null;
-        
-        dice = new Dice(200, 500);
+         
         timer = new SimpleTimer();
         timer.mark();
         
         roundsText = new Label(String.valueOf(rounds) + " Rounds Left", 50);
         addObject(roundsText, 160, 570);
         
-        // maybe use an image / icon
-        turnText = new Label("Mario", 50); // sample text
-        addObject(turnText, 100, 500);
     }
     
     public void act() { 
@@ -73,16 +70,14 @@ public class WorldMap extends World
         }
         if (player == null) {
             player = players.remove();
-            turnText.setValue(player.getName());
         } 
         // boolean finishedTurn = player.takeTurn();
         // if finished, init next player
         
         // take turn code (put in MapPlayer and MapNPC)
         if (player.getState() == MapCharacter.State.DICE) {
-            dice.roll();
-            int steps = dice.rollResult();
-            if (steps != 0) {
+            if (dicePopUp.isClosed()) {
+                int steps = dicePopUp.rollResult();
                 player.setSteps(steps);
                 player.setState(MapCharacter.State.MOVE);
                 timer.mark();
@@ -97,8 +92,10 @@ public class WorldMap extends World
         } else {
             // player.dice()
             // maybe declare which player's turn it is
-            if (timer.millisElapsed() > 4000) {
+            if (timer.millisElapsed() > 1000) {
                 player.setState(MapCharacter.State.DICE);
+                dicePopUp = new DicePopUp(player);
+                addObject(dicePopUp, 0, 0);
             }
         }
     }
