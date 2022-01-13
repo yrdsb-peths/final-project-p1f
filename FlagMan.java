@@ -17,7 +17,7 @@ public class FlagMan extends Actor
     }
     
     public void act(){
-        if(FlagManSign.direction.equals("left")){
+        if(FlagManSign.getLeft()){
             setImage(lFlagMan);
         }
         else{

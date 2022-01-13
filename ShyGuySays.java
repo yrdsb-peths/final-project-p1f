@@ -39,8 +39,6 @@ public class ShyGuySays extends World
         player.playerDirection = "left";
         player.setImage(left);
         
-        flagSign.check = false;
-        flagSign.direction = "left";
         flagSign.setImage(leftSign);
         addObject(flagSign, 185, 254);
     }

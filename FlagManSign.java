@@ -15,15 +15,20 @@ public class FlagManSign extends FlagMan
     GreenfootSound bad = new GreenfootSound("bad.mp3");
     GreenfootSound good = new GreenfootSound("good.mp3");
     
-    public static String direction = "left";
-    public static boolean check = false;
+    private enum Direction { LEFT, RIGHT };
+    private static Direction direction = Direction.LEFT; 
     
+    private int nextCheck = 5000;
+    
+    private static boolean check = false;
     
     private SimpleTimer timer = new SimpleTimer();
     
     public FlagManSign(){
         setImage(leftSign);
         timer.mark();
+        check = false;
+        direction = Direction.LEFT;
     }
     public void act(){
         //good check method
@@ -42,16 +47,18 @@ public class FlagManSign extends FlagMan
         else
         {
             check = false;
-        }
-        if(timer.millisElapsed() % 5000 - (Greenfoot.getRandomNumber(5) * 999) == 0){
-            if(FlagManSign.direction.equals("right")){
-                FlagManSign.direction = "left";
+        } 
+        if(timer.millisElapsed() >= nextCheck) {
+            if(direction == Direction.RIGHT) {
+                direction = Direction.LEFT;
                 setImage(leftSign);
-            }
-            else{
-                FlagManSign.direction = "right";
+            } else{
+                FlagManSign.direction = Direction.RIGHT;
                 setImage(rightSign);
             }
+            timer.mark();
+            nextCheck = Greenfoot.getRandomNumber(2000) + 4000; // [4000, 6000]
+            
             System.out.println(FlagManSign.direction);
             /**
             int getDir = Greenfoot.getRandomNumber(2);
@@ -68,6 +75,15 @@ public class FlagManSign extends FlagMan
             */
         }
     }
+    
+    public static boolean getLeft() {
+        return (direction == Direction.LEFT);
+    }
+    
+    public static boolean getCheck() {
+        return check;
+    }
+    
     /**
     */
     /**
