@@ -43,7 +43,7 @@ public class FlagManSign extends FlagMan
         {
             check = false;
         }
-        if(timer.millisElapsed() % 900 == 0){
+        if(timer.millisElapsed() % 5000 - (Greenfoot.getRandomNumber(5) * 999) == 0){
             if(FlagManSign.direction.equals("right")){
                 FlagManSign.direction = "left";
                 setImage(leftSign);

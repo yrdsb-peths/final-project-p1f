@@ -9,7 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class FlagMan extends Actor
 {
     //too many errors, starting over
+    GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
+    GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
+    public FlagMan(){
+        lFlagMan.scale(80, 80);
+        rFlagMan.scale(80, 80);
+    }
     
+    public void act(){
+        if(FlagManSign.direction.equals("left")){
+            setImage(lFlagMan);
+        }
+        else{
+            setImage(rFlagMan);
+        }
+    }
     /**
      * public static boolean needToCheck = false;
      * //left is true,right is false

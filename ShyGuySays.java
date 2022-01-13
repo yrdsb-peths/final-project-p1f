@@ -16,7 +16,7 @@ public class ShyGuySays extends World
     //initializing the player
     GreenfootImage left = new GreenfootImage("WalkL1.png");
     GreenfootImage leftSign = new GreenfootImage("signLeft.png");
-    
+    GreenfootImage leftFlagMan = new GreenfootImage("flaggerL.png");
     /**
      * Constructor for objects of class ShyGuySays.
      * 
@@ -28,6 +28,8 @@ public class ShyGuySays extends World
         //Delete when done
         main.setVolume(10);
         
+        leftFlagMan.scale(80, 80);
+        flagMan.setImage(leftFlagMan);
         addObject(flagMan, 200, 480);
         
         //making sure player does not die on startup
