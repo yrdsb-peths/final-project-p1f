@@ -18,10 +18,10 @@ public class Player extends Actor
      */
     public void act() {
         if (Greenfoot.isKeyDown("up")) {
-            playerOrientation = 'U';
+            playerOrientation = 'D';
             setImage("Mario/WalkF1.png");
         } else if (Greenfoot.isKeyDown("down")) {
-            playerOrientation = 'D';
+            playerOrientation = 'U';
             setImage("Mario/WalkB1.png");
         } else if (Greenfoot.isKeyDown("left")) {
             playerOrientation = 'L';
@@ -32,9 +32,9 @@ public class Player extends Actor
         }
     }
     public int checkPlayer() {
-        if (playerOrientation == 'U') {
+        if (playerOrientation == 'D') {
             return 1;
-        } else if (playerOrientation == 'D') {
+        } else if (playerOrientation == 'U') {
             return 2;
         } else if (playerOrientation == 'L') {
             return 3;

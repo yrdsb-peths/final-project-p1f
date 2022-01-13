@@ -10,7 +10,7 @@ public class DontLook extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int time = 4;
+    private int time = 20;
     Label coinLabel;
     int coinCount;
     int lv;
@@ -20,7 +20,8 @@ public class DontLook extends MiniGame
      * Constructor for objects of class DontLook.
      * 
      */
-    public DontLook() {
+    public DontLook()
+    {
         prepare();
     }
 
@@ -28,9 +29,10 @@ public class DontLook extends MiniGame
         addObject(timeCount,90,50);
         timeCount.setValue(time); 
 
-        addObject(new Coins(), 180, 50);
+        addObject(new Coins(), 850, 50);
+        
         coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,220,50);
+        addObject(coinLabel,920,50);
 
         addObject(new Level(), getWidth()/2, 40);
 
@@ -43,11 +45,21 @@ public class DontLook extends MiniGame
 
     public void act() {
         timeCountDown();
-        if (lv == 6) {
+        checkPlayerMoves();
+        if (tim.millisElapsed() * 1000 == timeCount.getValue()) {
             Greenfoot.setWorld(new WorldMap());
         }
     }
 
+    public void checkPlayerMoves()
+    {
+        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left")
+        ||Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("down"))
+        {
+            checkMatch();
+            arrow.setArrow();
+        }
+    }
     /**
      * Called every act; updates the time counter every second.
      * If time limit is reached...
@@ -58,13 +70,6 @@ public class DontLook extends MiniGame
             timeCount.add(-1);
             tim.mark();
         }
-        if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
-            lv++;
-            checkMatch();
-            arrow.setArrow();
-            Greenfoot.playSound("Beep.wav");
-            timeCount.setValue(time); 
-        }
     }
 
     public void updateCoins() {
@@ -73,11 +78,12 @@ public class DontLook extends MiniGame
         coinCount++;
         removeObject(coinLabel);
         coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,60,140);
+        addObject(coinLabel,920,50);
     }
 
     public void checkMatch() {
-        if (player.checkPlayer() != arrow.arrowType) {
+        if (player.checkPlayer() != arrow.arrowType)
+        {
             updateCoins();
         } else {
             Greenfoot.playSound("Bad.wav");
