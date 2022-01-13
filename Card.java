@@ -33,7 +33,9 @@ public class Card extends Actor
 
     Card(int id) {
         this.id = id;
-        setImage("Cards/Card1.png");
+        GreenfootImage constructorCard = new GreenfootImage("Cards/Card1.png");
+        constructorCard.scale(60, 108);
+        setImage(constructorCard);
         cdTimeCount.setValue(2);
     }
     public void act() {
@@ -63,15 +65,25 @@ public class Card extends Actor
         this.active = !this.active;
         
         if (this.dead) {
-            setImage("Cards/Card" + (3 + this.id) + ".png");
+            GreenfootImage deadCard = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
+            deadCard.scale(60, 108);
+            setImage(deadCard);
             //wait
-            setImage("Cards/Card9.png");            
+            GreenfootImage waitCard = new GreenfootImage("Cards/Card9.png");
+            waitCard.scale(60, 108);
+            setImage(waitCard);            
         } else if (this.active) {
-            setImage("Cards/Card" + (3 + this.id) + ".png");
+            GreenfootImage activeCard = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
+            activeCard.scale(60, 108);
+            setImage(activeCard);
         } else if (!this.active) {
-            setImage("Cards/Card" + (3 + this.id) + ".png");
+            GreenfootImage notActive = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
+            notActive.scale(60, 108);
+            setImage(notActive);
             //wait
-            setImage("Cards/Card1.png");
+            GreenfootImage waitActive = new GreenfootImage("Cards/Card1.png");
+            notActive.scale(60, 108);
+            setImage(waitActive);
         }
     }
     public void checkMatch() {
