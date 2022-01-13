@@ -14,12 +14,14 @@ public class MapPlayer extends MapCharacter
     }
     
     protected void setupAnim() {
-        lWalk = new Animation(this, "Mario/WalkL", 2, 5, 1);
-        rWalk = new Animation(this, "Mario/WalkR", 2, 5, 1);
-        lIdle = new Animation(this, "Mario/WalkL", 1, 5, 1);
-        rIdle = new Animation(this, "Mario/WalkR", 1, 5, 1);
+        lWalk = new Animation(this, "Mario/anim/right", 2, 5, 3, true);
+        rWalk = new Animation(this, "Mario/anim/right", 2, 5, 3);
+        lIdle = new Animation(this, "Mario/anim/right", 1, 5, 3, true);
+        rIdle = new Animation(this, "Mario/anim/right", 1, 5, 3);
     }
     
-    
+    public void dice() {
+        
+    }
     
 }

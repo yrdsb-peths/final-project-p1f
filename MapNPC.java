@@ -19,4 +19,9 @@ public class MapNPC extends MapCharacter
         lIdle = new Animation(this, "Luigi/WalkL", 1, 5, 3);
         rIdle = new Animation(this, "Luigi/WalkL", 1, 5, 3, true);
     }
+    
+    public void dice() {
+        
+    }
+    
 }

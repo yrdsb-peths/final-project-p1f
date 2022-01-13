@@ -12,20 +12,23 @@ import java.util.LinkedList;
 public class WorldMap extends World
 {
     public static WorldMap instance;
-    ArrayList<MapNode> path;
-    ArrayList<MapCharacter> playersRef;
-    Queue<MapCharacter> players;
-    Dice dice;
-    MapCharacter player; // current player
-    int rounds = 15, round = 0;
-    SimpleTimer timer;
+    
+    private ArrayList<MapNode> path;
+    private ArrayList<MapCharacter> playersRef;
+    private Queue<MapCharacter> players;
+    private Dice dice;
+    private MapCharacter player; // current player
+    private int rounds = 15+1;
+    private Label roundsText;
+    private Label turnText;
+    private SimpleTimer timer;
     
     /**
      * WorldMap Constructor
      *
      */
     public WorldMap() {
-        super(1000, 600, 1);
+        super(1000, 600, 1); 
         instance = this;
         setBackground(new GreenfootImage("WorldMap.png"));
         setupPath();
@@ -44,29 +47,41 @@ public class WorldMap extends World
         dice = new Dice(200, 500);
         timer = new SimpleTimer();
         timer.mark();
+        
+        roundsText = new Label(String.valueOf(rounds) + " Rounds Left", 50);
+        addObject(roundsText, 160, 570);
+        
+        // maybe use an image / icon
+        turnText = new Label("Mario", 50); // sample text
+        addObject(turnText, 100, 500);
     }
     
     public void act() { 
-        if (players.size() == 0) {
-            if (round == rounds) {
-                // who wins
+        if (player==null && players.size() == 0) {
+            if (rounds == 0) {
+                // new winscreen(winning player)
                 return;
             } else {
                 // reinitialize queue
                 for (MapCharacter p : playersRef) {
                     players.add(p);
                 }
-                round++;
-                // +1 minigame every round ?
+                rounds--;
+                roundsText.setValue(String.valueOf(rounds) + " Rounds Left");
+                // play minigame every round ?
             }
         }
         if (player == null) {
             player = players.remove();
+            turnText.setValue(player.getName());
         } 
-        // take turn
+        // boolean finishedTurn = player.takeTurn();
+        // if finished, init next player
+        
+        // take turn code (put in MapPlayer and MapNPC)
         if (player.getState() == MapCharacter.State.DICE) {
             dice.roll();
-            int steps = dice.rollResult(); 
+            int steps = dice.rollResult();
             if (steps != 0) {
                 player.setSteps(steps);
                 player.setState(MapCharacter.State.MOVE);
@@ -80,11 +95,12 @@ public class WorldMap extends World
                 player = null;
             }
         } else {
+            // player.dice()
             // maybe declare which player's turn it is
-            if (timer.millisElapsed() > 2000) {
+            if (timer.millisElapsed() > 4000) {
                 player.setState(MapCharacter.State.DICE);
             }
-        } 
+        }
     }
 
     /**
@@ -129,5 +145,9 @@ public class WorldMap extends World
     
     public ArrayList<MapNode> getPath() {
         return this.path;
+    }
+    
+    public SimpleTimer getTimer() {
+        return this.timer; 
     }
 }

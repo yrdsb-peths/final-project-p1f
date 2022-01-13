@@ -11,8 +11,7 @@ public class EmptyNode extends MapNode
     }
     
     public void pass(MapCharacter character) {
-        // do nothing, just so the player can turn to next location
-        System.out.println("empty");
+        // do nothing, just so the player can turn to next location 
     }
     
     public void activate(MapCharacter character) {

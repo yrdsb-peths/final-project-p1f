@@ -70,6 +70,7 @@ public abstract class MapCharacter extends SmoothMover
     } 
     
     protected abstract void setupAnim();
+    public abstract void dice();
     
     public String getName() { return this.name; }
     public State getState() { return this.state; }

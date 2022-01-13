@@ -14,4 +14,6 @@ comment4.target=void\ setupPath()
 comment4.text=\r\n\ create\ all\ nodes\ in\ path\r\n
 comment5.params=
 comment5.target=java.util.ArrayList\ getPath()
-numComments=6
+comment6.params=
+comment6.target=SimpleTimer\ getTimer()
+numComments=7
