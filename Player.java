@@ -19,19 +19,19 @@ public class Player extends Players
     public void act() {
         if (Greenfoot.isKeyDown("up")) {
             playerOrientation = 'U';
-            setImage("Mario/WalkF1.png"); //should be looking up
+            setImage("Mario/U1.png"); 
         } else if (Greenfoot.isKeyDown("down")) {
             playerOrientation = 'D';
-            setImage("Mario/WalkB1.png");
+            setImage("Mario/D1.png");
         } else if (Greenfoot.isKeyDown("left")) {
             playerOrientation = 'L';
-            setImage("Mario/WalkL1.png");
+            setImage("Mario/L1.png");
         } else if (Greenfoot.isKeyDown("right")) {
             playerOrientation = 'R';
-            setImage("Mario/WalkR1.png");
+            setImage("Mario/R1.png");
         } else if (Greenfoot.isKeyDown("space")) {
             playerOrientation = 'F';
-            setImage("Mario/Victory1.png"); //should be replaced with facing front
+            setImage("Mario/WalkF1.png"); //img need to be changed
         }
     }
     public int checkPlayer() {

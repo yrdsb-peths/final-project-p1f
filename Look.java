@@ -11,6 +11,7 @@ public class Look extends MiniGame
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
     private int time = 3;
+    GreenfootSound bgm = new GreenfootSound("LookBGM.mp3");
     Label coinLabel;
     int coinCount;
     int lv = 1;
@@ -29,6 +30,8 @@ public class Look extends MiniGame
     public void prepare() {
         addObject(timeCount,110,85);
         timeCount.setValue(time); 
+        
+        //bgm.play();
 
         addObject(new Coins(), 620, 80);
         coinLabel = new Label(coinCount,50);
@@ -70,6 +73,7 @@ public class Look extends MiniGame
         }
         if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
             lv++;
+            Greenfoot.playSound("LevelUp.wav");
             checkMatch();
             suit1.setSuit();
             suit2.setSuit();
@@ -121,7 +125,7 @@ public class Look extends MiniGame
             updateCoins();
             Greenfoot.playSound("Coin.wav");
         } else {
-            Greenfoot.playSound("Bad.wav");
+            Greenfoot.playSound("Dissapointed.wav");
         }
     }
 
