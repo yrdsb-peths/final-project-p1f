@@ -48,7 +48,7 @@ public class Counter extends Actor
      */
     public Counter(String prefix)
     {
-        background = getImage();  // get image from class
+        background = new GreenfootImage("Timer.png");  // get image from class
         value = 0;
         target = 0;
         this.prefix = prefix;

@@ -18,16 +18,16 @@ public class HumanPlayer extends Player
      */
     public void act()
     {
-        if (Greenfoot.isKeyDown("up")) {
+        if (Greenfoot.isKeyDown("w")) {
             setImage("Mario/WalkB1.png");
             setLocation(getX(),getY() - 3);
-        } else if (Greenfoot.isKeyDown("down")) {
+        } else if (Greenfoot.isKeyDown("s")) {
             setImage("Mario/WalkF1.png");
             setLocation(getX(),getY() + 3);
-        } else if (Greenfoot.isKeyDown("left")) {
+        } else if (Greenfoot.isKeyDown("a")) {
             setImage("Mario/WalkL1.png");
             setLocation(getX() - 3,getY());
-        } else if (Greenfoot.isKeyDown("right")) {
+        } else if (Greenfoot.isKeyDown("d")) {
             setImage("Mario/WalkR1.png");
             setLocation(getX() + 3,getY());
         }

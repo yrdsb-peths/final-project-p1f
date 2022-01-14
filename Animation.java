@@ -1,8 +1,11 @@
 import greenfoot.*;
 /**
- * Animation component
- * For animating actors
- * 
+ * Animation component for animating actors
+ * @param actor Actor to animate
+ * @param filepath Filepath to the image files
+ * @param numberFrames Number of frames in animation
+ * @param fps Frames per second
+ * @param scale Scale of the image
  */
 public class Animation  
 {
@@ -14,7 +17,7 @@ public class Animation
     private boolean isPaused;
     private int hoverFrame;
     private float scale;
-
+    
     /**
      * Constructor for Animation
      */

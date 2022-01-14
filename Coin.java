@@ -8,38 +8,35 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Coin extends Actor
 {
-    GreenfootImage[] coin = new GreenfootImage[8];
-    boolean coinSpin = false;
-    SimpleTimer tim = new SimpleTimer();
-    Counter timeCount = new Counter();
-    
+    private Animation spinAnim;
+    private int spinAmount;
     /**
      * Constructor for Coin Class - sets the image
      */
-    public Coin()
-    {
-        for (int i = 0; i < coin.length; i++) {
-            coin[i] = new GreenfootImage("images/Coins/Coin" + (i+1) + ".png");
-        }
-        setImage(coin[0]);
+    public Coin() {
+        spinAnim = new Animation(this, "coins/c", 8, 25, 1);
+        setImage(spinAnim.getImage(0));
     }
 
     /**
      * Called every act; Make the images animated
      */
-    int imageIndex = 0;
     public void act() {
-        if (coinSpin) {
-            setImage(coin[imageIndex]);
-            imageIndex = (imageIndex + 1) % coin.length;
-            if(tim.millisElapsed() > 1000) { //time count down every second
-                timeCount.add(-1);
-                tim.mark();
-            }
-
-            if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
-                coinSpin = false;
+        if (spinAmount > 0) {
+            spinAnim.animate();
+            if (spinAnim.getFrame()==0) {
+                spinAmount--;
             }
         }
+    }
+
+    /**
+     * spin the coin a certain amount of times
+     * @param amnt the amount of times
+     */
+    public void setSpin(int amnt) {
+        // got lazy and didn't want to make another variable to
+        // properly count the spins so i just multiplied by framerate
+        spinAmount = Math.round(amnt * (60f / spinAnim.getFPS()));
     }
 }

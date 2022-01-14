@@ -13,8 +13,7 @@ public class Card extends Actor
     boolean dead = false; 
     static ArrayList<Card> activeCards = new ArrayList<Card>();
     
-    SimpleTimer cdTim = new SimpleTimer();
-    Counter cdTimeCount = new Counter();
+    SimpleTimer cdTimer = new SimpleTimer();
     boolean wait = false;
     /*
      * 
@@ -33,66 +32,54 @@ public class Card extends Actor
 
     Card(int id) {
         this.id = id;
-        GreenfootImage constructorCard = new GreenfootImage("Cards/Card1.png");
-        constructorCard.scale(60, 108);
-        setImage(constructorCard);
-        cdTimeCount.setValue(2);
+        setCardImage("Cards/questioncard.png");  
     }
     public void act() {
-        if (isTouching(Player.class) && !this.dead && !this.active) { 
+        if (isTouching(Player.class) && !this.wait && !this.dead && !this.active) { 
             flip();
             activeCards.add(this); 
             if(activeCards.size() == 2) { 
                 checkMatch();
             }
-        } 
+        }
         
-        if (wait == true) {
-            cdTimeCountDown();   
+        if (this.wait) {
+            cdTimeCountDown();
         }
     }
     public void cdTimeCountDown() {
-        if(cdTim.millisElapsed() > 1000) { //time count down every second
-            cdTimeCount.add(-1);
-            cdTim.mark();
-        }
-
-        if (cdTim.millisElapsed() * 1000 == cdTimeCount.getValue()) { //if time limit is reached
+        if (cdTimer.millisElapsed() > 1000) {
             wait = false;
-        } 
+            if (this.dead) {
+                setCardImage("Cards/starcard.png");
+            } else {
+                setCardImage("Cards/questioncard.png");
+            }
+        }
     }
     public void flip() {
         this.active = !this.active;
         
-        if (this.dead) {
-            GreenfootImage deadCard = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
-            deadCard.scale(60, 108);
-            setImage(deadCard);
-            //wait
-            GreenfootImage waitCard = new GreenfootImage("Cards/Card9.png");
-            waitCard.scale(60, 108);
-            setImage(waitCard);            
-        } else if (this.active) {
-            GreenfootImage activeCard = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
-            activeCard.scale(60, 108);
-            setImage(activeCard);
-        } else if (!this.active) {
-            GreenfootImage notActive = new GreenfootImage("Cards/Card" + (3 + this.id) + ".png");
-            notActive.scale(60, 108);
-            setImage(notActive);
-            //wait
-            GreenfootImage waitActive = new GreenfootImage("Cards/Card1.png");
-            notActive.scale(60, 108);
-            setImage(waitActive);
+        if (this.active) {
+            setCardImage("Cards/c" + this.id + ".png");
+            wait = false;
+        } else {
+            cdTimer.mark();
+            wait = true;
         }
     }
+
+    private void setCardImage(String file) {
+        GreenfootImage image = new GreenfootImage(file);
+        image.scale(60, 108);
+        setImage(image);
+    }
+
     public void checkMatch() {
         Card a = activeCards.get(0), b = activeCards.get(1); 
         if (a.id == b.id) {
-            ((MemoryMatch)getWorld()).coinCount ++; //add coin
-            getWorld().getObjects(Coin.class).get(0).timeCount.setValue(2); //coin spin for 2s
-            getWorld().getObjects(Coin.class).get(0).coinSpin = true;
-            ((MemoryMatch)getWorld()).updateCoins();
+            MemoryMatch world = getWorldOfType(MemoryMatch.class);
+            world.addCoin(1);
             Greenfoot.playSound("Laughter.wav");
 
             a.dead = true;

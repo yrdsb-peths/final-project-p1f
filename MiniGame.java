@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MiniGame extends World
 {
-    WorldMap world;
+    protected WorldMap world;
+    protected int coinCount;
     /**
      * Constructor for objects of class MiniGame.
      * 
@@ -16,6 +17,6 @@ public class MiniGame extends World
     public MiniGame()
     {    
         // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
-        super(1000, 600, 1); 
+        super(1000, 600, 1);
     }
 }

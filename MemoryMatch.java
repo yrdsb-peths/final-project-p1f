@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
 /**
  * Write a description of class MemoryMatch here.
  * 
@@ -12,33 +11,30 @@ public class MemoryMatch extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int gameTime = 60;
+    private int gameTime = 30;
     private Label coinLabel;
-    int coinCount;
     private static GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
-    
-    private SimpleTimer winTim = new SimpleTimer();
-    private Counter winTimeCount = new Counter();
-    private int waitTime = 5;
-    private boolean wait;
+    private boolean finished = false;
+    private Coin coin;
+
     /**
      * Constructor for objects of class MemoryMatch.
      * 
      */
     public MemoryMatch() {
+        setBackground("waterbg.png");
         prepare();
         prepareCards();
-        addObject(getObjects(Card.class).get(0).cdTimeCount, 40, 15); // to be removed later
     }
 
     public void prepare() {
         addObject(timeCount,100,65);
-        timeCount.setValue(gameTime); 
-        winTimeCount.setValue(waitTime);
+        timeCount.setValue(gameTime);  
 
         //bgm.play();
 
-        addObject(new Coin(), 220, 70);
+        coin = new Coin();
+        addObject(coin, 220, 70);
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,290,70);
         
@@ -48,7 +44,7 @@ public class MemoryMatch extends MiniGame
     }
 
     public void prepareCards() {
-        int[] cardVal = {1,1,2,2,3,3,3,3,4,4,5,5};
+        int[] cardVal = {1,1,2,2,3,3,4,4,5,5,6,6};
         shuffle(cardVal);
         int i = 0;
         for (int x=100; x<=900; x+=155) {
@@ -89,8 +85,7 @@ public class MemoryMatch extends MiniGame
 
     public void act() {
         timeCountDown();
-        waitTimeCountDown();
-        checkCoin();    
+        checkCoin();
     }
 
     /**
@@ -99,43 +94,35 @@ public class MemoryMatch extends MiniGame
      */
     public void timeCountDown()
     {    
-        if(tim.millisElapsed() > 1000) { //time count down every second
+        if(!finished && tim.millisElapsed() > 1000) { //time count down every second
             timeCount.add(-1);
             tim.mark();
+            if (timeCount.getValue() == 0) {
+                finished = true; 
+            }
         }
 
-        if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
-            Greenfoot.setWorld(new WorldMap()); 
+        if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
+            bgm.stop();
+            Greenfoot.setWorld(new WorldMap());
         }
 
     }
-    
-    public void waitTimeCountDown() {
-        if (wait) {
-            if(winTim.millisElapsed() > 1000) { //time count down every second
-                winTimeCount.add(-1);
-                winTim.mark();
-            }
-    
-            if (winTim.millisElapsed() * 1000 == winTimeCount.getValue()) { //if time limit is reached
-                Greenfoot.setWorld(new WorldMap()); 
-                wait= false;
-            }
-        }
-    }
+
     
     public void checkCoin() {
-        if (coinCount == 6) {
-            Greenfoot.playSound("IWin.wav");
+        if (!finished && coinCount == 6) {
             bgm.stop();
-            wait = true;
-            coinCount++; //so the method doesn't run o&o again, not good tho
+            Greenfoot.playSound("IWin.wav");
+            tim.mark();
+            finished = true;
         }
+    } 
+
+    public void addCoin(int c) {
+        coinCount += c;
+        coin.setSpin(3);
+        coinLabel.setValue(coinCount);
     }
 
-    public void updateCoins() {
-        removeObject(coinLabel);
-        coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,290,70);
-    }
 }
