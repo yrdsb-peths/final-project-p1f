@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-
 /**
  * A Label class that allows you to display a textual value on screen.
  * 
@@ -90,5 +89,7 @@ public class Label extends Actor
     private void updateImage()
     {
         setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
+        GreenfootImage img = new GreenfootImage(value, fontSize, fillColor, transparent, lineColor);
+        setImage(img);
     }
 }
