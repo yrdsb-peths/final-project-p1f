@@ -25,7 +25,7 @@ public abstract class MapCharacter extends SmoothMover
     public MapCharacter(String name) {
         this.name = name;
         pathIdx = 0;
-        dir = Direction.LEFT;
+        dir = Direction.RIGHT;
         state = State.IDLE;
         setupAnim();
     }
@@ -82,10 +82,10 @@ public abstract class MapCharacter extends SmoothMover
             case "Silver": file = "koopa/silverL"; break;
             default: file = "Mario/anim/L"; break;
         } 
-        lWalk = new Animation(this, file, 2, 5, 3);
-        rWalk = new Animation(this, file, 2, 5, 3, true);
-        lIdle = new Animation(this, file, 1, 5, 3);
-        rIdle = new Animation(this, file, 1, 5, 3, true);
+        lWalk = new Animation(this, file, 2, 5, 2);
+        rWalk = new Animation(this, file, 2, 5, 2, true);
+        lIdle = new Animation(this, file, 1, 5, 2);
+        rIdle = new Animation(this, file, 1, 5, 2, true);
     }
     public abstract void startDice(Dice dice);
     public abstract boolean stopDice(Dice dice);

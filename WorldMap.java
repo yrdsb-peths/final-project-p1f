@@ -29,7 +29,7 @@ public class WorldMap extends World
     public WorldMap() {
         super(1000, 600, 1); 
         instance = this;
-        setBackground(new GreenfootImage("WorldMap.png"));
+        setBackground(new GreenfootImage("world_map.png"));
         setupPath();
         
         playersRef = new ArrayList<MapCharacter>();
@@ -39,7 +39,7 @@ public class WorldMap extends World
         playersRef.add(new MapNPC("Purple"));
         
         for (Actor p : playersRef) {
-            addObject(p, path.get(0).getX(), path.get(0).getY());
+            addObject(p, path.get(0).getX(), path.get(0).getY()-20);
         }
         
         players = new LinkedList<MapCharacter>();
@@ -49,11 +49,16 @@ public class WorldMap extends World
         timer.mark();
         
         roundsText = new Label(String.valueOf(rounds) + " Rounds Left", 50);
-        addObject(roundsText, 160, 570);
+        addObject(roundsText, 155, 575);
         
     }
     
+    boolean test = false;
     public void act() { 
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if (mouse != null) System.out.println(mouse.getX() + " " + mouse.getY());
+        if (test) return;
+
         if (player==null && players.size() == 0) {
             if (rounds == 0) {
                 // new winscreen(winning player)
@@ -121,6 +126,22 @@ public class WorldMap extends World
      */
     private void setupPath() {
         path = new ArrayList<MapNode>();
+        path.add(new GoodNode(140, 460)); // start node
+        path.add(new BadNode(315, 460));
+        path.add(new GoodNode(500, 460));
+        path.add(new GoodNode(500, 280));
+        path.add(new BadNode(680, 280));
+        path.add(new GoodNode(680, 460));
+        path.add(new GoodNode(865, 460));
+        path.add(new GoodNode(865, 280));
+        path.add(new GoodNode(865, 100));
+        path.add(new GoodNode(680, 100));
+        path.add(new BadNode(500, 100));
+        path.add(new GoodNode(315, 100));
+        path.add(new GoodNode(140, 100)); // shop node
+        path.add(new GoodNode(140, 280));
+        /*
+        // old map path
         path.add(new EmptyNode(335, 70));
         path.add(new GoodNode(340, 120));
         path.add(new GoodNode(340, 250));
@@ -138,6 +159,7 @@ public class WorldMap extends World
         path.add(new GoodNode(790, 10));
         path.add(new GameNode(630, 10));
         path.add(new BadNode(490, 10));
+        */
     }
     
     public ArrayList<MapNode> getPath() {

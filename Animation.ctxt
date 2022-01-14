@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Animation
-comment0.text=\r\n\ Animation\ component\r\n\ For\ animating\ actors\r\n\ \r\n
+comment0.text=\r\n\ Animation\ component\ for\ animating\ actors\r\n\ @param\ actor\ Actor\ to\ animate\r\n\ @param\ filepath\ Filepath\ to\ the\ image\ files\r\n\ @param\ numberFrames\ Number\ of\ frames\ in\ animation\r\n\ @param\ fps\ Frames\ per\ second\r\n\ @param\ scale\ Scale\ of\ the\ image\r\n
 comment1.params=actor\ filepath\ numberFrames\ fps\ scale
 comment1.target=Animation(greenfoot.Actor,\ java.lang.String,\ int,\ int,\ float)
 comment1.text=\r\n\ Constructor\ for\ Animation\r\n

@@ -42,7 +42,7 @@ public abstract class SmoothMover extends Actor
      * Return true when finished
      */
     public boolean moveTowards(Vector2 target, float speed) { 
-        if (Vector2.distance(this.pos, target) < speed) return true; 
+        if (Vector2.distance(this.pos, target) <= speed) return true; 
         Vector2 d = Vector2.sub(target, this.pos);
         d = d.normalize();
         d = d.mult(speed);
