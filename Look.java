@@ -28,10 +28,11 @@ public class Look extends MiniGame
     }
 
     public void prepare() {
+        setBackground(new GreenfootImage("LookBKG2.png"));
+        //bgm.play();
+        
         addObject(timeCount,110,85);
         timeCount.setValue(time); 
-        
-        //bgm.play();
 
         addObject(new Coins(), 620, 80);
         coinLabel = new Label(coinCount,50);
@@ -45,13 +46,13 @@ public class Look extends MiniGame
 
     public void prepareSuits() {
         suit1 = new Suit();
-        addObject(suit1, 500,60);
+        addObject(suit1, 501,60);
         suit2 = new Suit();
-        addObject(suit2, 500,540);
+        addObject(suit2, 501,540);
         suit3 = new Suit();
-        addObject(suit3, 60,300);
+        addObject(suit3, 61,300);
         suit4 = new Suit();
-        addObject(suit4, 940,300);
+        addObject(suit4, 939,300);
     }
 
     public void act() {
