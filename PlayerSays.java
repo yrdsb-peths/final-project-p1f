@@ -16,16 +16,17 @@ public class PlayerSays extends Actor
     private static PlayerDirection playerDirection = PlayerDirection.LEFT;
     public static boolean alive;
     
+    //To prevent the player from rapidly pressing a and d to always win
+    //private SimpleTimer lastMove = new SimpleTimer();
+    
     public PlayerSays(){
         left.scale(100, 100);
         right.scale(100, 100);
         fail.scale(100, 100);
+        //lastMove.mark();
     }
     
     public void act(){
-        if(Greenfoot.isKeyDown("g")){
-            System.out.println(alive);
-        }
         if(this.alive){
             if(Greenfoot.isKeyDown("a")){
                 PlayerSays.playerDirection = PlayerDirection.LEFT;
@@ -35,6 +36,7 @@ public class PlayerSays extends Actor
                 PlayerSays.playerDirection = PlayerDirection.RIGHT;
                 setImage(right);
             }
+            //lastMove.mark();
         }
         else{
             setImage(fail);

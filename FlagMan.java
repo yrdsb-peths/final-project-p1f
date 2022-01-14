@@ -17,7 +17,10 @@ public class FlagMan extends Actor
     }
     
     public void act(){
-        if(FlagManSign.getLeft()){
+        if(FlagManSign.getUnknown()){
+            setImage(lFlagMan);
+        }
+        else if(FlagManSign.getLeft()){
             setImage(lFlagMan);
         }
         else{
