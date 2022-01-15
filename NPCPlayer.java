@@ -20,7 +20,11 @@ public class NPCPlayer extends Player
             Vector2[] cards = world.getCardPositions();
             int idx = Utils.random(cards.length-1);
             targetPos = cards[idx];
-        } 
+        }
+    }
+
+    protected void playLook() {
+        
     }
     
 }

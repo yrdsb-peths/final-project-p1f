@@ -19,7 +19,6 @@ public class MiniGame extends World
         if (WorldMap.instance == null) {
             WorldMap.instance = new WorldMap();
         }
-
     }
 
     protected void setupPlayers(float scale) {

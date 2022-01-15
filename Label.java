@@ -19,7 +19,6 @@ public class Label extends Actor
     
     private static final Color transparent = new Color(0,0,0,0);
 
-    
     /**
      * Create a new label, initialise it with the int value to be shown and the font size 
      */
@@ -88,7 +87,6 @@ public class Label extends Actor
      */
     private void updateImage()
     {
-        setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
         GreenfootImage img = new GreenfootImage(value, fontSize, fillColor, transparent, lineColor);
         setImage(img);
     }
