@@ -1,7 +1,19 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Player\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment0.text=\r\n\ \r\n\ Player\ that\ plays\ minigames\r\n\ \r\n\ @param\ name\ player\ name\ (eg\ mario,\ luigi)\r\n\ @param\ scale\ player\ sprite\ size\ scale\r\n
+comment1.params=name\ scale
+comment1.target=Player(java.lang.String,\ float)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ updateAnim()
+comment4.params=
+comment4.target=void\ setupAnim()
+comment4.text=\r\n\ setup\ animation\ based\ on\ name\r\n
+comment5.params=
+comment5.target=void\ playMemoryMatch()
+comment6.params=
+comment6.target=java.lang.String\ getName()
+comment7.params=
+comment7.target=greenfoot.GreenfootImage\ getRightImage()
+numComments=8

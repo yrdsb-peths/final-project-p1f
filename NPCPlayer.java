@@ -8,12 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class NPCPlayer extends Player
 {
-    /**
-     * Act - do whatever the NPCPlayer wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
+    
+    private Vector2 targetPos;
+    public NPCPlayer(String name, float scale) {
+        super(name, scale);
     }
+    
+    protected void playMemoryMatch() {
+        if (targetPos == null || moveTowards(targetPos, 3f)) {
+            MemoryMatch world = getWorldOfType(MemoryMatch.class);
+            Vector2[] cards = world.getCardPositions();
+            int idx = Utils.random(cards.length-1);
+            targetPos = cards[idx];
+        } 
+    }
+    
 }

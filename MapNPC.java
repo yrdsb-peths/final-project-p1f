@@ -26,7 +26,7 @@ public class MapNPC extends MapCharacter
      * return true after a certain time
      */
     public boolean stopDice(Dice dice) {
-        if (timer.millisElapsed() > 2000) {
+        if (timer.millisElapsed() > 1500) {
             timer.mark();
             return true;
         }

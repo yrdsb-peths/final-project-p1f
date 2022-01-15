@@ -18,7 +18,7 @@ public class WorldMap extends World
     private Queue<MapCharacter> players;
     private DicePopUp dicePopUp;
     private MapCharacter player; // current player
-    private int rounds = 15+1;
+    private int rounds, roundsLeft;
     private Label roundsText;
     private SimpleTimer timer;
      
@@ -39,7 +39,7 @@ public class WorldMap extends World
         playersRef.add(new MapNPC("Purple"));
         
         for (Actor p : playersRef) {
-            addObject(p, path.get(0).getX(), path.get(0).getY()-20);
+            addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
         
         players = new LinkedList<MapCharacter>();
@@ -48,19 +48,18 @@ public class WorldMap extends World
         timer = new SimpleTimer();
         timer.mark();
         
-        roundsText = new Label(String.valueOf(rounds) + " Rounds Left", 50);
+        rounds = 15;
+        rounds++;
+        roundsLeft = rounds;
+        roundsText = new Label(String.valueOf(roundsLeft) + " Rounds Left", 50);
         addObject(roundsText, 155, 575);
         
+        assert playersRef.size()==4 : "Require 4 and only 4 players";
     }
     
-    boolean test = false;
-    public void act() { 
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null) System.out.println(mouse.getX() + " " + mouse.getY());
-        if (test) return;
-
+    public void act() {
         if (player==null && players.size() == 0) {
-            if (rounds == 0) {
+            if (roundsLeft == 0) {
                 // new winscreen(winning player)
                 return;
             } else {
@@ -68,9 +67,13 @@ public class WorldMap extends World
                 for (MapCharacter p : playersRef) {
                     players.add(p);
                 }
-                rounds--;
-                roundsText.setValue(String.valueOf(rounds) + " Rounds Left");
-                // play minigame every round ?
+                roundsLeft--;
+                roundsText.setValue(String.valueOf(roundsLeft) + " Rounds Left"); 
+                // should make tutoiral popup -> minigame
+                // eg new TutorialPopUp(minigame name) 
+                if (rounds!=roundsLeft+1) {
+                    Greenfoot.setWorld(getRandomMiniGame()); 
+                }
             }
         }
         if (player == null) {
@@ -121,6 +124,11 @@ public class WorldMap extends World
         return game;
     }
     
+    private void setupScores() {
+        // add scores
+        
+    }
+
     /**
      * create all nodes in path
      */
@@ -162,6 +170,10 @@ public class WorldMap extends World
         */
     }
     
+    public ArrayList<MapCharacter> getPlayers() {
+        return playersRef;
+    }
+
     public ArrayList<MapNode> getPath() {
         return this.path;
     }

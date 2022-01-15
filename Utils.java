@@ -45,7 +45,7 @@ public class Utils
     }
     
     /**
-     * Method to get random number [0, a] (inclusize)
+     * Method to get random number [0, a] (inclusive)
      * 
      * @param int a
      * @return random number

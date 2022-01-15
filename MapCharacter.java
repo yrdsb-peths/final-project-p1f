@@ -11,6 +11,7 @@ public abstract class MapCharacter extends SmoothMover
     private String name;
     protected Animation lWalk, rWalk, lIdle, rIdle;
     private int pathIdx, steps;
+    private int coins;
     
     public enum State { DICE, MOVE, IDLE };
     private State state;
@@ -28,6 +29,7 @@ public abstract class MapCharacter extends SmoothMover
         dir = Direction.RIGHT;
         state = State.IDLE;
         setupAnim();
+        coins = 0;
     }
     
     public void act() {
@@ -41,7 +43,6 @@ public abstract class MapCharacter extends SmoothMover
             pathIdx = (pathIdx+1) % WorldMap.instance.getPath().size();
             if (steps==0) {
                 nextNode.activate(this);
-                System.out.println("finished walking");
                 return true;
             }
         }

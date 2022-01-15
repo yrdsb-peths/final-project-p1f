@@ -8,28 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HumanPlayer extends Player
 {
-    HumanPlayer() {
-        setImage("Mario/WalkR1.png");
+    
+    public HumanPlayer(String name, float scale) {
+        super(name, scale);
     }
     
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
+    protected void playMemoryMatch() {
+        float speed = 3f;
         if (Greenfoot.isKeyDown("w")) {
-            setImage("Mario/WalkB1.png");
-            setLocation(getX(),getY() - 3);
-        } else if (Greenfoot.isKeyDown("s")) {
-            setImage("Mario/WalkF1.png");
-            setLocation(getX(),getY() + 3);
-        } else if (Greenfoot.isKeyDown("a")) {
-            setImage("Mario/WalkL1.png");
-            setLocation(getX() - 3,getY());
-        } else if (Greenfoot.isKeyDown("d")) {
-            setImage("Mario/WalkR1.png");
-            setLocation(getX() + 3,getY());
+            move(new Vector2(0, -speed));
+        } else if (Greenfoot.isKeyDown("s")) { 
+            move(new Vector2(0, speed));
+        }
+        if (Greenfoot.isKeyDown("a")) {
+            move(new Vector2(-speed, 0));
+        } else if (Greenfoot.isKeyDown("d")) { 
+            move(new Vector2(speed, 0));
         }
     }
 }

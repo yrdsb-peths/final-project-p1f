@@ -12,17 +12,20 @@ public class MemoryMatch extends MiniGame
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
     private int gameTime = 30;
-    private Label coinLabel;
-    private static GreenfootSound bgm = new GreenfootSound("MemoryMatchBGM.mp3");
+    private int coinCount = 0;
+    private Label coinLabel; 
     private boolean finished = false;
     private Coin coin;
+    private Vector2[] cardPositions = new Vector2[12];
 
     /**
      * Constructor for objects of class MemoryMatch.
      * 
      */
     public MemoryMatch() {
-        setBackground("waterbg.png");
+        super();
+        MainSound.setSound(new GreenfootSound("MemoryMatchBGM.mp3"));
+        setBackground("waterbg.png"); 
         prepare();
         prepareCards();
     }
@@ -31,16 +34,19 @@ public class MemoryMatch extends MiniGame
         addObject(timeCount,100,65);
         timeCount.setValue(gameTime);  
 
-        //bgm.play();
+        MainSound.play();
 
         coin = new Coin();
         addObject(coin, 220, 70);
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,290,70);
         
-
-        HumanPlayer player = new HumanPlayer();
-        addObject(player, 80,340);
+        setupPlayers(3f);
+        int pos=80, distance=40;
+        for (Player p : players) {
+            addObject(p, pos, 340);
+            pos += distance;
+        }
     }
 
     public void prepareCards() {
@@ -50,26 +56,10 @@ public class MemoryMatch extends MiniGame
         for (int x=100; x<=900; x+=155) {
             for (int y=200; y<=500; y+=290) {
                 addObject(new Card(cardVal[i]), x, y);
+                cardPositions[i] = new Vector2(x, y);
                 i++;
             }
         }
-
-        /*
-        Vector2[][] positions = new Vector2[4][3];
-        for (int i=0;i<4;i++) {
-        for (int j=0;j<3;j++) {
-        int x = i*160 + 200;
-        int y = j*160 + 100;
-        positions[i][j] = new Vector2(x,y);
-        }
-        }
-
-        for (int i=1;i<=3;i++) {
-        int iX = Utils.random(3);
-        int iY = Utils.random(2);
-        Vector2 pos = positions[iX][iY];
-        addObject(new Card(i), pos.getX(), pos.getY()); 
-        } */
     }
 
     public void shuffle(int[] arr)
@@ -103,16 +93,16 @@ public class MemoryMatch extends MiniGame
         }
 
         if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
-            bgm.stop();
-            Greenfoot.setWorld(new WorldMap());
+            MainSound.stop();
+            if (WorldMap.instance != null) 
+                Greenfoot.setWorld(WorldMap.instance);
         }
 
     }
 
-    
     public void checkCoin() {
         if (!finished && coinCount == 6) {
-            bgm.stop();
+            MainSound.stop();
             Greenfoot.playSound("IWin.wav");
             tim.mark();
             finished = true;
@@ -123,6 +113,10 @@ public class MemoryMatch extends MiniGame
         coinCount += c;
         coin.setSpin(3);
         coinLabel.setValue(coinCount);
+    }
+    
+    public Vector2[] getCardPositions() {
+        return this.cardPositions;
     }
 
 }

@@ -35,9 +35,10 @@ public class Card extends Actor
         setCardImage("Cards/questioncard.png");  
     }
     public void act() {
-        if (isTouching(Player.class) && !this.wait && !this.dead && !this.active) { 
+        // change to Player.class if include NPC hitboxes (will cause havoc though)
+        if (isTouching(HumanPlayer.class) && !this.wait && !this.dead && !this.active) { 
             flip();
-            activeCards.add(this); 
+            activeCards.add(this);
             if(activeCards.size() == 2) { 
                 checkMatch();
             }

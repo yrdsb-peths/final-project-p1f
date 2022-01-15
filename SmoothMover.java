@@ -38,6 +38,14 @@ public abstract class SmoothMover extends Actor
     }
     
     /**
+     * Move by a Vector2 displacement
+     */
+    public void move(Vector2 d) {
+        lastMove = d;
+        setLocation(pos.getExactX() + d.getExactX(), pos.getExactY() + d.getExactY());
+    }
+    
+    /**
      * Move towards Vector2 position
      * Return true when finished
      */
@@ -47,7 +55,7 @@ public abstract class SmoothMover extends Actor
         d = d.normalize();
         d = d.mult(speed);
         lastMove = d;
-        setLocation(pos.getExactX() + d.getExactX(), pos.getExactY() + d.getExactY());
+        move(d);
         return false;
     }
     
