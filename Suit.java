@@ -15,10 +15,10 @@ public class Suit extends Actor
     }
 
     public void setSuit() {
-        suitType = (Greenfoot.getRandomNumber(4) + 1);
+        suitType = (Greenfoot.getRandomNumber(4) + 1); // Random type + color
         suitColor = (Greenfoot.getRandomNumber(4) + 1);
         switch(suitColor) {
-            case 1:
+            case 1: 
                 setImage("Suits/R" + suitType + ".png");
                 break;
             case 2:

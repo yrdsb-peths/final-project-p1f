@@ -10,7 +10,7 @@ public class Look extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int time = 3;
+    private int time = 3; //3s per level
     GreenfootSound bgm = new GreenfootSound("LookBGM.mp3");
     Label coinLabel;
     int coinCount;
@@ -57,7 +57,7 @@ public class Look extends MiniGame
 
     public void act() {
         timeCountDown();
-        if (lv == 7) {
+        if (lv == 7) { //when reached 7th level, return to main world
             Greenfoot.setWorld(new WorldMap());
         }
     }
@@ -75,29 +75,29 @@ public class Look extends MiniGame
         if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
             lv++;
             Greenfoot.playSound("LevelUp.wav");
+            Greenfoot.playSound("Beep.wav");
+            timeCount.setValue(time); 
             checkMatch();
             suit1.setSuit();
             suit2.setSuit();
             suit3.setSuit();
             suit4.setSuit();
-            Greenfoot.playSound("Beep.wav");
-            timeCount.setValue(time); 
         }
     }
 
     public void updateCoins() {
         getObjects(Coins.class).get(0).timeCount.setValue(2); 
-        getObjects(Coins.class).get(0).coinSpin = true;
+        getObjects(Coins.class).get(0).coinSpin = true; //spin coin
         coinCount++;
         
-        removeObject(coinLabel);
+        removeObject(coinLabel); 
         coinLabel = new Label(coinCount,50);
         addObject(coinLabel,620,80);
     }
 
     
     public boolean checkAll() {
-        for (int i = 0; i < heartLoc.size(); i++) {
+        for (int i = 0; i < heartLoc.size(); i++) { //if player if facing any heart
             if (player.checkPlayer() == heartLoc.get(i)) {
                 return true;
             }
@@ -106,8 +106,8 @@ public class Look extends MiniGame
     }
     
     public void checkMatch() {
-        heartLoc = new ArrayList<Integer>(4);
-        if (suit1.suitType == 3) {
+        heartLoc = new ArrayList<Integer>(4); //find where heart in located in this round
+        if (suit1.suitType == 3) { //maybe a better way here?
             heartLoc.add(1);
         }
         if (suit2.suitType == 3) {
@@ -119,17 +119,16 @@ public class Look extends MiniGame
         if (suit4.suitType == 3) {
             heartLoc.add(4);
         }
-        if (heartLoc.isEmpty()) {
+        if (heartLoc.isEmpty()) { //no heart in this round
             heartLoc.add(0);
         }
 
-        if (checkAll()) {
+        if (checkAll()) { //player is oriented correctly
             updateCoins();
             Greenfoot.playSound("Coin.wav");
         } else {
             Greenfoot.playSound("Dissapointed.wav");
         }
     }
-
 }
 
