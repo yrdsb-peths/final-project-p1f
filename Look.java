@@ -57,7 +57,7 @@ public class Look extends MiniGame
 
     public void act() {
         timeCountDown();
-        if (lv == 6) {
+        if (lv == 7) {
             Greenfoot.setWorld(new WorldMap());
         }
     }
@@ -89,9 +89,10 @@ public class Look extends MiniGame
         getObjects(Coins.class).get(0).timeCount.setValue(2); 
         getObjects(Coins.class).get(0).coinSpin = true;
         coinCount++;
+        
         removeObject(coinLabel);
         coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,60,140);
+        addObject(coinLabel,620,80);
     }
 
     

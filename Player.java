@@ -10,8 +10,14 @@ public class Player extends Players
 {
     char playerOrientation;
     Player() {
-        setImage("Mario/WalkF1.png");
+        setImg(new GreenfootImage("Mario/WalkF1.png"));
     }
+    
+    public void setImg(GreenfootImage img) {
+        img.scale(img.getWidth() + 100, img.getHeight() + 100);
+        setImage(img);
+    }
+    
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,19 +25,19 @@ public class Player extends Players
     public void act() {
         if (Greenfoot.isKeyDown("up")) {
             playerOrientation = 'U';
-            setImage("Mario/U1.png"); 
+            setImg(new GreenfootImage("Mario/U1.png")); 
         } else if (Greenfoot.isKeyDown("down")) {
             playerOrientation = 'D';
-            setImage("Mario/D1.png");
+            setImg(new GreenfootImage("Mario/D1.png"));
         } else if (Greenfoot.isKeyDown("left")) {
             playerOrientation = 'L';
-            setImage("Mario/L1.png");
+            setImg(new GreenfootImage("Mario/L1.png"));
         } else if (Greenfoot.isKeyDown("right")) {
             playerOrientation = 'R';
-            setImage("Mario/R1.png");
+            setImg(new GreenfootImage("Mario/R1.png"));
         } else if (Greenfoot.isKeyDown("space")) {
             playerOrientation = 'F';
-            setImage("Mario/WalkF1.png"); //img need to be changed
+            setImg(new GreenfootImage("Mario/WalkF1.png")); //img need to be changed
         }
     }
     public int checkPlayer() {
