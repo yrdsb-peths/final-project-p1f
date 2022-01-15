@@ -1,48 +1,119 @@
-
 import greenfoot.*;
 /**
- * Animation component
- * For animating actors
- * 
+ * Animation component for animating actors
+ * @param actor Actor to animate
+ * @param filepath Filepath to the image files
+ * @param numberFrames Number of frames in animation
+ * @param fps Frames per second
+ * @param scale Scale of the image
  */
 public class Animation  
 {
     private Actor actor;
-    private GreenfootImage[][] frames;
+    private GreenfootImage[] frames;
     private int numberFrames;
     private int fps;
-    private int dir=0; // 0: right, 1: left
-
+    private boolean shuffle;
+    private boolean isPaused;
+    private int hoverFrame;
+    private float scale;
+    
     /**
      * Constructor for Animation
      */
-    public Animation(Actor actor, String filepath, int numberFrames, int fps, double scale) {
+    public Animation(Actor actor, String filepath, int numberFrames, int fps, float scale) {
+        this(actor, filepath, numberFrames, fps, scale, false);
+    }
+    
+    public Animation(Actor actor, String filepath, int numberFrames, int fps, float scale, boolean mirror) {
         this.actor = actor;
         this.numberFrames = numberFrames;
         this.fps = fps;
-        this.frames = new GreenfootImage[numberFrames][2];
+        this.frames = new GreenfootImage[numberFrames];
+        this.shuffle = false;
+        this.isPaused = false;
+        this.hoverFrame = -1;
+        this.scale = scale;
         for (int i=0;i<numberFrames;i++) {
-            GreenfootImage img = new GreenfootImage(filepath + " (" + String.valueOf(i+1) + ").png");
+            GreenfootImage img = new GreenfootImage(filepath + "" + String.valueOf(i+1) + ".png");
             int w = img.getWidth();
             int h = img.getHeight();
-            img.scale((int)(w * scale), (int)(h * scale)); 
-            this.frames[i][0] = new GreenfootImage(img);
-            img.mirrorHorizontally();
-            this.frames[i][1] = new GreenfootImage(img);
+            img.scale((int)(w * scale), (int)(h * scale));
+            if (mirror) {
+                img.mirrorHorizontally();
+            }
+            this.frames[i] = new GreenfootImage(img);
         }
     }
     
     private long frame = 0;
+    private int frameIdx = 0;
     /**
      * Animate method (should called on every act())
      */
     public void animate() {
-        frame++;
-        int fr = 60 / fps;
-        frame %= fr * numberFrames;
-        actor.setImage(frames[(int)(frame / fr)][dir]);
+        if (!isPaused) {
+            frame++;
+            int fr = 60 / fps;
+            if (frame == fr * numberFrames) {
+                frame = 0; 
+            }
+            if (shuffle) {
+                if (frame % fr == 0) {
+                    int prev = frameIdx;
+                    while (frameIdx == prev) 
+                        frameIdx = Utils.random(0, numberFrames-1);
+                }
+            } else {
+                frameIdx = (int)(frame / fr);
+            }
+        }
+        
+        // hoverFrame >= 0 means that we are in hover state
+        if (hoverFrame >= 0) {
+            float a = 3f;
+            float s = 1 + (float)Math.sin(a * hoverFrame * Math.PI / 180) / 20f;
+            setImage(frames[frameIdx], s);
+            hoverFrame++;
+        } else {
+            setImage(frames[frameIdx]);
+        }
     }
-    
+
+    /**
+     * Set the image of the actor to the current frame
+     * @param img
+     */
+    private void setImage(GreenfootImage img) {
+        actor.setImage(img);
+    }
+
+    /**
+     * Set the image of the actor to the current frame
+     * @param image
+     * @param scale
+     */
+    private void setImage(GreenfootImage image, float scale) {
+        GreenfootImage img = new GreenfootImage(image);
+        img.scale((int)(image.getWidth() * scale), (int)(image.getHeight() * scale));
+        actor.setImage(img);
+    }
+
+    /**
+     * Either start periodically resize or stop resizing
+     * @param action
+     * 
+     */
+    public void periodicResize(boolean action) {
+        if (action) {
+            if (hoverFrame == -1) {
+                hoverFrame = 0;
+            }
+        } else {
+            hoverFrame = -1;
+        }
+    }
+
     /**
      * Returns whether the animation clip has finished (on last frame)
      * @return anim is finished
@@ -53,26 +124,10 @@ public class Animation
     }
     
     /**
-     * set direction of animation (0: face right, 1: face left)
-     * @return direction
+     * set the animation to shuffle mode
      */
-    public void setDir(int dir) {
-        this.dir = dir;
-    }
-    
-    /**
-     * set direction based on movement
-     * 
-     * @param Vector2 movement
-     */    
-    public void setDir(Vector2 move) { 
-        if (move.getX()>0) {
-            setDir(0);
-        } else if (move.getX()<0) {
-            setDir(1);
-        } else {
-            // dont change direction if no movement
-        }
+    public void shuffle() {
+        this.shuffle = true;
     }
     
     /**
@@ -88,6 +143,46 @@ public class Animation
      */
     public int getFPS() { 
         return this.fps;
+    } 
+    
+    /**
+     * return current frame index
+     * @return frameIdx
+     */
+    public int getFrame() {
+        return this.frameIdx;
     }
     
+    /**
+     * set to some frame
+     * @param frameIdx the frame index
+     */
+    public void setFrame(int f) {
+        actor.setImage(frames[f]);
+    }
+
+    
+    /**
+     * pause the animation
+     */
+    public void pause() {
+        isPaused = true;
+    }
+
+    /**
+     * resumes the animation
+     */
+    public void resume() {
+        isPaused = false;
+    }
+
+    /**
+     * get image of an index
+     * @param idx
+     * @return image
+     */
+    public GreenfootImage getImage(int i) {
+        return frames[i];
+    }
+
 }

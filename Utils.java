@@ -6,6 +6,12 @@ import greenfoot.*;
  */
 public class Utils  
 {    
+    
+    private final static Font font = new Font("Arial", 28);
+    public static Font getFont() {
+        return font;
+    }
+    
     /**
      * Method to get random float [0, 1] (inclusize)
      */
@@ -39,7 +45,7 @@ public class Utils
     }
     
     /**
-     * Method to get random number [0, a] (inclusize)
+     * Method to get random number [0, a] (inclusive)
      * 
      * @param int a
      * @return random number

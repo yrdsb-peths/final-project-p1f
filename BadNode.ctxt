@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=BadNode
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BadNode\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=x\ y
+comment1.target=BadNode(float,\ float)
+comment2.params=character
+comment2.target=void\ pass(MapCharacter)
+comment3.params=character
+comment3.target=void\ activate(MapCharacter)
+numComments=4
