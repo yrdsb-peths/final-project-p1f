@@ -14,7 +14,7 @@ public class ShyGuySays extends World
     static FlagMan flagMan = new FlagMan();
     
     //initializing the player
-    GreenfootImage left = new GreenfootImage("WalkL1.png");
+    GreenfootImage idle = new GreenfootImage("WalkF1.png");
     GreenfootImage unknownSign = new GreenfootImage("uniFlag.png");
     GreenfootImage leftFlagMan = new GreenfootImage("flaggerL.png");
     /**
@@ -33,11 +33,11 @@ public class ShyGuySays extends World
         addObject(flagMan, 200, 480);
         
         //making sure player does not die on startup
-        left.scale(100, 100);
+        idle.scale(100, 100);
         player.alive = true;
-        player.setDirection(true);
+        player.setUnknown();
         addObject(player, 600, 460);
-        player.setImage(left);
+        player.setImage(idle);
         
         flagSign.setImage(unknownSign);
         addObject(flagSign, 185, 254);

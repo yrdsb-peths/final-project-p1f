@@ -41,31 +41,6 @@ public class FlagManSign extends FlagMan
         direction = Direction.UNKNOWN;
     }
     public void act(){
-        //good check method
-        /**
-        if(Greenfoot.isKeyDown("g")){
-            check = true;
-            if(!String.valueOf(PlayerSays.getDirection()).equals(String.valueOf(FlagManSign.direction)))
-            {
-                if(PlayerSays.alive){
-                    bad.play();
-                }
-                PlayerSays.alive = false;
-            }
-            else{
-                good.play();
-            }
-         }
-        else
-        {
-            check = false;
-        } 
-        */
-        
-        //debug
-        if(Greenfoot.isKeyDown("t")){
-            System.out.println(String.valueOf(FlagManSign.direction));
-        }
         //give the player the direction
         if(timer.millisElapsed() >= nextCheck - 1000){
             int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 1]
@@ -104,6 +79,7 @@ public class FlagManSign extends FlagMan
             }
             else{
                 good.play();
+                PlayerSays.setUnknown();
             }
             
             //cleaning up for next cycle

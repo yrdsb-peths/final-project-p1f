@@ -9,10 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayerSays extends Actor
 {
     GreenfootImage left = new GreenfootImage("WalkL1.png");
+    GreenfootImage idle = new GreenfootImage("WalkF1.png");
     GreenfootImage right = new GreenfootImage("WalkR1.png");
     GreenfootImage fail = new GreenfootImage("failureMario.png");
     
-    private enum PlayerDirection{ LEFT, RIGHT};
+    private enum PlayerDirection{ LEFT, RIGHT, UNKNOWN};
     private static PlayerDirection playerDirection = PlayerDirection.LEFT;
     public static boolean alive;
     
@@ -22,6 +23,7 @@ public class PlayerSays extends Actor
     public PlayerSays(){
         left.scale(100, 100);
         right.scale(100, 100);
+        idle.scale(100, 100);
         fail.scale(100, 100);
         //lastMove.mark();
     }
@@ -41,67 +43,16 @@ public class PlayerSays extends Actor
         else{
             setImage(fail);
         }
+        if(PlayerSays.playerDirection == PlayerDirection.UNKNOWN){
+            setImage(idle);
+        }
     }
     
     public static String getDirection(){
         return String.valueOf(PlayerSays.playerDirection);
     }
     
-    public static void setDirection(boolean isLeft){
-        if(isLeft){
-            PlayerSays.playerDirection = PlayerDirection.LEFT;
-        }
-        else{
-            PlayerSays.playerDirection = PlayerDirection.RIGHT;
-        }
+    public static void setUnknown(){
+        PlayerSays.playerDirection = PlayerDirection.UNKNOWN;
     }
-    /**
-    private boolean inTheGame = true;
-    //to prevent the player from changing their mind
-    private boolean canMove = false;
-    //Direction of the player. Is a string so the player cant lose at the start of the game
-    private String meDirection = "";
-    
-    
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    /**
-    public void act()
-    {
-        //Kind of janky. fix later.
-        //GOOD NOW?
-        if(inTheGame){
-            if(!FlagMan.needToCheck){
-                canMove = true;
-            }
-            if(Greenfoot.isKeyDown("a") && canMove){
-                setImage(left);
-                meDirection = "left";
-                canMove = false;
-            }
-            if(Greenfoot.isKeyDown("d") && canMove){
-                setImage(right);
-                meDirection = "right";
-                canMove = false;
-            }
-            if(FlagMan.needToCheck){
-                //to catch "" error
-                //try removing it
-                if(meDirection.equals(FlagMan.direction))
-                {
-                    System.out.println("correct!");
-                }
-                else
-                {
-                    inTheGame = false; 
-                    setImage(fail);  
-                    meDirection = "";
-                    death.play();
-                }
-            }        
-        }
-    }
-    */
 }
