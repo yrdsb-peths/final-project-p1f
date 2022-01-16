@@ -43,7 +43,7 @@ public class PlayerSays extends Actor
         else{
             setImage(fail);
         }
-        if(PlayerSays.playerDirection == PlayerDirection.UNKNOWN){
+        if(PlayerSays.playerDirection == PlayerDirection.UNKNOWN && this.alive){
             setImage(idle);
         }
     }

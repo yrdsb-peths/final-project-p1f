@@ -32,6 +32,8 @@ public class FlagManSign extends FlagMan
     
     private boolean justChecked = false;
     
+    private boolean hasSamuelSaid;
+    
     private boolean samuelSaid;
     
     public FlagManSign(){
@@ -42,23 +44,38 @@ public class FlagManSign extends FlagMan
     }
     public void act(){
         //give the player the direction
-        if(timer.millisElapsed() >= nextCheck - 1000){
+        if((timer.millisElapsed() >= nextCheck - 1000) && !hasSamuelSaid){
             int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 1]
             if(doesSamuelSay > 0){
                 samuelSays.play();
+                samuelSaid = true;
             }
+            else{
+                samuelSaid = false;
+            }
+            hasSamuelSaid = true;
         }
         if(timer.millisElapsed() >= nextCheck) {
             //unknown sign, then randomize
             //way too fast
             int leftOrRight = Greenfoot.getRandomNumber(2); //[0, 1]
             if(leftOrRight > 0){
-                FlagManSign.direction = Direction.LEFT;
+                if(samuelSaid){
+                    FlagManSign.direction = Direction.LEFT;
+                }
+                else{
+                    FlagManSign.direction = Direction.RIGHT;
+                }
                 setImage(leftSign);
                 samuelLeft.play();
             }
             else{
-                FlagManSign.direction = Direction.RIGHT;
+                if(samuelSaid){
+                    FlagManSign.direction = Direction.RIGHT;
+                }
+                else{
+                    FlagManSign.direction = Direction.LEFT;
+                }
                 setImage(rightSign);
                 samuelRight.play();
             }
@@ -86,9 +103,16 @@ public class FlagManSign extends FlagMan
             setImage(unknownSign);
             FlagManSign.direction = Direction.UNKNOWN;
             justChecked = false;
+            hasSamuelSaid = false;
         }
         else{
             check = false;
+        }
+        
+        
+        if((timer.millisElapsed() > 30000) || !PlayerSays.alive){
+            GameEnded done = new GameEnded();
+            Greenfoot.setWorld(done);
         }
     }
     
@@ -103,30 +127,4 @@ public class FlagManSign extends FlagMan
     public static boolean getCheck() {
         return check;
     }
-    
-    /**
-    */
-    /**
-     * Act - do whatever the FlagManSign wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    /**
-    public void act() 
-    {
-        //not changing orientation
-        //NULL POINTER  EXCEPTION???
-        //make it switch sign later
-        /**
-        if(FlagMan.needToCheck = true){
-            if(FlagMan.direction.equals("left")){
-                setImage(leftSign);
-            }
-            else if(FlagMan.direction.equals("right")){
-                setImage(rightSign);
-            }
-            System.out.println("switched sign");
-        }
-        */
-     
-    
 }

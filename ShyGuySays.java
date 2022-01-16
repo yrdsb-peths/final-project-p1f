@@ -17,6 +17,7 @@ public class ShyGuySays extends World
     GreenfootImage idle = new GreenfootImage("WalkF1.png");
     GreenfootImage unknownSign = new GreenfootImage("uniFlag.png");
     GreenfootImage leftFlagMan = new GreenfootImage("flaggerL.png");
+    
     /**
      * Constructor for objects of class ShyGuySays.
      * 
@@ -42,7 +43,7 @@ public class ShyGuySays extends World
         flagSign.setImage(unknownSign);
         addObject(flagSign, 185, 254);
     }
-    private boolean addedLabel = false;
+    
     public void act(){
         //3...2...1...start!
         main.playLoop();
