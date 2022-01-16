@@ -25,11 +25,12 @@ public class TitleScreen extends World
         start = new Button("    Start", 0.7f);
         addObject(start, 500,450);
         
-        //MainSound.play();
+        MainSound.play();
     }
     
     public void act() {
         if (Greenfoot.mouseClicked(start)) {
+            Greenfoot.playSound("ButtonClick.wav");
             Greenfoot.setWorld(new WorldMap());
         }
     }
