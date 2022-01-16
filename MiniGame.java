@@ -33,8 +33,15 @@ public class MiniGame extends World
         }
     }
 
+    public String toString() {
+        return "Unnamed MiniGame";
+    }
+
     /**
      * update world scores
      */
-
+    protected void updateWorld() {
+        WorldMap.instance.removeTutorial();
+        Greenfoot.setWorld(WorldMap.instance);
+    }
 }

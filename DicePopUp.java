@@ -8,15 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class DicePopUp extends PopUp
 {
-    
     private Dice dice;
     private MapCharacter player;
     public DicePopUp(MapCharacter player) {
         super();
-        this.player = player;  
+        this.player = player;
 
         GreenfootImage img = new GreenfootImage(player.getRightImage());
-        float scale = 2;
+        float scale = 3f;
         img.scale((int)(img.getWidth()*scale), (int)(img.getHeight()*scale));
         panel.drawImage(img, 200, 200);
     }

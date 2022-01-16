@@ -94,8 +94,7 @@ public class MemoryMatch extends MiniGame
 
         if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
             MainSound.stop();
-            if (WorldMap.instance != null) 
-                Greenfoot.setWorld(WorldMap.instance);
+            updateWorld();
         }
 
     }
@@ -117,6 +116,10 @@ public class MemoryMatch extends MiniGame
     
     public Vector2[] getCardPositions() {
         return this.cardPositions;
+    }
+
+    public String toString() {
+        return "MemoryMatch";
     }
 
 }

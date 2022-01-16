@@ -122,6 +122,7 @@ public class Look extends MiniGame
         }
         if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
             lv++;
+            if (lv==7) return;
             for (Player p : players) {
                 p.resetTarget();
             }
@@ -153,6 +154,10 @@ public class Look extends MiniGame
 
     public int getLV() {
         return lv;
+    }
+
+    public String toString() {
+        return "Look";
     }
 }
 

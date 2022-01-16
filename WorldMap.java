@@ -17,6 +17,7 @@ public class WorldMap extends World
     private ArrayList<MapCharacter> playersRef;
     private Queue<MapCharacter> players;
     private DicePopUp dicePopUp;
+    private TutorialPopUp tutorialPopUp;
     private MapCharacter player; // current player
     private int rounds, roundsLeft;
     private Label roundsText;
@@ -58,6 +59,9 @@ public class WorldMap extends World
     }
     
     public void act() {
+        if (tutorialPopUp != null) {
+            return;
+        }
         if (player==null && players.size() == 0) {
             if (roundsLeft == 0) {
                 // new winscreen(winning player)
@@ -72,7 +76,9 @@ public class WorldMap extends World
                 // should make tutoiral popup -> minigame
                 // eg new TutorialPopUp(minigame name) 
                 if (rounds!=roundsLeft+1) {
-                    Greenfoot.setWorld(getRandomMiniGame()); 
+                    tutorialPopUp = new TutorialPopUp(getRandomMiniGame());
+                    addObject(tutorialPopUp, 0, 0);
+                    // Greenfoot.setWorld(getRandomMiniGame());
                 }
             }
         }
@@ -112,12 +118,13 @@ public class WorldMap extends World
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
-        String[] minigames = { "MemoryMatch" };
+        String[] minigames = { "MemoryMatch", "Look" };
         String name = minigames[Utils.random(minigames.length-1)];
         MiniGame game = new MiniGame();
         
         switch (name) {
             case "MemoryMatch": game = new MemoryMatch(); break;
+            case "Look": game = new Look(); break;
             // add other minigames here
         }
         
@@ -180,5 +187,9 @@ public class WorldMap extends World
     
     public SimpleTimer getTimer() {
         return this.timer; 
+    }
+
+    public void removeTutorial() {
+        tutorialPopUp = null;
     }
 }
