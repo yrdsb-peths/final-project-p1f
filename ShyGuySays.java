@@ -17,6 +17,8 @@ public class ShyGuySays extends World
     GreenfootImage unknownSign = new GreenfootImage("uniFlag.png");
     GreenfootImage leftFlagMan = new GreenfootImage("flaggerL.png");
     
+    GreenfootImage background = new GreenfootImage("SamuelSays.png");
+    
     GreenfootSound main = new GreenfootSound("Mario Party (Music) - Dodging Danger.mp3");
     /**
      * Constructor for objects of class ShyGuySays.
@@ -26,6 +28,8 @@ public class ShyGuySays extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1);
+        
+        this.setBackground(background);
         
         main.setVolume(30);
 
