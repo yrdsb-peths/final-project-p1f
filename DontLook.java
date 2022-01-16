@@ -11,30 +11,28 @@ public class DontLook extends MiniGame
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
     private int time = 20;
-    Label coinLabel;
-    int coinCount;
-    int lv;
-    Arrow arrow;
-    Player player;
+    private GreenfootSound bgm = new GreenfootSound("DontLookBGM.mp3");
+    private Label coinLabel;
+    private int coinCount;
+    private Arrow arrow;
+    private Player player;
     /**
      * Constructor for objects of class DontLook.
      * 
      */
-    public DontLook()
-    {
+    public DontLook() {
         prepare();
     }
 
     public void prepare() {
-        addObject(timeCount,90,50);
+        //bgm.play();
+        
+        addObject(timeCount,350,70);
         timeCount.setValue(time); 
 
-        addObject(new Coins(), 850, 50);
-        
+        addObject(new Coins(), 620, 70); 
         coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,920,50);
-
-        addObject(new Level(), getWidth()/2, 40);
+        addObject(coinLabel,620,70);
 
         arrow = new Arrow();
         addObject(arrow, getWidth()/2, 200);
@@ -46,21 +44,8 @@ public class DontLook extends MiniGame
     public void act() {
         timeCountDown();
         checkPlayerInput();
-        if (tim.millisElapsed() * 1000 == timeCount.getValue()) {
-            Greenfoot.setWorld(new WorldMap());
-        }
     }
-
-    public void checkPlayerInput()
-    {
-        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left")
-        ||Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("down"))
-        {
-            checkMatch();
-            arrow.setArrow();
-        }
-        Greenfoot.delay(6);
-    }
+    
     /**
      * Called every act; updates the time counter every second.
      * If time limit is reached...
@@ -71,23 +56,37 @@ public class DontLook extends MiniGame
             timeCount.add(-1);
             tim.mark();
         }
+        if (tim.millisElapsed() * 1000 == timeCount.getValue()) {
+            Greenfoot.setWorld(new WorldMap());
+        }
     }
 
+    public void checkPlayerInput() {
+        if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left")
+        ||Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("down")) {
+            checkMatch();
+            arrow.setArrow();
+        }
+        Greenfoot.delay(6);
+    }
+
+    public void checkMatch() {
+        if (player.checkPlayer() != arrow.arrowType) {
+            Greenfoot.playSound("Happy.wav"); // perhaps add another sound effect? 1 is a ittle boring
+            updateCoins();
+        } else {
+            Greenfoot.playSound("Bad.wav");
+            Greenfoot.playSound("Hurt.wav");
+            Greenfoot.setWorld(new WorldMap());
+        }
+    }
+    
     public void updateCoins() {
         getObjects(Coins.class).get(0).timeCount.setValue(2); 
         getObjects(Coins.class).get(0).coinSpin = true;
         coinCount++;
         removeObject(coinLabel);
         coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,920,50);
-    }
-
-    public void checkMatch() {
-        if (player.checkPlayer() != arrow.arrowType)
-        {
-            updateCoins();
-        } else {
-            Greenfoot.playSound("Bad.wav");
-        }
+        addObject(coinLabel,620,70);
     }
 }
