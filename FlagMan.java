@@ -11,81 +11,47 @@ public class FlagMan extends Actor
     //too many errors, starting over
     GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
     GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
+    
+    GreenfootSound main = new GreenfootSound("Mario Party (Music) - Dodging Danger.mp3");
+    
+    private SimpleTimer timer = new SimpleTimer();
     public FlagMan(){
         lFlagMan.scale(80, 80);
         rFlagMan.scale(80, 80);
+        timer.mark();
+        main.setVolume(30);
     }
     
     public void act(){
         if(FlagManSign.getUnknown()){
-            setImage(lFlagMan);
+                setImage(lFlagMan);
         }
-        else if(FlagManSign.getLeft()){
-            setImage(lFlagMan);
-        }
-        else{
-            setImage(rFlagMan);
-        }
-    }
-    /**
-     * public static boolean needToCheck = false;
-     * //left is true,right is false
-     * //make string
-     * public static String direction;
-     * private SimpleTimer timer = new SimpleTimer();
-     * GreenfootImage lFlagMan = new GreenfootImage("flaggerL.png");
-     * GreenfootImage rFlagMan = new GreenfootImage("flaggerR.png");
-     * public FlagMan(){
-     *     lFlagMan.scale(80, 80);
-     *     rFlagMan.scale(80, 80);
-     *     setImage(lFlagMan);
-     *     timer.mark();
-     *  }
-     *  //record the last time it was checked
-     *  private int lastTimeChecked;    
-     *  /**
-           * Act - do whatever the FlagMan wants to do. This method is called whenever
-             * the 'Act' or 'Run' button gets pressed in the environment.
-               */
-              /**
-    public void act() 
-    {
-        //supposed to switch every now and then, make longer when done testing
-        //add an animation before the switch
-        //part 1
-        if(timer.millisElapsed() % 5000 == 0){
-            lastTimeChecked = timer.millisElapsed();
-            //RANDOMIZING DIRECTION!!!
-            //DIRECTION IS NULL! WHAT?
-            if(Greenfoot.getRandomNumber(2) > 0){
-                //show flag and allow movement
-                FlagMan.direction = "left";
+        else if(FlagManSign.getSamuelSaid()){
+            if(FlagManSign.getLeft()){
                 setImage(lFlagMan);
             }
             else{
-                FlagMan.direction = "right";
                 setImage(rFlagMan);
             }
-            System.out.println("timer debug: " + String.valueOf(timer.millisElapsed()));
-            System.out.println("needToCheck debug: " + String.valueOf(needToCheck));
-            System.out.println("direction debug: " + direction);
         }
-        //give them some time to move
-        if(timer.millisElapsed() - 1000 == lastTimeChecked){
-            System.out.println("time elapsed since first: " + timer.millisElapsed());
-            //check
-            //start checking now
-            needToCheck = true;
+        else{
+            if(FlagManSign.getLeft()){
+                setImage(rFlagMan);
+            }
+            else{
+                setImage(lFlagMan);
+            }
         }
         
-        //now stop checking
-        if(timer.millisElapsed() - 2000 == lastTimeChecked){
-            System.out.println("time elapsed since last: " + timer.millisElapsed());
-            needToCheck = false;
-            direction = "";
+        if((timer.millisElapsed() > 62500) || !PlayerSays.alive){
+            main.stop();
+            GameEnded done = new GameEnded();
+            Greenfoot.setWorld(done);
+            System.out.println(timer.millisElapsed());
         }
-    }   
-    */
-    //Static var to player, player then checks and sends back?
+        else{
+            main.play();
+        }
+    }
 }
 

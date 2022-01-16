@@ -34,7 +34,7 @@ public class FlagManSign extends FlagMan
     
     private boolean hasSamuelSaid;
     
-    private boolean samuelSaid;
+    private static boolean samuelSaid;
     
     public FlagManSign(){
         //not setting???
@@ -108,12 +108,6 @@ public class FlagManSign extends FlagMan
         else{
             check = false;
         }
-        
-        
-        if((timer.millisElapsed() > 30000) || !PlayerSays.alive){
-            GameEnded done = new GameEnded();
-            Greenfoot.setWorld(done);
-        }
     }
     
     public static boolean getLeft() {
@@ -126,5 +120,9 @@ public class FlagManSign extends FlagMan
     
     public static boolean getCheck() {
         return check;
+    }
+    
+    public static boolean getSamuelSaid(){
+        return samuelSaid;
     }
 }
