@@ -13,9 +13,12 @@ public class GameOverScreen extends World
      * Constructor for objects of class GameOverScreen.
      * 
      */
-    public GameOverScreen()
+    public GameOverScreen(Player player)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
+        addObject(new Player("Mario",5),400,300);
+        
+        addObject(new Label("Wins!",70),550,320);
     }
 }
