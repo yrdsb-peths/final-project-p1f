@@ -17,7 +17,7 @@ public class Level extends Actor
      */
     public void act()
     {
-        switch(((Look)getWorld()).lv) {
+        switch(((Look)getWorld()).getLV()) {
             case 1:
                 setImage("images/Levels/lv1.png");
                 break;

@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Player here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @param string name
+ * @param float scale
  */
 public class HumanPlayer extends Player
 {
@@ -13,8 +13,7 @@ public class HumanPlayer extends Player
         super(name, scale);
     }
     
-    protected void playMemoryMatch() {
-        float speed = 3f;
+    protected void playerMovement(float speed) { 
         if (Greenfoot.isKeyDown("w")) {
             move(new Vector2(0, -speed));
         } else if (Greenfoot.isKeyDown("s")) { 
@@ -26,4 +25,26 @@ public class HumanPlayer extends Player
             move(new Vector2(speed, 0));
         }
     }
+
+    protected void playMemoryMatch() {
+        super.playMemoryMatch();
+        playerMovement(3f);
+    }
+
+    protected void playLook() {
+        super.playLook();
+        int w = getWorld().getWidth();
+        int h = getWorld().getHeight();
+        int d = 180;
+        if (Greenfoot.isKeyDown("w")) {
+            lookTarget = new Vector2(w/2, d);
+        } else if (Greenfoot.isKeyDown("s")) { 
+            lookTarget = new Vector2(w/2, h-d);
+        } else if (Greenfoot.isKeyDown("a")) { 
+            lookTarget = new Vector2(d, h/2);
+        } else if (Greenfoot.isKeyDown("d")) { 
+            lookTarget = new Vector2(w-d, h/2);
+        }
+    }
+
 }
