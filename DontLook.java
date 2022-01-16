@@ -45,13 +45,13 @@ public class DontLook extends MiniGame
 
     public void act() {
         timeCountDown();
-        checkPlayerMoves();
+        checkPlayerInput();
         if (tim.millisElapsed() * 1000 == timeCount.getValue()) {
             Greenfoot.setWorld(new WorldMap());
         }
     }
 
-    public void checkPlayerMoves()
+    public void checkPlayerInput()
     {
         if(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("left")
         ||Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("down"))
@@ -59,6 +59,7 @@ public class DontLook extends MiniGame
             checkMatch();
             arrow.setArrow();
         }
+        Greenfoot.delay(6);
     }
     /**
      * Called every act; updates the time counter every second.
