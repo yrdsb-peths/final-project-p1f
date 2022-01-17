@@ -25,7 +25,7 @@ public class BombsAway extends World
      */
     public BombsAway()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         
         Bomb aBomb = new Bomb(Greenfoot.getRandomNumber(50) + 50, Greenfoot.getRandomNumber(359));
@@ -37,7 +37,6 @@ public class BombsAway extends World
         
         addObject(timeCount,300,90);
         timeCount.setValue(time); 
-        timer.mark();
         levelTimer.mark();
         
         this.setBackground(background);
@@ -45,26 +44,18 @@ public class BombsAway extends World
     
     public void act(){
         main.play();
+        if (timer.millisElapsed() > 1000) { //count down one second
+            timeCount.add(-1);
+            timer.mark();
+        }
         if(timer.millisElapsed() >= 6000 - (10 * numBombs)){
             Bomb bomb = new Bomb(Greenfoot.getRandomNumber(50) + 100, Greenfoot.getRandomNumber(359));
             addObject(bomb, Greenfoot.getRandomNumber(1000), 0);
-            timer.mark();
         }
-        if(levelTimer.millisElapsed() >= 60000 || !PlayerOne.alive){
+        if(timer.millisElapsed() * 1000 == timeCount.getValue() || levelTimer.millisElapsed() >= 60000 || !PlayerOne.alive){
             GameEnded gameOver = new GameEnded();
             Greenfoot.setWorld(gameOver);
             main.stop();
         }
-        /*
-        if (timer.millisElapsed() > 1000) { //count down one second
-            timer.mark();
-        }
-        if (timer.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
-            //set world map
-            //end game
-
-            */
-           
-           // do another one for level time using same structure as above
     }
 }
