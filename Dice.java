@@ -11,6 +11,8 @@ public class Dice extends Actor
     private Animation rollAnim;
     private boolean paused;
     
+    private GreenfootSound diceRolling = new GreenfootSound("Dice_Rolling.mp3");
+    private GreenfootSound rollingEnded = new GreenfootSound("Rolling_Ended.mp3");
     public Dice() {
         // upload dice here
         rollAnim = new Animation(this, "Dice/", 6, 20, 2);
@@ -29,6 +31,8 @@ public class Dice extends Actor
     public void stopRoll() {
         paused = true;
         rollAnim.pause();
+        diceRolling.stop();
+        rollingEnded.play();
     }
 
     /**
@@ -37,6 +41,7 @@ public class Dice extends Actor
     public void startRoll() {
         paused = false;
         rollAnim.resume();
+        diceRolling.playLoop();
     }
     
     /**
