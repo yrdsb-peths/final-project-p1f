@@ -15,8 +15,11 @@ public class WorldMap extends World
     
     private ArrayList<MapNode> path;
     private ArrayList<MapCharacter> playersRef;
+    private ArrayList<Label> coinLabels;
     private Queue<MapCharacter> players;
     private DicePopUp dicePopUp;
+    private TutorialPopUp tutorialPopUp;
+    private ScorePopUp scorePopUp;
     private MapCharacter player; // current player
     private int rounds, roundsLeft;
     private Label roundsText;
@@ -28,8 +31,8 @@ public class WorldMap extends World
      */
     public WorldMap() {
         super(1000, 600, 1); 
-        instance = this;
-        setBackground(new GreenfootImage("world_map.png"));
+        instance = this; 
+
         setupPath();
         
         playersRef = new ArrayList<MapCharacter>();
@@ -41,6 +44,8 @@ public class WorldMap extends World
         for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
+        
+        assert playersRef.size()==4 : "Require 4 and only 4 players";
         
         players = new LinkedList<MapCharacter>();
         player = null;
@@ -54,10 +59,21 @@ public class WorldMap extends World
         roundsText = new Label(String.valueOf(roundsLeft) + " Rounds Left", 50);
         addObject(roundsText, 155, 575);
         
-        assert playersRef.size()==4 : "Require 4 and only 4 players";
+        drawWorld();
+
     }
     
+    boolean test=false;
     public void act() {
+        if (test) return;
+
+        if (tutorialPopUp != null) {
+            return;
+        }
+        if (scorePopUp != null) {
+            return;
+        }
+
         if (player==null && players.size() == 0) {
             if (roundsLeft == 0) {
                 // new winscreen(winning player)
@@ -72,7 +88,9 @@ public class WorldMap extends World
                 // should make tutoiral popup -> minigame
                 // eg new TutorialPopUp(minigame name) 
                 if (rounds!=roundsLeft+1) {
-                    Greenfoot.setWorld(getRandomMiniGame()); 
+                    tutorialPopUp = new TutorialPopUp(getRandomMiniGame());
+                    addObject(tutorialPopUp, 0, 0);
+                    // Greenfoot.setWorld(getRandomMiniGame());
                 }
             }
         }
@@ -112,21 +130,26 @@ public class WorldMap extends World
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
-        String[] minigames = { "MemoryMatch" };
+        String[] minigames = { "MemoryMatch", "Look" };
         String name = minigames[Utils.random(minigames.length-1)];
         MiniGame game = new MiniGame();
         
         switch (name) {
             case "MemoryMatch": game = new MemoryMatch(); break;
+            case "Look": game = new Look(); break;
             // add other minigames here
         }
         
         return game;
     }
     
-    private void setupScores() {
-        // add scores
-        
+    public void addScores(ArrayList<Player> addedCoins) {
+        scorePopUp = new ScorePopUp(playersRef, addedCoins);
+        addObject(scorePopUp, 0, 0);
+        for (int i=0;i<coinLabels.size();i++) {
+            String v = String.valueOf(playersRef.get(i).getCoins());
+            coinLabels.get(i).setValue(v);
+        }
     }
 
     /**
@@ -169,6 +192,18 @@ public class WorldMap extends World
         path.add(new BadNode(490, 10));
         */
     }
+
+    private void drawWorld() {
+        GreenfootImage img = new GreenfootImage("world_map.png");
+        coinLabels = new ArrayList<Label>();
+        for (int i=0;i<4;i++) {
+            img.drawImage(playersRef.get(i).getRightImage(), 150 + i*200, 5);
+            Label l = new Label(String.valueOf(playersRef.get(i).getCoins()), 50);
+            coinLabels.add(l);
+            addObject(l, 220 + i*200, 30);
+        }
+        setBackground(img);
+    }
     
     public ArrayList<MapCharacter> getPlayers() {
         return playersRef;
@@ -180,5 +215,13 @@ public class WorldMap extends World
     
     public SimpleTimer getTimer() {
         return this.timer; 
+    }
+
+    public void removeTutorial() {
+        tutorialPopUp = null;
+    }
+
+    public void removeScorePopUp() {
+        scorePopUp = null;
     }
 }

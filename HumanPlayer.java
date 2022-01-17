@@ -14,16 +14,18 @@ public class HumanPlayer extends Player
     }
     
     protected void playerMovement(float speed) { 
+        Vector2 d = new Vector2();
         if (Greenfoot.isKeyDown("w")) {
-            move(new Vector2(0, -speed));
+            d = Vector2.add(d, new Vector2(0, -speed));
         } else if (Greenfoot.isKeyDown("s")) { 
-            move(new Vector2(0, speed));
+            d = Vector2.add(d, new Vector2(0, speed));
         }
         if (Greenfoot.isKeyDown("a")) {
-            move(new Vector2(-speed, 0));
+            d = Vector2.add(d, new Vector2(-speed, 0));
         } else if (Greenfoot.isKeyDown("d")) { 
-            move(new Vector2(speed, 0));
+            d = Vector2.add(d, new Vector2(speed, 0));
         }
+        move(d);
     }
 
     protected void playMemoryMatch() {
@@ -35,7 +37,7 @@ public class HumanPlayer extends Player
         super.playLook();
         int w = getWorld().getWidth();
         int h = getWorld().getHeight();
-        int d = 180;
+        int d = 180; 
         if (Greenfoot.isKeyDown("w")) {
             lookTarget = new Vector2(w/2, d);
         } else if (Greenfoot.isKeyDown("s")) { 
