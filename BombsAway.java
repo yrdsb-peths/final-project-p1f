@@ -15,7 +15,7 @@ public class BombsAway extends World
     
     private GreenfootSound main = new GreenfootSound("Mario Party 1 OST - Ducking and Dodging (Mini-Game).mp3");
     
-    private GreenfootImage background = new GreenfootImage("ShyGuySays2.png");
+    private GreenfootImage background = new GreenfootImage("BombsAwayBKG.png");
     
     private int numBombs = 0;
     
@@ -33,9 +33,9 @@ public class BombsAway extends World
         
         PlayerOne playerOne = new PlayerOne();
         PlayerOne.alive = true;
-        addObject(playerOne, 500, 500);
+        addObject(playerOne, 500, 470);
         
-        addObject(timeCount,110,85);
+        addObject(timeCount,300,90);
         timeCount.setValue(time); 
         timer.mark();
         levelTimer.mark();
