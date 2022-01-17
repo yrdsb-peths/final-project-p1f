@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BombsAway extends World
 {
     private SimpleTimer timer = new SimpleTimer();
+    private Counter timeCount = new Counter();
+    private int time = 60;
     private SimpleTimer levelTimer = new SimpleTimer();
     
     private GreenfootSound main = new GreenfootSound("Mario Party 1 OST - Ducking and Dodging (Mini-Game).mp3");
@@ -33,6 +35,8 @@ public class BombsAway extends World
         PlayerOne.alive = true;
         addObject(playerOne, 500, 500);
         
+        addObject(timeCount,110,85);
+        timeCount.setValue(time); 
         timer.mark();
         levelTimer.mark();
         
@@ -51,5 +55,16 @@ public class BombsAway extends World
             Greenfoot.setWorld(gameOver);
             main.stop();
         }
+        /*
+        if (timer.millisElapsed() > 1000) { //count down one second
+            timer.mark();
+        }
+        if (timer.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
+            //set world map
+            //end game
+
+            */
+           
+           // do another one for level time using same structure as above
     }
 }
