@@ -43,6 +43,7 @@ public class Button extends Actor
         }
         if (Greenfoot.mousePressed(this)) { 
             state = ButtonState.DOWN;
+            Greenfoot.playSound("ButtonClick.wav");
         } else if (state == ButtonState.DOWN && Greenfoot.mouseClicked(null)) { 
             state = ButtonState.CLICK;
         }
