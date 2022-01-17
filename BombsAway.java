@@ -17,14 +17,9 @@ public class BombsAway extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
-        prepare();
+        
+        Bomb aBomb = new Bomb(Greenfoot.getRandomNumber(50) + 100);
+        addObject(aBomb, Greenfoot.getRandomNumber(1000), 0);
     }
 
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
-    }
 }
