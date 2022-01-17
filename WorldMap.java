@@ -32,6 +32,7 @@ public class WorldMap extends World
         setBackground(new GreenfootImage("world_map.png"));
         setupPath();
         
+        //Uses sprites based on input name
         playersRef = new ArrayList<MapCharacter>();
         playersRef.add(new MapPlayer("Mario"));
         playersRef.add(new MapNPC("Luigi"));

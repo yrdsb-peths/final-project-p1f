@@ -35,7 +35,6 @@ public class CharSelectChar extends Actor
     {
         if(Greenfoot.mousePressed(this)){
             playerChoice = thisName;
-            System.out.println(playerChoice);
             numClicks++;
         }
     }   
