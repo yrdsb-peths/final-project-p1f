@@ -25,8 +25,7 @@ public class DicePopUp extends PopUp
         dice = new Dice();
         WorldMap.instance.addObject(dice, 500, 300);
         player.startDice(dice);
-        canClose = false; 
-        
+        canClose = false;
     }
 
     public void act() {

@@ -11,16 +11,18 @@ public class TutorialPopUp extends PopUp
     
     private MiniGame game;
     public TutorialPopUp(MiniGame game) {
+        super();
         this.game = game;
         switch (game.toString()) {
-            case "Memory Match":
-                setImage(new GreenfootImage("tutorial_memorymatch.png"));
+            case "MemoryMatch":
+                setImage(new GreenfootImage("Instruction/MemoryMatch.png"));
                 break;
             case "Look":
-                setImage(new GreenfootImage("tutorial_look.png"));
+                setImage(new GreenfootImage("Instruction/Look.png"));
                 break;
             default:
                 assert false:"Tutorial Popup: Unknown game " + game.toString();
+                System.out.println("game now found");
                 break;
         }
     }

@@ -56,9 +56,14 @@ public class WorldMap extends World
         addObject(roundsText, 155, 575);
         
         assert playersRef.size()==4 : "Require 4 and only 4 players";
+
+        addObject(new ScorePopUp(playersRef, new ArrayList<Integer>()), 0, 0);
     }
     
+    boolean test=true;
     public void act() {
+        if (test) return;
+
         if (tutorialPopUp != null) {
             return;
         }

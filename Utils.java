@@ -1,4 +1,6 @@
 import greenfoot.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Extra utilities / tools for dev
@@ -65,5 +67,46 @@ public class Utils
     public static int random(int a, int b) {
        // [0 + a, b-a+1 + a) ==> [a, b]
        return Greenfoot.getRandomNumber(b-a+1) + a;
+    }
+
+    /**
+     * Sort array of comparable objects using merge sort
+     * 
+     * @param List<MapCharacter> array to be sorted
+     */
+    public static <T extends Comparable<T>> void sort(List<T> ar) {
+        mergeSort(ar, 0, ar.size()-1);
+    }
+
+    /**
+     * Recursive mergesort method in decreasing order
+     */
+    private static <T extends Comparable<T>> void mergeSort(List<T> ar, int lo, int hi) {
+        if (lo >= hi) return;
+        int mid = (lo + hi) / 2;
+        mergeSort(ar, lo, mid);
+        mergeSort(ar, mid+1, hi);
+        
+        List<T> temp = new ArrayList<T>(ar);
+
+        // merge(ar, lo, mid, hi);
+        int i=lo, j=mid+1, k=lo;
+        while (i <= mid && j <= hi) {
+            if (temp.get(i).compareTo(temp.get(j)) <= 0) {
+                ar.set(k, ar.get(i));
+                i++; k++;
+            } else {
+                ar.set(k, ar.get(j));
+                j++; k++;
+            }
+        }
+        while (i <= mid) {
+            ar.set(k, temp.get(i));
+            i++; k++;
+        }
+        while (j <= hi) {
+            ar.set(k, temp.get(j));
+            j++; k++;
+        }
     }
 }
