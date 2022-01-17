@@ -10,16 +10,19 @@ public class PlayerOne extends Actor
 {
     private GreenfootImage idle = new GreenfootImage("WalkF1.png");
     
-    private enum PlayerDirection{LEFT, RIGHT, IDLE};
-    private PlayerDirection playerDirection = PlayerDirection.IDLE;
-    
+    private GreenfootImage walkLeft1 = new GreenfootImage("WalkL1.png");
+    private GreenfootImage walkLeft2 = new GreenfootImage("WalkL2.png");
+    private GreenfootImage walkRight1 = new GreenfootImage("WalkR1.png");
+    private GreenfootImage walkRight2 = new GreenfootImage("WalkR2.png");
+                
     private GreenfootSound death = new GreenfootSound("death.mp3");
     
     public static boolean alive;
     
+    private SimpleTimer animTimer = new SimpleTimer();
     public PlayerOne(){
-        idle.scale(80, 80);
         setImage(idle);
+        animTimer.mark();
     }
     /**
      * Act - do whatever the PlayerOne wants to do. This method is called whenever
@@ -34,10 +37,10 @@ public class PlayerOne extends Actor
             walkRight();
         }
         else{
-            playerDirection = PlayerDirection.IDLE;
             setImage(idle);
         }
         if(this.isTouching(Bomb.class)){
+            death.play();
             PlayerOne.alive = false;
         }
     }    
@@ -45,23 +48,21 @@ public class PlayerOne extends Actor
     private void walkLeft(){
         //animate walking later
         if(this.getX() > 50){
-            GreenfootImage walkLeft1 = new GreenfootImage("WalkL1.png");
-            setImage(walkLeft1);
+            if(animTimer.millisElapsed() % 2 == 0){setImage(walkLeft1);}
+            else{setImage(walkLeft2);}
             int x = this.getX() - 5;
             int y = this.getY();
             this.setLocation(x, y);
-            playerDirection = PlayerDirection.LEFT;
         }
     }
     
     private void walkRight(){
         if(this.getX() < 950){
-            GreenfootImage walkRight1 = new GreenfootImage("WalkR1.png");
-            setImage(walkRight1);
+            if(animTimer.millisElapsed() % 2 == 0){setImage(walkRight1);}
+            else{setImage(walkRight2);}
             int x = this.getX() + 5;
             int y = this.getY();
             this.setLocation(x, y);
-            playerDirection = PlayerDirection.RIGHT;
         }
     }
 }

@@ -26,7 +26,7 @@ public class BombsAway extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         
-        Bomb aBomb = new Bomb(Greenfoot.getRandomNumber(50) + 100);
+        Bomb aBomb = new Bomb(Greenfoot.getRandomNumber(50) + 50, Greenfoot.getRandomNumber(359));
         addObject(aBomb, Greenfoot.getRandomNumber(1000), 0);
         
         PlayerOne playerOne = new PlayerOne();
@@ -42,7 +42,7 @@ public class BombsAway extends World
     public void act(){
         main.play();
         if(timer.millisElapsed() >= 6000 - (10 * numBombs)){
-            Bomb bomb = new Bomb(Greenfoot.getRandomNumber(50) + 100);
+            Bomb bomb = new Bomb(Greenfoot.getRandomNumber(50) + 100, Greenfoot.getRandomNumber(359));
             addObject(bomb, Greenfoot.getRandomNumber(1000), 0);
             timer.mark();
         }
