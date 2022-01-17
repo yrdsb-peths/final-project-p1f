@@ -9,14 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharSelectChar extends Actor
 {
     private static int numClicks;
-    private static String playerChoice;
+    public static String playerChoice;
     private String thisName;
     public CharSelectChar(String player){
         GreenfootImage waitToPick = new GreenfootImage(player + "/menu.png");
-        if(player.equals("LuigiMenu")){
+        if(player.equals("Luigi")){
             waitToPick.scale(150, 150);
         }
-        else if(player.equals("MarioMenu")){
+        else if(player.equals("Mario")){
             waitToPick.scale(90, 134);
         }
         else{
@@ -25,6 +25,9 @@ public class CharSelectChar extends Actor
         setImage(waitToPick);
         CharSelectChar.playerChoice = "";
         thisName = player;
+        
+        CharSelectChar.playerChoice = "";
+        CharSelectChar.numClicks = 0;
     }
     
     /**
@@ -41,8 +44,5 @@ public class CharSelectChar extends Actor
     
     public static int getNumClicks(){
         return CharSelectChar.numClicks;
-    }
-    public static String getPlayerChoice(){
-        return CharSelectChar.playerChoice;
     }
 }
