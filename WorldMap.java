@@ -21,6 +21,8 @@ public class WorldMap extends World
     private int rounds, roundsLeft;
     private Label roundsText;
     private SimpleTimer timer;
+    
+    private GreenfootSound mainTheme = new GreenfootSound("MainTheme.mp3");
      
     /**
      * WorldMap Constructor
@@ -58,6 +60,7 @@ public class WorldMap extends World
     }
     
     public void act() {
+        mainTheme.playLoop();
         if (player==null && players.size() == 0) {
             if (roundsLeft == 0) {
                 // new winscreen(winning player)
@@ -116,6 +119,7 @@ public class WorldMap extends World
         String name = minigames[Utils.random(minigames.length-1)];
         MiniGame game = new MiniGame();
         
+        mainTheme.stop();
         switch (name) {
             case "MemoryMatch": game = new MemoryMatch(); break;
             // add other minigames here
