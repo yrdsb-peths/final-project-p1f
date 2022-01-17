@@ -17,6 +17,7 @@ public class Bomb extends Actor
     
     private int x;
     private int y;
+    
     /**
      * Act - do whatever the Bombs wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -24,12 +25,12 @@ public class Bomb extends Actor
     public void act() 
     {
         if(this.getY() >= 550){
-           x = Greenfoot.getRandomNumber(400);
+           x = Greenfoot.getRandomNumber(1000);
            y = 0;
         }
         else{
-            x = getX();
-            y = getY() + 5;
+            x = this.getX();
+            y = this.getY() + 3;
         }
         setLocation(x, y);
     }    

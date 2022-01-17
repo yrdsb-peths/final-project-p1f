@@ -8,7 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BombsAway extends World
 {
-
+    private SimpleTimer timer = new SimpleTimer();
+    private SimpleTimer levelTimer = new SimpleTimer();
+    
+    private GreenfootSound main = new GreenfootSound("Mario Party 1 OST - Ducking and Dodging (Mini-Game).mp3");
+    
+    private GreenfootImage background = new GreenfootImage("ShyGuySays2.png");
+    
+    private int numBombs = 0;
+    
     /**
      * Constructor for objects of class BombsAway.
      * 
@@ -20,6 +28,28 @@ public class BombsAway extends World
         
         Bomb aBomb = new Bomb(Greenfoot.getRandomNumber(50) + 100);
         addObject(aBomb, Greenfoot.getRandomNumber(1000), 0);
+        
+        PlayerOne playerOne = new PlayerOne();
+        PlayerOne.alive = true;
+        addObject(playerOne, 500, 500);
+        
+        timer.mark();
+        levelTimer.mark();
+        
+        this.setBackground(background);
     }
-
+    
+    public void act(){
+        main.play();
+        if(timer.millisElapsed() >= 6000 - (10 * numBombs)){
+            Bomb bomb = new Bomb(Greenfoot.getRandomNumber(50) + 100);
+            addObject(bomb, Greenfoot.getRandomNumber(1000), 0);
+            timer.mark();
+        }
+        if(levelTimer.millisElapsed() >= 60000 || !PlayerOne.alive){
+            GameEnded gameOver = new GameEnded();
+            Greenfoot.setWorld(gameOver);
+            main.stop();
+        }
+    }
 }
