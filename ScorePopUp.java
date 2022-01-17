@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Write a description of class ScorePopUp here.
  * 
@@ -15,47 +17,87 @@ public class ScorePopUp extends PopUp
      */
     private ArrayList<MapCharacter> players;
     private ArrayList<Label> coinLabels;
-    private ArrayList<Integer> addedCoins; 
+    private ArrayList<Player> addedCoins; 
     private SimpleTimer timer;
 
-    public ScorePopUp(ArrayList<MapCharacter> players_, ArrayList<Integer> addedCoins_) {
+    public ScorePopUp(ArrayList<MapCharacter> players_, ArrayList<Player> addedCoins_) {
         super();
         this.players = new ArrayList<MapCharacter>(players_);
         this.addedCoins = addedCoins_;
-        
-        int y = 50;
-        for (MapCharacter p : this.players) {
+        this.canClose = false;
+
+        for (int i=0;i<players.size();i++) {
+            MapCharacter p = players.get(i);
             GreenfootImage img = new GreenfootImage(p.getRightImage());
             float scale = 2f;
             img.scale((int)(img.getWidth()*scale), (int)(img.getHeight()*scale));
-            panel.drawImage(img, 300, y);
-            y += 120;
+            panel.drawImage(img, 300, 50 + i*120);
         }
-        // just for testing
-        for (MapCharacter p : this.players) {
-            p.addCoins(Utils.random(10));
-            System.out.println(p.getName() + ": " + p.getCoins());
-        }
-        System.out.println("****");
-        // print player coins
-        for (MapCharacter p : this.players) {
-            System.out.println(p.getName() + ": " + p.getCoins());
-        }
-        System.out.println("****");
+
+    }
+
+    public void firstAct() {
+        super.firstAct();
+        
         // show scores as "player.getCoins()" + "addedCoins"
         this.coinLabels = new ArrayList<Label>();
+        for (int i=0;i<players.size();i++) {
+            Player score = searchScores(players.get(i).getName());
+            Label l = new Label(players.get(i).getCoins() + " + " + score.getScore(), 70);
+            coinLabels.add(l);
+            getWorld().addObject(l, 500, 120 + i*120);
+        }
         
         timer = new SimpleTimer();
         timer.mark();
-        
-        // add scores to players
-        // sort player array
-        Utils.sort(this.players);
-        // sort new player array using new scores
-        // "transition" to new player array (gradually move towards)
+    }
 
-        // activate continue button
-        // after 2 seconds, show scores as "player.getCoins()"
+    public void act() {
+        super.act();
+
+        if (!canClose && timer.millisElapsed() > 2000) {
+            for (MapCharacter player : this.players) {
+                Player score = searchScores(player.getName());
+                player.addCoins(score.getScore());
+            }
+            Utils.sort(this.players);
+            
+            setupBG();
+            for (int i=0;i<players.size();i++) {
+                MapCharacter p = players.get(i);
+                GreenfootImage img = new GreenfootImage(p.getRightImage());
+                float scale = 2f;
+                img.scale((int)(img.getWidth()*scale), (int)(img.getHeight()*scale));
+                panel.drawImage(img, 300, 50 + i*120);
+            }
+
+            for (int i=0;i<players.size();i++) {
+                Label l = coinLabels.get(i);
+                l.setValue(players.get(i).getCoins());
+            }
+            
+            canClose = true;
+        }
+    }
+
+    /**
+     * search for player's index in addedCoins arraylist
+     * @return Player player object with scores
+     */
+    private Player searchScores(String name) {
+        for (Player score : addedCoins) {
+            if (score.getName().equals(name))
+                return score;
+        }
+        return null;
+    }
+
+    protected void onExit() {
+        super.onExit();
+        for (Label l : coinLabels) {
+            WorldMap.instance.removeObject(l);
+        }
+        WorldMap.instance.removeScorePopUp();
     }
 
 }

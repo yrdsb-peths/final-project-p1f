@@ -15,9 +15,11 @@ public class WorldMap extends World
     
     private ArrayList<MapNode> path;
     private ArrayList<MapCharacter> playersRef;
+    private ArrayList<Label> coinLabels;
     private Queue<MapCharacter> players;
     private DicePopUp dicePopUp;
     private TutorialPopUp tutorialPopUp;
+    private ScorePopUp scorePopUp;
     private MapCharacter player; // current player
     private int rounds, roundsLeft;
     private Label roundsText;
@@ -29,8 +31,8 @@ public class WorldMap extends World
      */
     public WorldMap() {
         super(1000, 600, 1); 
-        instance = this;
-        setBackground(new GreenfootImage("world_map.png"));
+        instance = this; 
+
         setupPath();
         
         playersRef = new ArrayList<MapCharacter>();
@@ -42,6 +44,8 @@ public class WorldMap extends World
         for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
+        
+        assert playersRef.size()==4 : "Require 4 and only 4 players";
         
         players = new LinkedList<MapCharacter>();
         player = null;
@@ -55,18 +59,21 @@ public class WorldMap extends World
         roundsText = new Label(String.valueOf(roundsLeft) + " Rounds Left", 50);
         addObject(roundsText, 155, 575);
         
-        assert playersRef.size()==4 : "Require 4 and only 4 players";
+        drawWorld();
 
-        addObject(new ScorePopUp(playersRef, new ArrayList<Integer>()), 0, 0);
     }
     
-    boolean test=true;
+    boolean test=false;
     public void act() {
         if (test) return;
 
         if (tutorialPopUp != null) {
             return;
         }
+        if (scorePopUp != null) {
+            return;
+        }
+
         if (player==null && players.size() == 0) {
             if (roundsLeft == 0) {
                 // new winscreen(winning player)
@@ -136,9 +143,13 @@ public class WorldMap extends World
         return game;
     }
     
-    private void setupScores() {
-        // add scores
-        
+    public void addScores(ArrayList<Player> addedCoins) {
+        scorePopUp = new ScorePopUp(playersRef, addedCoins);
+        addObject(scorePopUp, 0, 0);
+        for (int i=0;i<coinLabels.size();i++) {
+            String v = String.valueOf(playersRef.get(i).getCoins());
+            coinLabels.get(i).setValue(v);
+        }
     }
 
     /**
@@ -181,6 +192,18 @@ public class WorldMap extends World
         path.add(new BadNode(490, 10));
         */
     }
+
+    private void drawWorld() {
+        GreenfootImage img = new GreenfootImage("world_map.png");
+        coinLabels = new ArrayList<Label>();
+        for (int i=0;i<4;i++) {
+            img.drawImage(playersRef.get(i).getRightImage(), 150 + i*200, 5);
+            Label l = new Label(String.valueOf(playersRef.get(i).getCoins()), 50);
+            coinLabels.add(l);
+            addObject(l, 220 + i*200, 30);
+        }
+        setBackground(img);
+    }
     
     public ArrayList<MapCharacter> getPlayers() {
         return playersRef;
@@ -196,5 +219,9 @@ public class WorldMap extends World
 
     public void removeTutorial() {
         tutorialPopUp = null;
+    }
+
+    public void removeScorePopUp() {
+        scorePopUp = null;
     }
 }

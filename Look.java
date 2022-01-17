@@ -15,7 +15,7 @@ public class Look extends MiniGame
     private int coinCount;
     private int lv = 1;
     private Suit targetSuit;
-    private Suit[] suits;
+    private ArrayList<Suit> suits;
     private Player player;
 
     /**
@@ -27,7 +27,8 @@ public class Look extends MiniGame
         
         setPaintOrder(Player.class, Suit.class);
         
-        suits = new Suit[4];
+        suits = new ArrayList<Suit>();
+        for (int i=0;i<4;i++) suits.add(null);
         initSuits(); 
         
         prepare();
@@ -59,8 +60,8 @@ public class Look extends MiniGame
 
     private void initSuits() {
         for (int i=0;i<4;i++) {
-            if (suits[i]!= null) {
-                removeObject(suits[i]);
+            if (suits.get(i) != null) {
+                removeObject(suits.get(i));
             }
         }
         if (targetSuit!=null) {
@@ -70,12 +71,13 @@ public class Look extends MiniGame
         while (true) {
             boolean reroll = false;
             for (int i=0;i<4;i++) {
-                suits[i] = new Suit();
+                suits.set(i, new Suit());
             }
 
+            // ensure all 4 suits are unique
             for (int i=0;i<4;i++) {
                 for (int j=i+1;j<4;j++) {
-                    if (suits[i].getType() == suits[j].getType()) {
+                    if (suits.get(i).getType() == suits.get(j).getType()) {
                         reroll = true;
                         break;
                     }
@@ -86,12 +88,12 @@ public class Look extends MiniGame
             }
         }
         // pick random suit and set it as target
-        targetSuit = new Suit(suits[Utils.random(3)].getType()); 
+        targetSuit = new Suit(suits.get(Utils.random(3)).getType()); 
 
-        addObject(suits[0], 500,72);
-        addObject(suits[1], 500,527);
-        addObject(suits[2], 72,300);
-        addObject(suits[3], 927,300);
+        addObject(suits.get(0), 500,72);
+        addObject(suits.get(1), 500,527);
+        addObject(suits.get(2), 72,300);
+        addObject(suits.get(3), 927,300);
         addObject(targetSuit, 500, 300);
     }
 
@@ -103,9 +105,7 @@ public class Look extends MiniGame
             tim.mark();
         }
         if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
-            MainSound.stop();
-            if (WorldMap.instance != null) 
-                Greenfoot.setWorld(WorldMap.instance);
+            updateWorld();
         }
     }
 
@@ -133,23 +133,36 @@ public class Look extends MiniGame
             initSuits();
         } 
     }
-
-    private void updateCoins() {
-        getObjects(Coin.class).get(0).setSpin(3);
-        coinCount++;
-        
-        removeObject(coinLabel); 
-        coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,620,80);
-    }
     
     private void checkMatch() {
+        for (Player p : players) {
+            if (p.getSuit() == targetSuit.getType()) {
+                // updateCoins();
+
+                getObjects(Coin.class).get(0).setSpin(3);
+                p.addScore(1);
+                coinCount++;
+                coinLabel.setValue(coinCount);
+            }
+            // System.out.print("(" + p.getName() + ", " + p.getScore() + ") ");
+            // update score labels
+        }
+        // System.out.println();
+
+        // sound effects for human palyer
         if (player.getSuit() == targetSuit.getType()) {
-            updateCoins();
             Greenfoot.playSound("Coin.wav");
         } else {
             Greenfoot.playSound("Dissapointed.wav");
         }
+    }
+
+    public Suit getTargetSuit() {
+        return this.targetSuit;
+    }
+
+    public ArrayList<Suit> getSuits() {
+        return this.suits;
     }
 
     public int getLV() {

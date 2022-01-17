@@ -41,7 +41,14 @@ public class MiniGame extends World
      * update world scores
      */
     protected void updateWorld() {
+        MainSound.stop();
         WorldMap.instance.removeTutorial();
+        // MainSound.setSound(new GreenfootSound("world map song.mp3"));
+        Utils.sort(players);
+        for (int i=0;i<players.size();i++) {
+            players.get(i).setScore(6 - (2*i));
+        }
+        WorldMap.instance.addScores(players);
         Greenfoot.setWorld(WorldMap.instance);
     }
 }

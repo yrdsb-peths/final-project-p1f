@@ -97,12 +97,12 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
      * compare to other characters
      * (will be sorted in decreasing order)
      * @param MapCharacter other
-     * @return int 1 if this character is less than other, 0 if equal, -1 if greater
+     * @return int -1 if this character is less than other, 0 if equal, 1 if greater
      */
     public int compareTo(MapCharacter other) {
         if (getCoins() == other.getCoins()) {
             return 0;
-        } else if (getCoins() < other.getCoins()) {
+        } else if (getCoins() > other.getCoins()) {
             return 1;
         } else {
             return -1;

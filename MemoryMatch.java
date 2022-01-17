@@ -93,7 +93,6 @@ public class MemoryMatch extends MiniGame
         }
 
         if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
-            MainSound.stop();
             updateWorld();
         }
 
