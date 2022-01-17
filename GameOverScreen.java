@@ -17,8 +17,9 @@ public class GameOverScreen extends World
     {    
         // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
-        addObject(new Player("Mario",5),400,300);
+        setBackground(new GreenfootImage("WinningScreen.png"));
         
-        addObject(new Label("Wins!",70),550,320);
+        addObject(new Player("Mario",5),400,395);
+        addObject(new Label("Wins!",70),550,415);
     }
 }
