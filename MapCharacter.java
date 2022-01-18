@@ -80,11 +80,11 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         switch (name) { 
             case "Mario": file = "Mario/anim/L"; break;
             case "Luigi": file = "Luigi/anim/L"; break;
-            case "Red": file = "koopa/redL"; break;
-            case "Green": file = "koopa/greenL"; break;
-            case "Yellow": file = "koopa/yellowL"; break;
-            case "Purple": file = "koopa/purpleL"; break;
-            case "Silver": file = "koopa/silverL"; break;
+            case "KoopaRed": file = "koopa/redL"; break;
+            case "KoopaGreen": file = "koopa/greenL"; break;
+            case "KoopaYellow": file = "koopa/yellowL"; break;
+            case "KoopaPurple": file = "koopa/purpleL"; break;
+            case "KoopaSilver": file = "koopa/silverL"; break;
             default: file = "Mario/anim/L"; break;
         } 
         lWalk = new Animation(this, file, 2, 5, 2);
@@ -122,6 +122,7 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         if (this.coins < 0) {
             this.coins = 0;
         }
+        WorldMap.instance.updateCoinLabels();
     }
     
     /**

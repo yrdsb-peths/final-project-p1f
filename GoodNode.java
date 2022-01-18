@@ -16,7 +16,7 @@ public class GoodNode extends MapNode
     
     public void activate(MapCharacter character) {
         // do good to player
-        System.out.println(character.getName() + " landed on a good node");
+        character.addCoins(3);
     }
     
 }

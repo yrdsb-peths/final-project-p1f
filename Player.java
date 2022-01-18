@@ -90,19 +90,19 @@ public class Player extends SmoothMover implements Comparable<Player> {
             case "Luigi":
                 file = "Luigi/anim/L";
                 break;
-            case "Red":
+            case "KoopaRed":
                 file = "koopa/redL";
                 break;
-            case "Green":
+            case "KoopaGreen":
                 file = "koopa/greenL";
                 break;
-            case "Yellow":
+            case "KoopaYellow":
                 file = "koopa/yellowL";
                 break;
-            case "Purple":
+            case "KoopaPurple":
                 file = "koopa/purpleL";
                 break;
-            case "Silver":
+            case "KoopaSilver":
                 file = "koopa/silverL";
                 break;
             default:

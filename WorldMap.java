@@ -40,26 +40,33 @@ public class WorldMap extends World
         //playersRef.add(new MapPlayer("Mario"));
         //playersRef.add(new MapNPC("Luigi"));
         
-        if(CharSelectChar.playerChoice.equals("Mario")){
-            playersRef.add(new MapPlayer("Mario"));
-            playersRef.add(new MapNPC("Luigi"));
-            playersRef.add(new MapNPC("Red"));
-            playersRef.add(new MapNPC("Purple"));
-        }else if(CharSelectChar.playerChoice.equals("KoopaPurple")){
-            playersRef.add(new MapPlayer("Purple"));
-            playersRef.add(new MapNPC("Red"));
-            playersRef.add(new MapNPC("Mario"));
-            playersRef.add(new MapNPC("Luigi"));
-        }else if(CharSelectChar.playerChoice.equals("KoopaRed")){
-            playersRef.add(new MapPlayer("Red"));
-            playersRef.add(new MapNPC("Purple"));
-            playersRef.add(new MapNPC("Mario"));
-            playersRef.add(new MapNPC("Luigi"));
-        }else{
-            playersRef.add(new MapPlayer("Luigi"));
-            playersRef.add(new MapNPC("Mario"));
-            playersRef.add(new MapNPC("Red"));
-            playersRef.add(new MapNPC("Purple"));
+        playersRef.add(new MapPlayer(CharSelectChar.playerChoice));
+        for (int i=0;i<3;i++) {
+            while (true) {
+                int r = Utils.random(1, 6);
+                MapNPC p;
+                switch (r) {
+                    case 1: p = new MapNPC("Mario"); break;
+                    case 2: p = new MapNPC("Luigi"); break;
+                    case 3: p = new MapNPC("KoopaRed"); break;
+                    case 4: p = new MapNPC("KoopaYellow"); break;
+                    case 5: p = new MapNPC("KoopaGreen"); break;
+                    case 6: p = new MapNPC("KoopaPurple"); break;
+                    case 7: p = new MapNPC("KoopaSilver"); break;
+                    default: p = new MapNPC("Mario"); break;
+                }
+                boolean duplicate = false;;
+                for (MapCharacter player : playersRef) {
+                    if (player.getName().equals(p.getName())) {
+                        duplicate = true;
+                        break;
+                    }
+                }
+                if (!duplicate) {
+                    playersRef.add(p);
+                    break;
+                }
+            }
         }
         
         
@@ -169,6 +176,10 @@ public class WorldMap extends World
     public void addScores(ArrayList<Player> addedCoins) {
         scorePopUp = new ScorePopUp(playersRef, addedCoins);
         addObject(scorePopUp, 0, 0);
+        updateCoinLabels();
+    }
+
+    public void updateCoinLabels() {
         for (int i=0;i<coinLabels.size();i++) {
             String v = String.valueOf(playersRef.get(i).getCoins());
             coinLabels.get(i).setValue(v);

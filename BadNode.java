@@ -16,7 +16,7 @@ public class BadNode extends MapNode
     
     public void activate(MapCharacter character) {
         // do something bad to character
-        System.out.println(character.getName() + " landed on a bad node");
+        character.addCoins(-3);
     }
     
 }
