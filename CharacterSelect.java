@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharacterSelect extends World
 {
     private GreenfootSound charSelect = new GreenfootSound("CharacterSelectr.mp3");
+    
+    private GreenfootImage charSelectBackground = new GreenfootImage("backgroundSelect.png");
     /**
      * Constructor for objects of class CharacterSelect.
      * 
@@ -18,6 +20,7 @@ public class CharacterSelect extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
         prepare();
+        setBackground(charSelectBackground);
     }
 
     /**
@@ -30,14 +33,14 @@ public class CharacterSelect extends World
         //WITH WORLDMAP
         CharSelectChar mario = new CharSelectChar("Mario");
         CharSelectChar luigi = new CharSelectChar("Luigi");
-        
+
         CharSelectChar koopaP = new CharSelectChar("KoopaPurple");
-        CharSelectChar koopaY = new CharSelectChar("KoopaYellow");
-        
-        addObject(mario, 320, 300);
-        addObject(luigi, 470, 305);
-        addObject(koopaP, 630, 300);
-        addObject(koopaY, 780, 300);
+        CharSelectChar koopaR = new CharSelectChar("KoopaRed");
+
+        addObject(mario, 616, 475);
+        addObject(luigi, 840, 480);
+        addObject(koopaP, 165, 465);
+        addObject(koopaR, 388, 463);
     }
     
     public void act(){

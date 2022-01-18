@@ -14,10 +14,10 @@ public class CharSelectChar extends Actor
     public CharSelectChar(String player){
         GreenfootImage waitToPick = new GreenfootImage(player + "/menu.png");
         if(player.equals("Luigi")){
-            waitToPick.scale(150, 150);
+            waitToPick.scale(130, 130);
         }
         else if(player.equals("Mario")){
-            waitToPick.scale(90, 134);
+            waitToPick.scale(70, 98);
         }
         else{
             waitToPick.scale(70, 132);

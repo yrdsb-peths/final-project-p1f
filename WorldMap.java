@@ -40,22 +40,22 @@ public class WorldMap extends World
         if(CharSelectChar.playerChoice.equals("Mario")){
             playersRef.add(new MapPlayer("Mario"));
             playersRef.add(new MapNPC("Luigi"));
-            playersRef.add(new MapNPC("Yellow"));
+            playersRef.add(new MapNPC("Red"));
             playersRef.add(new MapNPC("Purple"));
         }else if(CharSelectChar.playerChoice.equals("KoopaPurple")){
             playersRef.add(new MapPlayer("Purple"));
-            playersRef.add(new MapNPC("Yellow"));
+            playersRef.add(new MapNPC("Red"));
             playersRef.add(new MapNPC("Mario"));
             playersRef.add(new MapNPC("Luigi"));
-        }else if(CharSelectChar.playerChoice.equals("KoopaYellow")){
-            playersRef.add(new MapPlayer("Yellow"));
+        }else if(CharSelectChar.playerChoice.equals("KoopaRed")){
+            playersRef.add(new MapPlayer("Red"));
             playersRef.add(new MapNPC("Purple"));
             playersRef.add(new MapNPC("Mario"));
             playersRef.add(new MapNPC("Luigi"));
         }else{
             playersRef.add(new MapPlayer("Luigi"));
             playersRef.add(new MapNPC("Mario"));
-            playersRef.add(new MapNPC("Yellow"));
+            playersRef.add(new MapNPC("Red"));
             playersRef.add(new MapNPC("Purple"));
         }
         
