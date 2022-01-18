@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class GoodNode here.
  * 
@@ -6,6 +7,7 @@
  */
 public class GoodNode extends MapNode 
 { 
+    private GreenfootSound goodNodeSound = new GreenfootSound("goodNodeSound.wav");
     public GoodNode(float x, float y) {
         super(x, y);
     }
@@ -17,6 +19,7 @@ public class GoodNode extends MapNode
     public void activate(MapCharacter character) {
         // do good to player
         character.addCoins(3);
+        goodNodeSound.play();
     }
     
 }
