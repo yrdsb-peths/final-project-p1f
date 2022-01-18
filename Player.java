@@ -38,6 +38,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
             playMemoryMatch();
         } else if (getWorld().getClass() == Look.class) {
             playLook();
+        } else if (getWorld().getClass() == BombsAway.class) {
+            playBombsAway();
         }
         updateAnim();
     }
@@ -130,6 +132,15 @@ public class Player extends SmoothMover implements Comparable<Player> {
             } else {
                 suitType = -1;
             }
+        }
+    }
+
+    protected void playBombsAway() {
+        score = getWorldOfType(BombsAway.class).getTime();
+        if(this.isTouching(Bomb.class)){
+            GreenfootSound death = new GreenfootSound("death.mp3");
+            death.play();
+            getWorld().removeObject(this);
         }
     }
 

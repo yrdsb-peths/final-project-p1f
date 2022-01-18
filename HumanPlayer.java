@@ -11,9 +11,11 @@ public class HumanPlayer extends Player
     
     public HumanPlayer(String name, float scale) {
         super(name, scale);
-    }
-    
-    protected void playerMovement(float speed) { 
+    } 
+
+    protected void playMemoryMatch() {
+        super.playMemoryMatch();
+        float speed = 3f;
         Vector2 d = new Vector2();
         if (Greenfoot.isKeyDown("w")) {
             d = Vector2.add(d, new Vector2(0, -speed));
@@ -26,11 +28,6 @@ public class HumanPlayer extends Player
             d = Vector2.add(d, new Vector2(speed, 0));
         }
         move(d);
-    }
-
-    protected void playMemoryMatch() {
-        super.playMemoryMatch();
-        playerMovement(3f);
     }
 
     protected void playLook() {
@@ -47,6 +44,19 @@ public class HumanPlayer extends Player
         } else if (Greenfoot.isKeyDown("d")) { 
             lookTarget = new Vector2(w-d, h/2);
         }
+    }
+
+    protected void playBombsAway() {
+        super.playBombsAway();
+        float speed = 5f;
+        Vector2 d = new Vector2();
+        if (Greenfoot.isKeyDown("a")) {
+            d = Vector2.add(d, new Vector2(-speed, 0));
+        }
+        if (Greenfoot.isKeyDown("d")) { 
+            d = Vector2.add(d, new Vector2(speed, 0));
+        }
+        move(d); 
     }
 
 }

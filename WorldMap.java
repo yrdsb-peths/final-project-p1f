@@ -130,13 +130,14 @@ public class WorldMap extends World
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
-        String[] minigames = { "MemoryMatch", "Look" };
+        String[] minigames = { "MemoryMatch", "Look", "BombsAway" };
         String name = minigames[Utils.random(minigames.length-1)];
         MiniGame game = new MiniGame();
         
         switch (name) {
             case "MemoryMatch": game = new MemoryMatch(); break;
             case "Look": game = new Look(); break;
+            case "BombsAway": game = new BombsAway(); break;
             // add other minigames here
         }
         

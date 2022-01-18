@@ -68,6 +68,37 @@ public class NPCPlayer extends Player
         }
     }
     
+    private int moveDir = 0;
+    protected void playBombsAway() {
+        super.playBombsAway();
+        
+        // check if bomb above
+        // 50% move left / or right
+        
+        try {
+            Actor up = getOneObjectAtOffset(0, -300, Bomb.class);
+            Actor left = getOneObjectAtOffset(-50, 0, Bomb.class);
+            Actor right = getOneObjectAtOffset(50, 0, Bomb.class);
+            if (up != null) {
+                if (left != null && right != null) {
+                    moveDir = Utils.random(1) == 0 ? 50 : -50;
+                }
+                if (moveDir == 0) {
+                }
+            }
+            move(new Vector2());
+            if (moveDir > 0) {
+                move(new Vector2(3f, 0));
+                moveDir--;
+            } else if (moveDir < 0) {
+                move(new Vector2(-3f, 0));
+                moveDir++;
+            }
+        } catch (IllegalStateException e) {
+            // ignore
+        }
+    }
+
     public void resetTarget() {
         super.resetTarget();
         timer.mark();

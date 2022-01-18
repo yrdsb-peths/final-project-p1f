@@ -12,10 +12,10 @@ public class Bomb extends Actor
     
     private GreenfootSound startFall = new GreenfootSound("bombSend.mp3");
     
-    public Bomb(int size, int rotation){
-        bombFall.scale(size, size);
+    public Bomb(float scale) {
+        bombFall.scale((int)(bombFall.getWidth() * scale), (int)(bombFall.getHeight() * scale));
         setImage(bombFall);
-        turn(rotation);
+        turn(Utils.random(359));
     }
     
     private int x;
