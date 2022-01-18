@@ -7,9 +7,10 @@ import java.util.List;
  * @param name player name (eg mario, luigi)
  * @param scale player sprite size scale
  */
-public class Player extends SmoothMover {
+public class Player extends SmoothMover implements Comparable<Player> {
     private String name;
     private float scale;
+    private int score;
     protected Animation lWalk, rWalk, lIdle, rIdle;
 
     protected enum Direction {
@@ -37,6 +38,8 @@ public class Player extends SmoothMover {
             playMemoryMatch();
         } else if (getWorld().getClass() == Look.class) {
             playLook();
+        } else if (getWorld().getClass() == BombsAway.class) {
+            playBombsAway();
         }
         updateAnim();
     }
@@ -131,8 +134,50 @@ public class Player extends SmoothMover {
             }
         }
     }
-    public int getSuit() { return suitType;  }
-    public void resetTarget() { lookTarget = null; }
+
+    protected void playBombsAway() {
+        score = getWorldOfType(BombsAway.class).getTime();
+        if(this.isTouching(Bomb.class)){
+            GreenfootSound death = new GreenfootSound("death.mp3");
+            death.play();
+            getWorld().removeObject(this);
+        }
+    }
+
+    /**
+     * compare players based on score
+     * @param other player
+     * @return -1 if this player has lower score, 1 if higher, 0 if equal
+     */
+    public int compareTo(Player other) {
+        if (getScore() == other.getScore()) { 
+            return 0;
+        } else if (getScore() > other.getScore()) {
+            return 1;
+        } else {
+            return -1;
+        } 
+    }
+
+    public int getSuit() { 
+        return suitType;  
+    }
+    
+    public void resetTarget() { 
+        lookTarget = null;
+    }
+
+    public void setScore(int x) {
+        this.score = x;
+    }
+
+    public void addScore(int x) {
+        this.score += x;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
 
     public String getName() {
         return this.name;

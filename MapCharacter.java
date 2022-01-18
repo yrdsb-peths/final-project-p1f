@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class MapCharacter extends SmoothMover
+public abstract class MapCharacter extends SmoothMover implements Comparable<MapCharacter>
 {
     private String name;
     protected Animation lWalk, rWalk, lIdle, rIdle;
@@ -35,7 +35,11 @@ public abstract class MapCharacter extends SmoothMover
     public void act() {
         updateAnim();
     }
-    
+
+    /**
+     * follows the path of the world map
+     * @return boolean true if the character has reached the next node in the path
+     */
     public boolean followPath() {
         MapNode nextNode = WorldMap.instance.getPath().get(pathIdx);
         if (moveTowards(nextNode.getPos(), 2.5f)) {
@@ -88,14 +92,90 @@ public abstract class MapCharacter extends SmoothMover
         lIdle = new Animation(this, file, 1, 5, 2);
         rIdle = new Animation(this, file, 1, 5, 2, true);
     }
+
+    /**
+     * compare to other characters
+     * (will be sorted in decreasing order)
+     * @param MapCharacter other
+     * @return int -1 if this character is less than other, 0 if equal, 1 if greater
+     */
+    public int compareTo(MapCharacter other) {
+        if (getCoins() == other.getCoins()) {
+            return 0;
+        } else if (getCoins() > other.getCoins()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
     public abstract void startDice(Dice dice);
     public abstract boolean stopDice(Dice dice);
     public abstract boolean closePopUp();
+
+    /**
+     * add coins to the character
+     * @param int coins
+     */
+    public void addCoins(int coins) {
+        this.coins += coins;
+        if (this.coins < 0) {
+            this.coins = 0;
+        }
+    }
     
-    public String getName() { return this.name; }
-    public State getState() { return this.state; }
-    public void setState(State state) { this.state = state; }
-    public void setSteps(int steps) { this.steps = steps; }
-    public void decreaseStep() { this.steps--; }
-    public GreenfootImage getRightImage() { return rWalk.getImage(0); }
+    /**
+     * get the coins of character
+     * @return int coins
+     */
+    public int getCoins() { 
+        return this.coins; 
+    }
+
+    /**
+     * gets the name of the character
+     * @return String name
+     */
+    public String getName() { 
+        return this.name; 
+    }
+
+    /**
+     * gets the state of the character
+     * @return State mapCharacterState
+     */
+    public State getState() { 
+        return this.state; 
+    }
+
+    /**
+     * sets the state of the character
+     * @param State mapCharacterState
+     */
+    public void setState(State state) { 
+        this.state = state; 
+    }
+
+    /**
+     * sets how many steps the character should take
+     * @param steps number of steps
+     */
+    public void setSteps(int steps) { 
+        this.steps = steps; 
+    }
+
+    /**
+     * decreases the number of steps the character has left
+     */
+    public void decreaseStep() { 
+        this.steps--; 
+    }
+
+    /**
+     * returns the character's default image
+     * @return GreenfootImage image
+     */
+    public GreenfootImage getRightImage() { 
+        return rIdle.getImage(0);
+    }
 }

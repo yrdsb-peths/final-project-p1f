@@ -15,13 +15,10 @@ public class PopUp extends Actor
     private Boolean closed;
     
     public PopUp() {
-        panel = new GreenfootImage(WorldMap.instance.getWidth(), WorldMap.instance.getHeight());
-        panel.setColor(new Color(0, 0, 0, 200));
-        panel.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+        setupBG();
         canClose = true;
         closed = false;
-        setImage(panel);
-    }
+    } 
 
     boolean isFirstAct = true;
     public void act() {
@@ -38,6 +35,13 @@ public class PopUp extends Actor
         closed = true;
         getWorld().removeObject(exitButton);
         getWorld().removeObject(this);
+    }
+
+    protected void setupBG() {
+        panel = new GreenfootImage(WorldMap.instance.getWidth(), WorldMap.instance.getHeight());
+        panel.setColor(new Color(0, 0, 0, 200));
+        panel.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+        setImage(panel);
     }
 
     /**
