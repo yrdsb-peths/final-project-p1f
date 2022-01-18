@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class CharacterSelect extends World
 {
+    private GreenfootSound charSelect = new GreenfootSound("CharacterSelectr.mp3");
     /**
      * Constructor for objects of class CharacterSelect.
      * 
@@ -40,7 +41,9 @@ public class CharacterSelect extends World
     }
     
     public void act(){
+        charSelect.play();
         if(CharSelectChar.getNumClicks() >= 1){
+            charSelect.stop();
             WorldMap world = new WorldMap();
             Greenfoot.setWorld(world);
         }
