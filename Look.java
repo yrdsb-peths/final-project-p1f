@@ -10,9 +10,7 @@ public class Look extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int time = 3; //3s per level 
-    private Label coinLabel;
-    private int coinCount;
+    private int time = 3; //3s per level  
     private int lv = 1;
     private Suit targetSuit;
     private ArrayList<Suit> suits;
@@ -49,11 +47,7 @@ public class Look extends MiniGame
         MainSound.play();
         
         addObject(timeCount,110,85);
-        timeCount.setValue(time); 
-
-        addObject(new Coin(), 620, 80);
-        coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,620,80);
+        timeCount.setValue(time);  
 
         addObject(new Level(), 315, 75);
     }
@@ -136,18 +130,10 @@ public class Look extends MiniGame
     
     private void checkMatch() {
         for (Player p : players) {
-            if (p.getSuit() == targetSuit.getType()) {
-                // updateCoins();
-
-                getObjects(Coin.class).get(0).setSpin(3);
-                p.addScore(1);
-                coinCount++;
-                coinLabel.setValue(coinCount);
-            }
-            // System.out.print("(" + p.getName() + ", " + p.getScore() + ") ");
-            // update score labels
-        }
-        // System.out.println();
+            if (p.getSuit() == targetSuit.getType()) { 
+                p.addScore(1); 
+            } 
+        } 
 
         // sound effects for human palyer
         if (player.getSuit() == targetSuit.getType()) {

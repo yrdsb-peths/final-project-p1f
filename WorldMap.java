@@ -42,7 +42,11 @@ public class WorldMap extends World
         //playersRef.add(new MapPlayer("Mario"));
         //playersRef.add(new MapNPC("Luigi"));
         
-        playersRef.add(new MapPlayer(CharSelectChar.playerChoice));
+        if (CharSelectChar.playerChoice != null) {
+            playersRef.add(new MapPlayer(CharSelectChar.playerChoice));
+        } else {
+            playersRef.add(new MapPlayer("Mario"));
+        }
         for (int i=0;i<3;i++) {
             while (true) {
                 int r = Utils.random(1, 6);
@@ -71,7 +75,6 @@ public class WorldMap extends World
             }
         }
         
-        
         for (Actor p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
@@ -84,7 +87,7 @@ public class WorldMap extends World
         timer = new SimpleTimer();
         timer.mark();
         
-        rounds = 15;
+        rounds = 10;
         rounds++;
         roundsLeft = rounds;
         roundsText = new Label(String.valueOf(roundsLeft) + " Rounds Left", 50);
@@ -104,27 +107,26 @@ public class WorldMap extends World
         if (scorePopUp != null) {
             return;
         }
+        if (roundsLeft == 0) {
+            Greenfoot.setWorld(new GameOverScreen(playersRef));
+            return;
+        }
 
         MainSound.setSound(mainTheme);
         MainSound.play();
         if (player==null && players.size() == 0) {
-            if (roundsLeft == 0) {
-                // new winscreen(winning player)
-                return;
-            } else {
-                // reinitialize queue
-                for (MapCharacter p : playersRef) {
-                    players.add(p);
-                }
-                roundsLeft--;
-                roundsText.setValue(String.valueOf(roundsLeft) + " Rounds Left"); 
-                // should make tutoiral popup -> minigame
-                // eg new TutorialPopUp(minigame name) 
-                if (rounds!=roundsLeft+1) {
-                    tutorialPopUp = new TutorialPopUp(getRandomMiniGame());
-                    addObject(tutorialPopUp, 0, 0);
-                    // Greenfoot.setWorld(getRandomMiniGame());
-                }
+            // reinitialize queue
+            for (MapCharacter p : playersRef) {
+                players.add(p);
+            }
+            roundsLeft--;
+            roundsText.setValue(String.valueOf(roundsLeft) + " Rounds Left"); 
+            // should make tutoiral popup -> minigame
+            // eg new TutorialPopUp(minigame name) 
+            if (rounds!=roundsLeft+1) {
+                tutorialPopUp = new TutorialPopUp(getRandomMiniGame());
+                addObject(tutorialPopUp, 0, 0);
+                // Greenfoot.setWorld(getRandomMiniGame());
             }
         }
         if (player == null) {
@@ -159,22 +161,29 @@ public class WorldMap extends World
         }
     }
 
+    private MiniGame prevGame;
     /**
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
         String[] minigames = { "MemoryMatch", "Look", "BombsAway" };
         String name = minigames[Utils.random(minigames.length-1)];
-        MiniGame game = new MiniGame();
+        MiniGame game;
         
         MainSound.stop();
-        switch (name) {
-            case "MemoryMatch": game = new MemoryMatch(); break;
-            case "Look": game = new Look(); break;
-            case "BombsAway": game = new BombsAway(); break;
-            // add other minigames here
+        while (true) {
+            switch (name) {
+                case "MemoryMatch": game = new MemoryMatch(); break;
+                case "Look": game = new Look(); break;
+                case "BombsAway": game = new BombsAway(); break;
+                default: game = new MemoryMatch(); break;
+                // add other minigames here
+            }
+            if (prevGame == null || prevGame.getClass() != game.getClass()) {
+                break;
+            }
         }
-        
+        prevGame = game;
         return game;
     }
     

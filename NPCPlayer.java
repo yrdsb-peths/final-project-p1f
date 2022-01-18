@@ -26,8 +26,8 @@ public class NPCPlayer extends Player
             Vector2[] cards = world.getCardPositions();
             int idx = Utils.random(cards.length-1);
             targetPos = cards[idx];
-            // 20% chance of getting a coin
-            if (Utils.random() < 0.20) {
+            // 10% chance of getting a coin
+            if (Utils.random() < 0.10) {
                 if (getScore() < 6) { // can only make 6 pairs
                     addScore(1);
                 }

@@ -29,8 +29,6 @@ public class CharacterSelect extends World
      */
     private void prepare()
     {
-        //TODO: MERGE THE MENU FOLDERS WITH THE NORMAL ONES SO THAT IT CAN INTERFACE
-        //WITH WORLDMAP
         CharSelectChar mario = new CharSelectChar("Mario");
         CharSelectChar luigi = new CharSelectChar("Luigi");
 
@@ -42,7 +40,6 @@ public class CharacterSelect extends World
         addObject(koopaP, 165, 465);
         addObject(koopaR, 388, 463);
         
-        MainSound.setSound(charSelect);
         MainSound.play();
     }
     
@@ -52,9 +49,5 @@ public class CharacterSelect extends World
             WorldMap world = new WorldMap();
             Greenfoot.setWorld(world);
         }
-        /**
-        System.out.println(String.valueOf(CharSelectChar.getNumClicks()));
-        System.out.println(CharSelectChar.getPlayerChoice());
-        */
     }
 }

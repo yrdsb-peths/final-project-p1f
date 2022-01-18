@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class GameOverScreen here.
@@ -8,12 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameOverScreen extends World
 {
-    GreenfootImage[] bkg = new GreenfootImage[28];
+    private GreenfootImage[] bkg = new GreenfootImage[28];
+    
     /**
      * Constructor for objects of class GameOverScreen.
      * 
      */
-    public GameOverScreen()
+    public GameOverScreen(ArrayList<MapCharacter> playersRef)
     {    
         // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
@@ -22,7 +24,10 @@ public class GameOverScreen extends World
             bkg[i] = new GreenfootImage("images/WinningScreen/" + (i) + ".png"); 
         }
         
-        addObject(new Player("Mario",5),400,395);
+        ArrayList<MapCharacter> players = new ArrayList<MapCharacter>(playersRef);
+        Utils.sort(players);
+        Player player = new Player(players.get(0).getName(), 5);
+        addObject(player,400,395);
         addObject(new Label("Wins!",70),550,415);
     }
     int imageIndex = 0; 
