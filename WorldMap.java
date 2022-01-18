@@ -25,7 +25,7 @@ public class WorldMap extends World
     private Label roundsText;
     private SimpleTimer timer;
     
-    private GreenfootSound mainTheme = new GreenfootSound("MainTheme.mp3");
+    private GreenfootSound mainTheme = new GreenfootSound("MainTheme.wav");
      
     /**
      * WorldMap Constructor
@@ -94,7 +94,7 @@ public class WorldMap extends World
         addObject(roundsText, 155, 575);
         
         drawWorld();
-
+        startSound();
     }
     
     boolean test=false;
@@ -112,8 +112,6 @@ public class WorldMap extends World
             return;
         }
 
-        MainSound.setSound(mainTheme);
-        MainSound.play();
         if (player==null && players.size() == 0) {
             // reinitialize queue
             for (MapCharacter p : playersRef) {
@@ -167,11 +165,11 @@ public class WorldMap extends World
      */
     private MiniGame getRandomMiniGame() {
         String[] minigames = { "MemoryMatch", "Look", "BombsAway" };
-        String name = minigames[Utils.random(minigames.length-1)];
         MiniGame game;
         
         MainSound.stop();
         while (true) {
+            String name = minigames[Utils.random(minigames.length-1)];
             switch (name) {
                 case "MemoryMatch": game = new MemoryMatch(); break;
                 case "Look": game = new Look(); break;
@@ -253,6 +251,11 @@ public class WorldMap extends World
         setBackground(img);
     }
     
+    public void startSound() {
+        MainSound.setSound(mainTheme);
+        MainSound.play();
+    }
+
     public ArrayList<MapCharacter> getPlayers() {
         return playersRef;
     }

@@ -24,7 +24,6 @@ public class MemoryMatch extends MiniGame
      */
     public MemoryMatch() {
         super();
-        MainSound.setSound(new GreenfootSound("MemoryMatchBGM.mp3"));
         setBackground("waterbg.png"); 
         prepare();
         prepareCards();
@@ -34,6 +33,7 @@ public class MemoryMatch extends MiniGame
         addObject(timeCount,100,65);
         timeCount.setValue(gameTime);  
 
+        MainSound.setSound(new GreenfootSound("MemoryMatchBGM.mp3"));
         MainSound.play();
 
         coin = new Coin();

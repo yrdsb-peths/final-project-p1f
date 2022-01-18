@@ -13,6 +13,7 @@ public class MainSound {
      * @param GreenfootSound sound
      */
     public static void setSound(GreenfootSound s) {
+        stop();
         sound = s;
     }
     
@@ -29,10 +30,8 @@ public class MainSound {
      * 
      */
     public static void stop() {
-        try {
+        if (sound != null && sound.isPlaying()) {
             sound.stop();
-        } catch (Exception e) {
-            
         }
     }
     

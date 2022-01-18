@@ -19,6 +19,7 @@ public class TitleScreen extends World
         super(1000, 600, 1); 
         setBackground(new GreenfootImage("Title.png"));
         MainSound.setSound(new GreenfootSound("TitleBGM.mp3"));
+        MainSound.play();
         prepare();
     }
     
@@ -26,7 +27,6 @@ public class TitleScreen extends World
         start = new Button("    Start", 0.7f);
         addObject(start, 500,450);
         
-        MainSound.play();
     }
     
     public void act() {

@@ -26,8 +26,8 @@ public class NPCPlayer extends Player
             Vector2[] cards = world.getCardPositions();
             int idx = Utils.random(cards.length-1);
             targetPos = cards[idx];
-            // 10% chance of getting a coin
-            if (Utils.random() < 0.10) {
+            // 7% chance of getting a coin
+            if (Utils.random() < 0.7) {
                 if (getScore() < 6) { // can only make 6 pairs
                     addScore(1);
                 }
@@ -49,8 +49,8 @@ public class NPCPlayer extends Player
             pos[3] = new Vector2(w-d, h/2);
             
             float r = Utils.random();
-            // 70% chance of going to correct one
-            // 30% chance of going to a random one
+            // 90% chance of going to correct one
+            // 10% chance of going to a random one
             if (r < 0.7) {
                 ArrayList<Suit> suits = getWorldOfType(Look.class).getSuits();
                 Suit targetSuit = getWorldOfType(Look.class).getTargetSuit();

@@ -49,6 +49,7 @@ public class MiniGame extends World
             players.get(i).setScore(6 - (2*i));
         }
         WorldMap.instance.addScores(players);
+        WorldMap.instance.startSound();
         Greenfoot.setWorld(WorldMap.instance);
     }
 }
