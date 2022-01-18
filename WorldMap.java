@@ -106,7 +106,7 @@ public class WorldMap extends World
         }
 
         MainSound.setSound(mainTheme);
-        MainSound.playLoop();
+        MainSound.play();
         if (player==null && players.size() == 0) {
             if (roundsLeft == 0) {
                 // new winscreen(winning player)

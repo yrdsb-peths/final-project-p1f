@@ -31,7 +31,8 @@ public class TitleScreen extends World
     
     public void act() {
         if (Greenfoot.mouseClicked(start)) {
-            Greenfoot.setWorld(new WorldMap());
+            MainSound.stop();
+            Greenfoot.setWorld(new CharacterSelect());
         }
     }
     

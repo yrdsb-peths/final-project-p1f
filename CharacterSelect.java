@@ -47,8 +47,8 @@ public class CharacterSelect extends World
     }
     
     public void act(){
-        if(CharSelectChar.getNumClicks() >= 1){
-            charSelect.stop();
+        if(CharSelectChar.getNumClicks() >= 1) {
+            MainSound.stop();
             WorldMap world = new WorldMap();
             Greenfoot.setWorld(world);
         }
