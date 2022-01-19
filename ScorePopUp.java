@@ -63,15 +63,16 @@ public class ScorePopUp extends PopUp
             Utils.sort(this.players);
             
             setupBG();
+            
+            
             for (int i=0;i<players.size();i++) {
                 MapCharacter p = players.get(i);
                 GreenfootImage img = new GreenfootImage(p.getRightImage());
                 float scale = 2f;
                 img.scale((int)(img.getWidth()*scale), (int)(img.getHeight()*scale));
                 panel.drawImage(img, 300, 50 + i*120);
-            }
-
-            for (int i=0;i<players.size();i++) {
+                
+                //not spawning the score on top
                 Label l = coinLabels.get(i);
                 l.setValue(players.get(i).getCoins());
             }

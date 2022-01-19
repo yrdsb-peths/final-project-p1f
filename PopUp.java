@@ -38,6 +38,7 @@ public class PopUp extends Actor
 
     protected void setupBG() {
         panel = new GreenfootImage(WorldMap.instance.getWidth(), WorldMap.instance.getHeight());
+        //panel.setColor(new Color(0, 0, 0, 200));
         panel.setColor(new Color(0, 0, 0, 200));
         panel.fillRect(0, 0, panel.getWidth(), panel.getHeight());
         setImage(panel);
