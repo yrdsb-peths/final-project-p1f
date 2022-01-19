@@ -48,7 +48,7 @@ public class HumanPlayer extends Player
 
     protected void playBombsAway() {
         super.playBombsAway();
-        float speed = 5f;
+        float speed = 3f;
         Vector2 d = new Vector2();
         if (Greenfoot.isKeyDown("a")) {
             d = Vector2.add(d, new Vector2(-speed, 0));

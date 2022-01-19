@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharSelectChar extends Actor
 {
     private static int numClicks;
-    public static String playerChoice;
+    public static String playerChoice = "Mario";
     private String thisName;
     public CharSelectChar(String player){
         GreenfootImage waitToPick = new GreenfootImage(player + "/menu.png");
