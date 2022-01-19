@@ -26,14 +26,14 @@ public class TitleScreen extends World
     public void prepare() {
         start = new Button("    Start", 0.7f);
         addObject(start, 500,450);
-        
     }
     
     public void act() {
-        if (Greenfoot.mouseClicked(start)) { 
+        MainSound.play();
+        if (Greenfoot.mouseClicked(start)) {
+            MainSound.stop();
             Greenfoot.setWorld(new CharacterSelect());
         }
     }
-    
     
 }

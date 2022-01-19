@@ -40,15 +40,4 @@ public class Bomb extends Actor
         setLocation(x, y);
         turn(1);
     }    
-    
-    private void explode(){
-        SimpleTimer animateTimer = new SimpleTimer();
-        animateTimer.mark();
-        int i = 0;
-        if(animateTimer.millisElapsed() >= 300){
-            GreenfootImage bomb = new GreenfootImage("Bomb" + i + ".png");
-            setImage(bomb);
-            animateTimer.mark();
-        }
-    }
 }

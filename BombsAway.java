@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.ArrayList;
 /**
  * Write a description of class BombsAway here.
  * 
@@ -55,6 +55,10 @@ public class BombsAway extends MiniGame
         }
         if (levelTimer.millisElapsed() >= time * 1000) {
             updateWorld();
+            
+            //for debug purposes, loop through this world
+            //BombsAway bombsAway = new BombsAway();
+            //Greenfoot.setWorld(bombsAway);
         }
     }
 

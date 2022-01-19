@@ -75,6 +75,14 @@ public abstract class SmoothMover extends Actor
      */
     public void setLocation(float x, float y) 
     { 
+        if (x < 0) 
+            x = 0;
+        if (getWorld() != null && x > getWorld().getWidth()) 
+            x = getWorld().getWidth();
+        if (y < 0) 
+            y = 0;
+        if (getWorld() != null && y > getWorld().getHeight())
+            y = getWorld().getHeight();
         pos.setX(x);
         pos.setY(y);
         super.setLocation(Math.round(x), Math.round(y));

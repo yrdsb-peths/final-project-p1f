@@ -164,6 +164,19 @@ public class WorldMap extends World
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
+        //for debug purposes, we are now going to do only bombsaway
+        /**
+        String[] minigames = { "BombsAway" };
+        String name = minigames[Utils.random(minigames.length-1)];
+        MiniGame game = new MiniGame();
+        
+        MainSound.stop();
+        switch (name) {
+            case "BombsAway": game = new BombsAway(); break;
+            // add other minigames here
+        }
+        return game;
+        */
         String[] minigames = { "MemoryMatch", "Look", "BombsAway" };
         MiniGame game;
         
