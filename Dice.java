@@ -26,7 +26,7 @@ public class Dice extends Actor
     }
 
     /**
-     * stops the roll
+     * Method that stops the roll
      */
     public void stopRoll() {
         paused = true;
@@ -36,7 +36,7 @@ public class Dice extends Actor
     }
 
     /**
-     * starts a roll
+     * Method that starts a roll
      */
     public void startRoll() {
         paused = false;
@@ -53,7 +53,7 @@ public class Dice extends Actor
     }
     
     /**
-     * hide the dice
+     * Method that hides the dice
      */
     public void hide() {
         getWorld().removeObject(this);

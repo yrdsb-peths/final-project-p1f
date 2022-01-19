@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Arrow here.
+ * Updates suits images for the look mini-game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang, Tanya Gu
+ * @version January 2022
  */
 public class Suit extends Actor
 {
@@ -12,6 +12,9 @@ public class Suit extends Actor
     private int suitType;
     private boolean center;
 
+    /**
+     * Constructor for the Suit class
+     */
     public Suit() {
         // get random suit (will be placed at edge)
         suitType = Utils.random(1, numSuits);
@@ -26,36 +29,31 @@ public class Suit extends Actor
         updateImage();
     }
 
+    /**
+     * Method to check if it's at center
+     * 
+     * @return center
+     */
     public boolean isCenter() {
         return center;
     }
 
+    
+    /**
+     * Method to get suit type
+     * 
+     * @return suitType
+     */
     public int getType() {
         return suitType;
     }
 
+    /**
+     * Method that resizes and sets the suits images
+     */
     public void updateImage() { 
         GreenfootImage img = new GreenfootImage("Suits/power" + suitType + ".png");
         img.scale(124, 124);
         setImage(img);
-    }
-
-    public void setSuit(int idx) {
-        // suitType = (Greenfoot.getRandomNumber(4) + 1); // Random type + color
-        // suitColor = (Greenfoot.getRandomNumber(4) + 1);
-        // switch(suitColor) {
-        //     case 1: 
-        //         setImage("Suits/R" + suitType + ".png");
-        //         break;
-        //     case 2:
-        //         setImage("Suits/B" + suitType + ".png");
-        //         break;
-        //     case 3:
-        //         setImage("Suits/G" + suitType + ".png");
-        //         break;
-        //     case 4:
-        //         setImage("Suits/Y" + suitType + ".png");
-        //         break;
-        // }
     }
 }

@@ -1,15 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TutorialPopUp here.
+ * Display tutorials of mini-games to users by popping up before player each mini-game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class TutorialPopUp extends PopUp
 {
-    
     private MiniGame game;
+    
+    /**
+     * Constructor for the class TutorialPopUp - display instruction images based on game name
+     * 
+     * @param game Game that will be played 
+     */
     public TutorialPopUp(MiniGame game) {
         super();
         this.game = game;

@@ -127,6 +127,8 @@ public class MemoryMatch extends MiniGame
     
     /**
      * Method to get card positions
+     * 
+     * @return this.cardPositions
      */
     public Vector2[] getCardPositions() {
         return this.cardPositions;

@@ -1,22 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level here.
+ * Updates levels for the look mini-game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tanya Gu
+ * @version January 2022
  */
 public class Level extends Actor
 {
+    /**
+     * Constructor for the Level class - sets images
+     */
     Level() {
         setImage("images/Levels/lv0.png");
     }
+    
     /**
-     * Act - do whatever the Level wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Method that sets images based on the level
      */
-    public void act()
-    {
+    public void act() {
         switch(((Look)getWorld()).getLV()) {
             case 1:
                 setImage("images/Levels/lv1.png");

@@ -3,30 +3,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Bombs here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Wang
+ * @version January 2022
  */
 public class Bomb extends Actor
 {
     private GreenfootImage bombFall = new GreenfootImage("Bob-Omb.png");
-    
     private GreenfootSound startFall = new GreenfootSound("bombSend.mp3");
-    
+    private int x;
+    private int y;
+    /**
+     * Constructor for the Bomb class - sets and scales bomb images
+     * 
+     * @param scale Scale of the bombs
+     */
     public Bomb(float scale) {
         bombFall.scale((int)(bombFall.getWidth() * scale), (int)(bombFall.getHeight() * scale));
         setImage(bombFall);
         turn(Utils.random(359));
     }
     
-    private int x;
-    private int y;
-
     /**
-     * Act - do whatever the Bombs wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Generates random locations for falling bombs
      */
-    public void act() 
-    {
+    public void act()  {
         if(this.getY() >= 599){
            x = Greenfoot.getRandomNumber(1000);
            y = 0;

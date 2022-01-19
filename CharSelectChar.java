@@ -3,14 +3,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class CharSelectChars here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Wang
+ * @version January 2022
  */
 public class CharSelectChar extends Actor
 {
     private static int numClicks;
     public static String playerChoice = "Mario";
     private String thisName;
+    
+    /**
+     * Constructor for the class CharSelectChar - tracks and prepares 
+     * players' images and names
+     * 
+     * @param player 
+     */
     public CharSelectChar(String player){
         GreenfootImage waitToPick = new GreenfootImage(player + "/menu.png");
         if(player.equals("Luigi")){
@@ -31,8 +38,8 @@ public class CharSelectChar extends Actor
     }
     
     /**
-     * Act - do whatever the CharSelectChars wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Method that tracks the user's clickings
+     * Generates player choice and number of clicks when the user clicked a player
      */
     public void act() 
     {
@@ -42,6 +49,11 @@ public class CharSelectChar extends Actor
         }
     }   
     
+    /**
+     * Method to get number of clicks
+     * 
+     * @return CharSelectChar.numClicks
+     */
     public static int getNumClicks(){
         return CharSelectChar.numClicks;
     }

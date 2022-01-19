@@ -162,6 +162,8 @@ public class Look extends MiniGame
 
     /**
      * Method to get target suit
+     * 
+     * @return this.targetSuit
      */
     public Suit getTargetSuit() {
         return this.targetSuit;
@@ -169,6 +171,8 @@ public class Look extends MiniGame
 
     /**
      * Method to get suits
+     * 
+     * @return this.suits
      */
     public ArrayList<Suit> getSuits() {
         return this.suits;
@@ -176,6 +180,8 @@ public class Look extends MiniGame
 
     /**
      * Method to get current level
+     * 
+     * @return lv
      */
     public int getLV() {
         return lv;

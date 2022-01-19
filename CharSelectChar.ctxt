@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.target=CharSelectChar
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CharSelectChars\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CharSelectChars\ here.\r\n\ \r\n\ @author\ Kevin\ Wang\r\n\ @version\ January\ 2022\r\n
 comment1.params=player
 comment1.target=CharSelectChar(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ the\ class\ CharSelectChar\ -\ tracks\ and\ prepares\ \r\n\ players'\ images\ and\ names\r\n\ \r\n\ @param\ player\ \r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ CharSelectChars\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.text=\r\n\ Method\ that\ tracks\ the\ user's\ clickings\r\n\ Generates\ player\ choice\ and\ number\ of\ clicks\ when\ the\ user\ clicked\ a\ player\r\n
 comment3.params=
 comment3.target=int\ getNumClicks()
+comment3.text=\r\n\ Method\ to\ get\ number\ of\ clicks\r\n\ \r\n\ @return\ CharSelectChar.numClicks\r\n
 numComments=4

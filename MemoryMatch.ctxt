@@ -30,5 +30,5 @@ comment8.target=void\ addCoin(int)
 comment8.text=\r\n\ Method\ that\ updates\ coin\ count\ and\ player\ score\r\n\ \r\n\ @param\ c\r\n
 comment9.params=
 comment9.target=Vector2[]\ getCardPositions()
-comment9.text=\r\n\ Method\ to\ get\ card\ positions\r\n
+comment9.text=\r\n\ Method\ to\ get\ card\ positions\r\n\ \r\n\ @return\ this.cardPositions\r\n
 numComments=11
