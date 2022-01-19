@@ -15,6 +15,7 @@ public class SpeedyShells extends MiniGame
     private SimpleTimer timer;
     private SimpleTimer gameOverDelay;
     private int difficulty;
+    private Counter timeCount;
     
     /**
      * Constructor for objects of class SpeedyShells.
@@ -38,7 +39,14 @@ public class SpeedyShells extends MiniGame
         timer = new SimpleTimer();
         timer.mark(); 
         
+        timeCount = new Counter();
+        addObject(timeCount,150,90);
+        timeCount.setValue(30);
+        
         difficulty = 0;
+
+        MainSound.setSound(new GreenfootSound("Shell Shock Deluxe.wav"));
+        MainSound.play();
     }
 
     public void act() {
@@ -62,6 +70,8 @@ public class SpeedyShells extends MiniGame
                 updateWorld();
         }
         difficulty++;
+
+        timeCount.setValue((30000 - timer.millisElapsed()) / 1000);
     }
 
     public int getTime() {

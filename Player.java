@@ -12,6 +12,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
     private float scale;
     private int score;
     protected Animation lWalk, rWalk, lIdle, rIdle;
+    
+    protected GreenfootSound jumpSound = new GreenfootSound("jump.mp3");
 
     protected enum Direction {
         LEFT, RIGHT
@@ -31,6 +33,7 @@ public class Player extends SmoothMover implements Comparable<Player> {
         dir = Direction.RIGHT;
         animState = AnimState.IDLE;
         setupAnim();
+        jumpSound.setVolume(40);
     }
 
     public void act() {
@@ -184,10 +187,12 @@ public class Player extends SmoothMover implements Comparable<Player> {
     }
 
     protected void jumpShell() {
+        jumpSound.play();
         yVel = -9.5f;
     }
     
     protected void jumpHighShell() {
+        jumpSound.play();
         yVel = -13;
     }
     

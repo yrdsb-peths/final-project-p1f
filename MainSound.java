@@ -34,5 +34,12 @@ public class MainSound {
             sound.stop();
         }
     }
+
+    /**
+     * set volume
+     */
+    public static void setVolume(int volume) {
+        sound.setVolume(volume);
+    }
     
 }
