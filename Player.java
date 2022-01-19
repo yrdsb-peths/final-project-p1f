@@ -184,7 +184,7 @@ public class Player extends SmoothMover implements Comparable<Player> {
     }
 
     protected void jumpShell() {
-        yVel = -9;
+        yVel = -9.5f;
     }
     
     protected void jumpHighShell() {

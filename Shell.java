@@ -12,7 +12,7 @@ public class Shell extends SmoothMover
     private final int rightBorder = 850;
     
     private Animation anim;
-    private float speed = 5f;
+    private float speed = 4f;
 
     public Shell(int initDir) {
         this.anim = new Animation(this, "shell/red", 4, 24, 2f);

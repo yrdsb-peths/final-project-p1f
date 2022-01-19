@@ -31,7 +31,6 @@ public class WorldMap extends World
      */
     public WorldMap() {
         super(1000, 600, 1);
-        setPaintOrder(Button.class, Dice.class, PopUp.class, MapPlayer.class, MapNPC.class);
         instance = this; 
 
         setupPath();

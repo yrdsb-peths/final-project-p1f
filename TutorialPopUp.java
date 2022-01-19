@@ -24,8 +24,7 @@ public class TutorialPopUp extends PopUp
                 setImage(new GreenfootImage("Instruction/BombsAway.png"));
                 break;
             default:
-                assert false:"Tutorial Popup: Unknown game " + game.toString();
-                System.out.println("game now found");
+                assert false:"Tutorial Popup: Unknown game " + game.toString(); 
                 break;
         }
     }

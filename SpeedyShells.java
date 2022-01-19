@@ -14,41 +14,54 @@ public class SpeedyShells extends MiniGame
     private static final int groundLevel = 600 - 110;
     private SimpleTimer timer;
     private SimpleTimer gameOverDelay;
+    private int difficulty;
     
     /**
      * Constructor for objects of class SpeedyShells.
      * 
      */
     public SpeedyShells() {
+        super();
+
+        setupPlayers(3f);
+        int pos=350, distance=100;
+        for (Player p : players) {
+            addObject(p, pos, 0);
+            pos += distance;
+        }
+        
         setBackground("shellbg.png");
         lDelay = Utils.random(2000, 5000);
-        rDelay = Utils.random(2000, 5000);
+        rDelay = lDelay + Utils.random(2000, 5000);
         lTimer = new SimpleTimer();
         rTimer = new SimpleTimer();
         timer = new SimpleTimer();
-        timer.mark();
-
-        addObject(new HumanPlayer("Mario", 3f), 500, groundLevel);
+        timer.mark(); 
+        
+        difficulty = 0;
     }
 
     public void act() {
         if (lTimer.millisElapsed() > lDelay) {
             lTimer.mark();
-            lDelay = Utils.random(2000, 5000);
+            lDelay = Utils.random(2000, 10000 - (difficulty / 2));
             addObject(new Shell(1), 0, 0);
         }
         if (rTimer.millisElapsed() > rDelay) {
             rTimer.mark();
-            rDelay = Utils.random(2000, 5000);
+            rDelay = Utils.random(2000, 10000 - (difficulty / 2));
             addObject(new Shell(-1), 0, 0);
         }
-        if (timer.millisElapsed() >= 30000 || getObjects(Player.class).size() == 0) {
-            gameOverDelay = new SimpleTimer();
-            gameOverDelay.mark();
+        if (gameOverDelay == null) {
+            if (timer.millisElapsed() >= 30000 || getObjects(Player.class).size() == 0) { 
+                gameOverDelay = new SimpleTimer();
+                gameOverDelay.mark();
+            }
+        } else {
+            if (gameOverDelay.millisElapsed() >= 3000)
+                updateWorld();
         }
-        if (gameOverDelay != null && gameOverDelay.millisElapsed() >= 3000) {
-            updateWorld();
-        }
+        difficulty++;
     }
 
     public int getTime() {

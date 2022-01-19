@@ -62,10 +62,12 @@ public class HumanPlayer extends Player
     protected void playSpeedyShells() {
         super.playSpeedyShells();
         // get space key down
-        if (Greenfoot.isKeyDown("space")) {
+        if (Greenfoot.isKeyDown("space")) { 
             if (spaceFrames < 10)
                 spaceFrames++;
-        } else {
+        } 
+        
+        if (!Greenfoot.isKeyDown("space")) {
             if (touchShellGround()) {
                 if (spaceFrames >= 10) {
                     jumpHighShell();
@@ -75,8 +77,7 @@ public class HumanPlayer extends Player
             }
             if (spaceFrames>0)
                 spaceFrames--;
-        } 
-        System.out.println(spaceFrames);
+        }
     }
 
 }
