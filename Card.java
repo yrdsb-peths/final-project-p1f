@@ -38,10 +38,6 @@ public class Card extends Actor
         // change to Player.class if include NPC hitboxes (will cause havoc though)
         if (isTouching(HumanPlayer.class) && !this.wait && !this.dead && !this.active) { 
             flip();
-            activeCards.add(this);
-            if(activeCards.size() == 2) { 
-                checkMatch();
-            }
         }
         
         if (this.wait) {
@@ -64,6 +60,10 @@ public class Card extends Actor
         if (this.active) {
             setCardImage("Cards/c" + this.id + ".png");
             wait = false;
+            activeCards.add(this);
+            if(activeCards.size() == 2) { 
+                checkMatch();
+            }
         } else {
             cdTimer.mark();
             wait = true;
@@ -86,7 +86,7 @@ public class Card extends Actor
             a.dead = true;
             b.dead = true;
         }
-        a.flip(); // flip to dead or not collected
+        a.flip();
         b.flip();
         activeCards.clear();
     }

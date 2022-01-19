@@ -24,8 +24,6 @@ public class WorldMap extends World
     private int rounds, roundsLeft;
     private Label roundsText;
     private SimpleTimer timer;
-    
-    private GreenfootSound mainTheme = new GreenfootSound("MainTheme.wav");
      
     /**
      * WorldMap Constructor
@@ -164,29 +162,15 @@ public class WorldMap extends World
      * return instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
-        //for debug purposes, we are now going to do only bombsaway
-        /**
-        String[] minigames = { "BombsAway" };
-        String name = minigames[Utils.random(minigames.length-1)];
-        MiniGame game = new MiniGame();
-        
-        MainSound.stop();
-        switch (name) {
-            case "BombsAway": game = new BombsAway(); break;
-            // add other minigames here
-        }
-        return game;
-        */
-        String[] minigames = { "MemoryMatch", "Look", "BombsAway" };
         MiniGame game;
         
         MainSound.stop();
         while (true) {
-            String name = minigames[Utils.random(minigames.length-1)];
-            switch (name) {
-                case "MemoryMatch": game = new MemoryMatch(); break;
-                case "Look": game = new Look(); break;
-                case "BombsAway": game = new BombsAway(); break;
+            int r = Utils.random(1, 3);
+            switch (r) {
+                case 1: game = new MemoryMatch(); break;
+                case 2: game = new Look(); break;
+                case 3: game = new BombsAway(); break;
                 default: game = new MemoryMatch(); break;
                 // add other minigames here
             }
@@ -265,7 +249,7 @@ public class WorldMap extends World
     }
     
     public void startSound() {
-        MainSound.setSound(mainTheme);
+        MainSound.setSound(new GreenfootSound("MainTheme.wav"));
         MainSound.play();
     }
 

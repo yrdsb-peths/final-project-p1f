@@ -39,8 +39,6 @@ public class CharacterSelect extends World
         addObject(luigi, 840, 480);
         addObject(koopaP, 165, 465);
         addObject(koopaR, 388, 463);
-        
-        MainSound.play();
     }
     
     public void act(){

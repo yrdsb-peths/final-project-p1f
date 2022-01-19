@@ -13,9 +13,7 @@ public class MemoryMatch extends MiniGame
     private Counter timeCount = new Counter();
     private int gameTime = 30;
     private int coinCount = 0;
-    private Label coinLabel; 
     private boolean finished = false;
-    private Coin coin;
     private Vector2[] cardPositions = new Vector2[12];
 
     /**
@@ -35,11 +33,6 @@ public class MemoryMatch extends MiniGame
 
         MainSound.setSound(new GreenfootSound("MemoryMatchBGM.mp3"));
         MainSound.play();
-
-        coin = new Coin();
-        addObject(coin, 220, 70);
-        coinLabel = new Label(coinCount,50);
-        addObject(coinLabel,290,70);
         
         setupPlayers(3f);
         int pos=80, distance=40;
@@ -109,8 +102,7 @@ public class MemoryMatch extends MiniGame
 
     public void addCoin(int c) {
         coinCount += c;
-        coin.setSpin(3);
-        coinLabel.setValue(coinCount);
+        players.get(0).addScore(1);
     }
     
     public Vector2[] getCardPositions() {

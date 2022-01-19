@@ -53,12 +53,8 @@ public class BombsAway extends MiniGame
             bombTimer.mark();
             addObject(new Bomb(2f + difficulty), Utils.random(1000), 0);
         }
-        if (levelTimer.millisElapsed() >= time * 1000) {
+        if (levelTimer.millisElapsed() >= time * 1000 || getObjects(Player.class).size() == 0) {
             updateWorld();
-            
-            //for debug purposes, loop through this world
-            //BombsAway bombsAway = new BombsAway();
-            //Greenfoot.setWorld(bombsAway);
         }
     }
 
