@@ -1,23 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Coins here.
+ * Animates the coin
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tanya Gu
+ * @version January 2022
  */
 public class Coins extends Actor
 {
-    GreenfootImage[] coin = new GreenfootImage[8];
-    boolean coinSpin = false;
-    SimpleTimer tim = new SimpleTimer();
-    Counter timeCount = new Counter();
+    private GreenfootImage[] coin = new GreenfootImage[8];
+    private boolean coinSpin = false;
+    private SimpleTimer tim = new SimpleTimer();
+    private Counter timeCount = new Counter();
+    private int imageIndex = 0;
     
     /**
-     * Constructor for Coins Class - sets the image
+     * Constructor for Coins Class - sets the image and time limit
      */
     public Coins() {
-        timeCount.setValue(2); //spin time is 2s
+        timeCount.setValue(2); // spin for 2s
         for (int i = 0; i < coin.length; i++) {
             coin[i] = new GreenfootImage("images/Coins/Coin" + (i+1) + ".png");
         }
@@ -25,20 +26,19 @@ public class Coins extends Actor
     }
 
     /**
-     * Called every act; Make the images animated
+     * Method that animates the coin for 2 second if the coinSpin boolean is true
      */
-    int imageIndex = 0;
     public void act()  {
         if (coinSpin) {
             setImage(coin[imageIndex]);
             imageIndex = (imageIndex + 1) % coin.length;
 
-            if(tim.millisElapsed() > 1000) { //time count down every second
+            if(tim.millisElapsed() > 1000) { // time count down every second
                 timeCount.add(-1);
                 tim.mark();
             }
 
-            if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //if time limit is reached
+            if (tim.millisElapsed() * 1000 == timeCount.getValue()) { //time limit reached
                 coinSpin = false;
             }
         }

@@ -1,18 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StoryScreen here.
+ * Provides background story and general instructions of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang, Tanya Gu
+ * @version January 2022
  */
 public class StoryScreen extends World
 {
-
     Button btn;
     /**
      * Constructor for objects of class StoryScreen.
-     * 
      */
     public StoryScreen()
     {    
@@ -21,12 +19,16 @@ public class StoryScreen extends World
         setBackground(new GreenfootImage("Instruction/Story.png"));
         MainSound.play();
         
-        btn = new Button("continue", 1f);
-        addObject(btn, 470, 500);
+        btn = new Button("  Continue", 0.7f); //add continue button
+        addObject(btn, 500, 450);
     }
     
+    /**
+     * Method that checks if the continue button is clicked, if so, 
+     * switch to character selection screen
+     */
     public void act() {
-        if (btn.clicked()) {
+        if (btn.clicked()) { 
             Greenfoot.setWorld(new CharacterSelect());
         }
     }

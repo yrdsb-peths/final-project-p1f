@@ -3,8 +3,8 @@ import java.util.ArrayList;
 /**
  * Write a description of class Cards here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang, Tanya Gu
+ * @version January 2022
  */
 public class Card extends Actor
 {
@@ -13,27 +13,22 @@ public class Card extends Actor
     boolean dead = false; 
     static ArrayList<Card> activeCards = new ArrayList<Card>();
     
-    SimpleTimer cdTimer = new SimpleTimer();
-    boolean wait = false;
-    /*
+    private SimpleTimer cdTimer = new SimpleTimer();
+    private boolean wait = false;
+    
+    /**
+     * Constructor for the Card class
      * 
-     * cards[0][0] = top left
-     * cards[0][1] = top right
-     * 
-     * if cards[index][0].active and cards[index][1].active:
-     *    YOU PICKED A CARD WOOHOO
-     * 
-     * 
-     * A * * A
-     * * * * *
-     * * * * *
-     * 
+     * @param id ID for each card    
      */
-
     Card(int id) {
         this.id = id;
         setCardImage("Cards/questioncard.png");  
     }
+    
+    /**
+     * Method that tracks wait time and flip cards if given conditions are true
+     */
     public void act() {
         // change to Player.class if include NPC hitboxes (will cause havoc though)
         if (isTouching(HumanPlayer.class) && !this.wait && !this.dead && !this.active) { 
@@ -44,6 +39,10 @@ public class Card extends Actor
             cdTimeCountDown();
         }
     }
+    
+    /**
+     * Method that flips cards based on their status after 1 second of wait time
+     */
     public void cdTimeCountDown() {
         if (cdTimer.millisElapsed() > 1000) {
             wait = false;
@@ -54,36 +53,50 @@ public class Card extends Actor
             }
         }
     }
+    
+    /**
+     * Method that flips a card if one's status is active
+     * Check if cards match when 2 cards are flipped open
+     */
     public void flip() {
         this.active = !this.active;
-        
         if (this.active) {
             setCardImage("Cards/c" + this.id + ".png");
             wait = false;
-            activeCards.add(this);
+            activeCards.add(this); // add to activeCards arraylist
             if(activeCards.size() == 2) { 
                 checkMatch();
             }
         } else {
             cdTimer.mark();
-            wait = true;
+            wait = true; // wait for 1s before flipping back
         }
     }
 
+    /**
+     * Method that resizes all cards images
+     */
     private void setCardImage(String file) {
         GreenfootImage image = new GreenfootImage(file);
         image.scale(60, 108);
         setImage(image);
     }
 
+    /**
+     * Method that check if cards match based on their ids and determine if 
+     * they should be flipped back or can no longer be flipped 
+     */
     public void checkMatch() {
+        // obtain 2 active cards from the activeCards arraylist
         Card a = activeCards.get(0), b = activeCards.get(1); 
+        
         if (a.id == b.id) {
             MemoryMatch world = getWorldOfType(MemoryMatch.class);
             world.addCoin(1);
             Greenfoot.playSound("Laughter.wav");
-
-            a.dead = true;
+            
+            // cards can no longer be flipped
+            a.dead = true; 
             b.dead = true;
         }
         a.flip();

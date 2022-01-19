@@ -1,17 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class MemoryMatch here.
+ * Card matching game with a time limit of 30 seconds 
+ * and prepares 12 random cards each round 
  * 
- * @author (your name) 
- * @version (a version number or a date)
- * 
- * Need: card flip delay
+ * @author Eric Zhang, Tanya Gu, Victoria Zhang, Kevin Wang
+ * @version January 2022
  */
 public class MemoryMatch extends MiniGame
 {
     private SimpleTimer tim = new SimpleTimer();
     private Counter timeCount = new Counter();
-    private int gameTime = 30;
+    private int gameTime = 30; //30s time limit
     private int coinCount = 0;
     private boolean finished = false;
     private Vector2[] cardPositions = new Vector2[12];
@@ -27,6 +26,9 @@ public class MemoryMatch extends MiniGame
         prepareCards();
     }
 
+    /**
+     * Method that prepares time countdown, music, and players   
+     */
     public void prepare() {
         addObject(timeCount,100,65);
         timeCount.setValue(gameTime);  
@@ -34,7 +36,7 @@ public class MemoryMatch extends MiniGame
         MainSound.setSound(new GreenfootSound("MemoryMatchBGM.mp3"));
         MainSound.play();
         
-        setupPlayers(3f);
+        setupPlayers(3f); // set up players and their locations
         int pos=80, distance=40;
         for (Player p : players) {
             addObject(p, pos, 340);
@@ -42,6 +44,9 @@ public class MemoryMatch extends MiniGame
         }
     }
 
+    /**
+     * Method that prepares cards and their locations 
+     */
     public void prepareCards() {
         int[] cardVal = {1,1,2,2,3,3,4,4,5,5,6,6};
         shuffle(cardVal);
@@ -55,42 +60,52 @@ public class MemoryMatch extends MiniGame
         }
     }
 
-    public void shuffle(int[] arr)
-    {
+    /**
+     * Method that shuffles an array
+     * 
+     * @param arr 
+     */
+    public void shuffle(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int j = Greenfoot.getRandomNumber(arr.length - i) + i;
-
+            // switch
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
         }
     }
 
+    /**
+     * Method that tracks time and coins
+     */
     public void act() {
         timeCountDown();
         checkCoin();
     }
 
     /**
-     * Called every act; updates the time counter every second.
-     * If time limit is reached, return to main world.
+     * Method that updates the time counter every second
+     * Updates world when reached time limit
      */
-    public void timeCountDown()
-    {    
-        if(!finished && tim.millisElapsed() > 1000) { //time count down every second
+    public void timeCountDown() {    
+        if(!finished && tim.millisElapsed() > 1000) { // time count down every second
             timeCount.add(-1);
             tim.mark();
-            if (timeCount.getValue() == 0) {
+            if (timeCount.getValue() == 0) { // time limit reached
                 finished = true; 
             }
         }
 
-        if (finished && tim.millisElapsed() > 2000) { //if time limit is reached
+        if (finished && tim.millisElapsed() > 2000) { // time limit reached
             updateWorld();
         }
 
     }
-
+    
+    /**
+     * Method that checks coin count
+     * Finish the game if all coins are collected
+     */
     public void checkCoin() {
         if (!finished && coinCount == 6) {
             MainSound.stop();
@@ -100,17 +115,29 @@ public class MemoryMatch extends MiniGame
         }
     } 
 
+    /**
+     * Method that updates coin count and player score
+     * 
+     * @param c
+     */
     public void addCoin(int c) {
         coinCount += c;
         players.get(0).addScore(1);
     }
     
+    /**
+     * Method to get card positions
+     */
     public Vector2[] getCardPositions() {
         return this.cardPositions;
     }
 
+    /**
+     * Method to get game name
+     * 
+     * @return game name - MemoryMatch
+     */
     public String toString() {
         return "MemoryMatch";
     }
-
 }

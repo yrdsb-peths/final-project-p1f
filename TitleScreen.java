@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
- * Write a description of class TitleScreen here.
+ * Title screen of the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Tanya Gu
+ * @version January 2022
  */
 public class TitleScreen extends World
 {
@@ -21,17 +20,23 @@ public class TitleScreen extends World
         MainSound.setSound(new GreenfootSound("TitleBGM.mp3"));
         prepare();
     }
-    
+
+    /**
+     * Adds start button
+     */
     public void prepare() {
         start = new Button("    Start", 0.7f);
         addObject(start, 500,450);
     }
     
+    /**
+     * Checks if the start button is clicked, if so, 
+     * switch to story screen
+     */
     public void act() {
         MainSound.play();
         if (Greenfoot.mouseClicked(start)) {
             Greenfoot.setWorld(new StoryScreen());
         }
     }
-    
 }
