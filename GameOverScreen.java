@@ -24,6 +24,9 @@ public class GameOverScreen extends World
             bkg[i] = new GreenfootImage("images/WinningScreen/" + (i) + ".png"); 
         }
         
+        MainSound.setSound(new GreenfootSound("EndTheme.mp3"));
+        MainSound.play();
+        
         ArrayList<MapCharacter> players = new ArrayList<MapCharacter>(playersRef);
         Utils.sort(players);
         Player player = new Player(players.get(0).getName(), 5);
