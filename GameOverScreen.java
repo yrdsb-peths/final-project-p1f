@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GameOverScreen extends World
 {
     private GreenfootImage[] bkg = new GreenfootImage[28];
-    
+    private Button backToTitle;
     /**
      * Constructor for objects of class GameOverScreen.
      * 
@@ -29,11 +29,18 @@ public class GameOverScreen extends World
         Player player = new Player(players.get(0).getName(), 5);
         addObject(player,400,395);
         addObject(new Label("Wins!",70),550,415);
+        
+        backToTitle = new Button("Play Again!", 0.7f);
+        addObject(backToTitle, 500, 550);
     }
     int imageIndex = 0; 
     public void act() {
         setBackground(bkg[imageIndex]);
         Greenfoot.delay(5);
         imageIndex = (imageIndex + 1) % bkg.length;
+        
+        if (Greenfoot.mouseClicked(backToTitle)) { 
+            Greenfoot.setWorld(new TitleScreen());
+        }
     }
 }
