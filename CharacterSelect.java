@@ -52,9 +52,5 @@ public class CharacterSelect extends World
             WorldMap world = new WorldMap();
             Greenfoot.setWorld(world);
         }
-        /**
-        System.out.println(String.valueOf(CharSelectChar.getNumClicks()));
-        System.out.println(CharSelectChar.getPlayerChoice());
-        */
     }
 }

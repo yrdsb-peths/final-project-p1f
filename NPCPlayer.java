@@ -68,24 +68,45 @@ public class NPCPlayer extends Player
         }
     }
     
+    
     private int moveDir = 0;
     protected void playBombsAway() {
         super.playBombsAway();
         
-        // check if bomb above
-        // 50% move left / or right
-        
         try {
-            Actor up = getOneObjectAtOffset(0, -300, Bomb.class);
-            Actor left = getOneObjectAtOffset(-50, 0, Bomb.class);
-            Actor right = getOneObjectAtOffset(50, 0, Bomb.class);
-            if (up != null) {
-                if (left != null && right != null) {
-                    moveDir = Utils.random(1) == 0 ? 50 : -50;
-                }
-                if (moveDir == 0) {
+            Actor up = getOneObjectAtOffset(0, -500, Bomb.class);
+            Actor left = getOneObjectAtOffset(-300, 0, Bomb.class);
+            Actor right = getOneObjectAtOffset(300, 0, Bomb.class);
+            
+            //already checked
+            for(int i = -500; i < 0; i++){
+                up = getOneObjectAtOffset(0, i, Bomb.class);
+                left = getOneObjectAtOffset(i, 0, Bomb.class);
+                right = getOneObjectAtOffset(0 - i, 0, Bomb.class);
+                
+                //If no bomb above, why move?
+                if (up != null) {
+                //fix this!!!
+                if(left == null && right == null){
+                    //move left or right
+                    int leftOrRight = Greenfoot.getRandomNumber(2); //[0, 1]
+                    if(leftOrRight == 0){
+                        //move left
+                        this.setLocation(this.getX() - 60, this.getY());
+                    }else{
+                        //move right
+                        this.setLocation(this.getX() + 60, this.getY());
+                    }
+                }else if(left != null && right == null){
+                    //move right
+                    this.setLocation(this.getX() + 60, this.getY());
+                }else if(left == null && right != null){
+                    //move left
+                    this.setLocation(this.getX() - 60, this.getY());
                 }
             }
+            }
+            /**
             move(new Vector2());
             if (moveDir > 0) {
                 move(new Vector2(3f, 0));
@@ -94,14 +115,14 @@ public class NPCPlayer extends Player
                 move(new Vector2(-3f, 0));
                 moveDir++;
             }
+            */
         } catch (IllegalStateException e) {
-            // ignore
+            
         }
     }
-
+    
     public void resetTarget() {
         super.resetTarget();
         timer.mark();
     }
-
 }
