@@ -14,7 +14,6 @@ public class MapPlayer extends MapCharacter
     } 
     
     /**
-     * 
      * return true when player clicks
      * @param dice
      */

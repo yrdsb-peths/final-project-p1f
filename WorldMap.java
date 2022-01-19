@@ -30,7 +30,8 @@ public class WorldMap extends World
      *
      */
     public WorldMap() {
-        super(1000, 600, 1); 
+        super(1000, 600, 1);
+        setPaintOrder(MapPlayer.class, MapNPC.class);
         instance = this; 
 
         setupPath();
