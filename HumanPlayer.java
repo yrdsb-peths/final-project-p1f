@@ -3,12 +3,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Player here.
  * 
- * @param string name
- * @param float scale
+ * 
  */
 public class HumanPlayer extends Player
 {
-    
+
     public HumanPlayer(String name, float scale) {
         super(name, scale);
     } 
@@ -56,7 +55,28 @@ public class HumanPlayer extends Player
         if (Greenfoot.isKeyDown("d")) { 
             d = Vector2.add(d, new Vector2(speed, 0));
         }
-        move(d); 
+        move(d);
+    }
+
+    private int spaceFrames = 0;
+    protected void playSpeedyShells() {
+        super.playSpeedyShells();
+        // get space key down
+        if (Greenfoot.isKeyDown("space")) {
+            if (spaceFrames < 10)
+                spaceFrames++;
+        } else {
+            if (touchShellGround()) {
+                if (spaceFrames >= 10) {
+                    jumpHighShell();
+                } else if (spaceFrames >= 1) {
+                    jumpShell();
+                }
+            }
+            if (spaceFrames>0)
+                spaceFrames--;
+        } 
+        System.out.println(spaceFrames);
     }
 
 }
