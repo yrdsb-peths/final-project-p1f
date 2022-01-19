@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StoryScreen extends World
 {
 
+    Button btn;
     /**
      * Constructor for objects of class StoryScreen.
      * 
@@ -19,10 +20,13 @@ public class StoryScreen extends World
         super(1000, 600, 1); 
         setBackground(new GreenfootImage("Instruction/Story.png"));
         MainSound.play();
+        
+        btn = new Button("continue", 1f);
+        addObject(btn, 470, 500);
     }
     
     public void act() {
-        if (Greenfoot.mouseClicked(this)) {
+        if (btn.clicked()) {
             Greenfoot.setWorld(new CharacterSelect());
         }
     }

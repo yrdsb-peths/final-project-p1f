@@ -19,6 +19,7 @@ public class MiniGame extends World
         if (WorldMap.instance == null) {
             WorldMap.instance = new WorldMap();
         }
+        setPaintOrder(HumanPlayer.class, NPCPlayer.class);
     }
 
     protected void setupPlayers(float scale) {
