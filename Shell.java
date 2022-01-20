@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Moves left / right to attack player
+ * Shell object that moves left / right to attack player
  * 
  * @param int initDir -1 for left, 1 for right
  */
@@ -15,7 +15,17 @@ public class Shell extends SmoothMover
     private float speed = 4f;
 
     public Shell(int initDir) {
-        this.anim = new Animation(this, "shell/red", 4, 24, 2f);
+        // randomly choose color
+        int r = Utils.random(1,4);
+        String col;
+        switch (r) {
+            case 1: col = "red"; break;
+            case 2: col = "green"; break;
+            case 3: col = "yellow"; break;
+            case 4: col = "purple"; break;
+            default: col = "red"; break;
+        }
+        this.anim = new Animation(this, "shell/" + col, 4, 24, 2f);
         this.speed *= initDir;
         
     }

@@ -81,4 +81,8 @@ public class SpeedyShells extends MiniGame
     public static int getGround() {
         return groundLevel;
     }
+
+    public String toString() {
+        return "SpeedyShells";
+    }
 }

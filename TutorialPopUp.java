@@ -23,6 +23,9 @@ public class TutorialPopUp extends PopUp
             case "BombsAway":
                 setImage(new GreenfootImage("Instruction/BombsAway.png"));
                 break;
+            case "SpeedyShells":
+                setImage(new GreenfootImage("Instruction/SpeedyShells.png"));
+                break;
             default:
                 assert false:"Tutorial Popup: Unknown game " + game.toString(); 
                 break;
