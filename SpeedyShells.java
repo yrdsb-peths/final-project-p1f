@@ -22,34 +22,38 @@ public class SpeedyShells extends MiniGame
      * 
      */
     public SpeedyShells() {
-        super();
-
-        setupPlayers(3f);
-        int pos=350, distance=100;
-        for (Player p : players) {
-            addObject(p, pos, 0);
-            pos += distance;
-        }
-        
-        setBackground("shellbg.png");
-        lDelay = Utils.random(2000, 5000);
-        rDelay = lDelay + Utils.random(2000, 5000);
-        lTimer = new SimpleTimer();
-        rTimer = new SimpleTimer();
-        timer = new SimpleTimer();
-        timer.mark(); 
-        
-        timeCount = new Counter();
-        addObject(timeCount,150,90);
-        timeCount.setValue(30);
+        super(); 
+        setBackground("shellbg.png"); 
         
         difficulty = 0;
 
         MainSound.setSound(new GreenfootSound("Shell Shock Deluxe.wav"));
         MainSound.play();
     }
+    
+    protected void firstAct() {
+
+        setupPlayers(3f);
+        int pos=350, distance=100;
+        for (Player p : players) {
+            addObject(p, pos, 0);
+            pos += distance; 
+        }
+        
+        timeCount = new Counter();
+        addObject(timeCount,150,90);
+        timeCount.setValue(30);
+        
+        lDelay = Utils.random(2000, 5000);
+        rDelay = lDelay + Utils.random(2000, 5000);
+        lTimer = new SimpleTimer();
+        rTimer = new SimpleTimer();
+        timer = new SimpleTimer();
+        timer.mark(); 
+    }
 
     public void act() {
+        super.act();
         if (lTimer.millisElapsed() > lDelay) {
             lTimer.mark();
             lDelay = Utils.random(2000, 10000 - (difficulty / 2));

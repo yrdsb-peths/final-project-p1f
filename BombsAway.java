@@ -16,6 +16,7 @@ public class BombsAway extends MiniGame
     private SimpleTimer bombTimer = new SimpleTimer();
     private int delay = 0;
     private GreenfootImage background = new GreenfootImage("BombsAwayBKG.png");
+    private SimpleTimer gameOverTimer;
 
     /**
      * Constructor for objects of class BombsAway - prepares players, time countdown,
@@ -23,8 +24,15 @@ public class BombsAway extends MiniGame
      */
     public BombsAway()
     {
-        super();
+        super(); 
 
+        this.setBackground(background);
+
+        MainSound.setSound(new GreenfootSound("Mario Party 1 OST - Ducking and Dodging (Mini-Game).mp3"));
+        MainSound.play();
+    }
+    
+    protected void firstAct() {
         // set up players and their locations
         setupPlayers(3f);
         int pos=200, distance=200;
@@ -32,15 +40,9 @@ public class BombsAway extends MiniGame
             addObject(p, pos, 470);
             pos += distance;
         }
-
         addObject(timeCount,300,90);
-        timeCount.setValue(time); 
+        timeCount.setValue(time);
         levelTimer.mark();
-
-        this.setBackground(background);
-
-        MainSound.setSound(new GreenfootSound("Mario Party 1 OST - Ducking and Dodging (Mini-Game).mp3"));
-        MainSound.play();
     }
 
     /**
@@ -48,6 +50,7 @@ public class BombsAway extends MiniGame
      * Updates world when reached time limit or no player is left
      */
     public void act() {
+        super.act();
         if (timer.millisElapsed() > 1000) { // time count down every second
             timeCount.add(-1);
             timer.mark();
@@ -58,8 +61,14 @@ public class BombsAway extends MiniGame
             bombTimer.mark();
             addObject(new Bomb(2f + difficulty), Utils.random(1000), 0); // denser bombs
         }
-        if (levelTimer.millisElapsed() >= time * 1000 || getObjects(Player.class).size() == 0) {
-            updateWorld();
+        if (gameOverTimer == null) {
+            if (levelTimer.millisElapsed() >= time * 1000 || getObjects(Player.class).size() == 0) {
+                gameOverTimer = new SimpleTimer();
+            }
+        } else {
+            if (gameOverTimer.millisElapsed() >= 3000) {
+                updateWorld();
+            }
         }
     }
 

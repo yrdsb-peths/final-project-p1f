@@ -34,6 +34,18 @@ public class MiniGame extends World
         }
     }
 
+    private boolean isFirstAct = true;
+    public void act() {
+        if (isFirstAct) {
+            firstAct();
+            isFirstAct = false;
+        }
+    }
+    
+    protected void firstAct() {
+        
+    }
+    
     public String toString() {
         return "Unnamed MiniGame";
     }
