@@ -1,15 +1,19 @@
 #BlueJ class context
 comment0.target=ScorePopUp
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ ScorePopUp\ here.\r\n\ \r\n\ @param\ ArrayList<MapCharacter>\ players\r\n\ @param\ ArrayList<Integer>\ coins\ to\ be\ added\ to\ each\ player\r\n\ \r\n
+comment0.text=\r\n\ Displays\ players'\ ranking\ of\ scores\ after\ playing\ each\ mini-game.\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\ \r\n
 comment1.params=players_\ addedCoins_
 comment1.target=ScorePopUp(java.util.ArrayList,\ java.util.ArrayList)
+comment1.text=\r\n\ Constructor\ for\ the\ ScorePopUp\ class\ -\ calls\ its\ superclass\ and\ initializes\ player\ images\ \r\n\ \r\n\ @param\ ArrayList<MapCharacter>\ players\r\n\ @param\ ArrayList<Integer>\ coins\ to\ be\ added\ to\ each\ player\r\n
 comment2.params=
 comment2.target=void\ firstAct()
+comment2.text=\r\n\ Method\ that\ displays\ current\ player\ scores\ through\ labels\ and\ starts\ the\ timer\r\n
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ Method\ that\ waits\ 2\ seconds,\ then\ sort\ scores\ and\ re-display\ players'ranking\ based\ on\ their\ new\ score\r\n
 comment4.params=name
 comment4.target=Player\ searchScores(java.lang.String)
-comment4.text=\r\n\ search\ for\ player's\ index\ in\ addedCoins\ arraylist\r\n\ @return\ Player\ player\ object\ with\ scores\r\n
+comment4.text=\r\n\ Method\ to\ search\ for\ player's\ index\ in\ addedCoins\ arraylist\r\n\ \r\n\ @return\ Player\ player\ object\ with\ scores\r\n
 comment5.params=
 comment5.target=void\ onExit()
+comment5.text=\r\n\ Method\ to\ exist\ score\ board\r\n
 numComments=6

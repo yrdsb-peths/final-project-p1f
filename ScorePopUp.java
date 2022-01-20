@@ -3,15 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class ScorePopUp here.
+ * Displays players' ranking of scores after playing each mini-game.
  * 
- * @param ArrayList<MapCharacter> players
- * @param ArrayList<Integer> coins to be added to each player
- * 
+ * @author Eric Zhang
+ * @version January 2022 
  */
 public class ScorePopUp extends PopUp
 {
-    
     /**
      * show score changes, sort by points
      */
@@ -20,6 +18,12 @@ public class ScorePopUp extends PopUp
     private ArrayList<Player> addedCoins; 
     private SimpleTimer timer;
 
+    /**
+     * Constructor for the ScorePopUp class - calls its superclass and initializes player images 
+     * 
+     * @param ArrayList<MapCharacter> players
+     * @param ArrayList<Integer> coins to be added to each player
+     */
     public ScorePopUp(ArrayList<MapCharacter> players_, ArrayList<Player> addedCoins_) {
         super();
         this.players = new ArrayList<MapCharacter>(players_);
@@ -36,6 +40,9 @@ public class ScorePopUp extends PopUp
 
     }
 
+    /**
+     * Method that displays current player scores through labels and starts the timer
+     */
     public void firstAct() {
         super.firstAct();
         
@@ -52,6 +59,9 @@ public class ScorePopUp extends PopUp
         timer.mark();
     }
 
+    /**
+     * Method that waits 2 seconds, then sort scores and re-display players'ranking based on their new score
+     */
     public void act() {
         super.act();
 
@@ -60,10 +70,10 @@ public class ScorePopUp extends PopUp
                 Player score = searchScores(player.getName());
                 player.addCoins(score.getScore());
             }
-            Utils.sort(this.players);
+            Utils.sort(this.players); // sort players 
             
             setupBG();
-            for (int i=0;i<players.size();i++) {
+            for (int i=0;i<players.size();i++) { // reset images
                 MapCharacter p = players.get(i);
                 GreenfootImage img = new GreenfootImage(p.getRightImage());
                 float scale = 2f;
@@ -71,7 +81,7 @@ public class ScorePopUp extends PopUp
                 panel.drawImage(img, 300, 50 + i*120);
             }
 
-            for (int i=0;i<players.size();i++) {
+            for (int i=0;i<players.size();i++) { // reset score
                 Label l = coinLabels.get(i);
                 l.setValue(players.get(i).getCoins());
             }
@@ -81,7 +91,8 @@ public class ScorePopUp extends PopUp
     }
 
     /**
-     * search for player's index in addedCoins arraylist
+     * Method to search for player's index in addedCoins arraylist
+     * 
      * @return Player player object with scores
      */
     private Player searchScores(String name) {
@@ -92,6 +103,9 @@ public class ScorePopUp extends PopUp
         return null;
     }
 
+    /**
+     * Method to exist score board
+     */
     protected void onExit() {
         super.onExit();
         for (Label l : coinLabels) {

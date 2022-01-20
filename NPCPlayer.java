@@ -2,20 +2,25 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class NPCPlayer here.
+ * Different NPC player control methods, speed and targets are determined according to 
+ * different games
  * 
- * @author (your name)
- * @version (a version number or a date)
+ * @author Eric Zhang, Kevin Wang
+ * @version January 2022 
  */
 public class NPCPlayer extends Player {
-
     private Vector2 targetPos;
     private SimpleTimer timer;
     private int delay = 0;
 
+    /**
+     * Constructor for the NPCPlayer class - calls its superclass and initializes a timer
+     * 
+     * @param name player name (eg mario, luigi)
+     * @param scale player sprite size scale
+     */
     public NPCPlayer(String name, float scale) {
         super(name, scale);
-
         timer = new SimpleTimer();
     }
 

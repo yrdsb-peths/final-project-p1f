@@ -1,11 +1,11 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
-/* 
- * Player that plays minigames
+/**
+ * Decides how animated players act in different mini-games
  * 
- * @param name player name (eg mario, luigi)
- * @param scale player sprite size scale
+ * @author Eric Zhang
+ * @version January 2022 
  */
 public class Player extends SmoothMover implements Comparable<Player> {
     private String name;
@@ -27,6 +27,12 @@ public class Player extends SmoothMover implements Comparable<Player> {
 
     protected AnimState animState;
 
+    /**
+     * Constructor for the Player superclass 
+     * 
+     * @param name player name (eg mario, luigi)
+     * @param scale player sprite size scale
+     */
     public Player(String name, float scale) {
         this.name = name;
         this.scale = scale;
@@ -36,6 +42,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
         jumpSound.setVolume(40);
     }
 
+    /**
+     * Method that decides the animation and method of playing in different mini-games
+     */
     public void act() {
         if (getWorld().getClass() == MemoryMatch.class) {
             playMemoryMatch();
@@ -53,6 +62,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
         updateAnim();
     }
 
+    /**
+     * Method to enable players to walk in left/right
+     */
     private void anim1D() {
         if (lastMove.getExactX() == 0) {
             animState = AnimState.IDLE;
@@ -61,6 +73,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
         }
     }
 
+    /**
+     * Method to enable players to walk in up/down/left/right
+     */
     private void anim2D() {
         if (lastMove.getExactX() == 0 && lastMove.getExactY() == 0) {
             animState = AnimState.IDLE;
@@ -69,6 +84,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
         }
     }
 
+    /**
+     * Method that
+     */
     protected void updateAnim() {
         if (lastMove.getExactX() > 0) {
             dir = Direction.RIGHT;
@@ -98,7 +116,7 @@ public class Player extends SmoothMover implements Comparable<Player> {
     }
 
     /**
-     * setup animation based on name
+     * Method that setups animation based on player name
      */
     private void setupAnim() {
         String file = "";
@@ -154,6 +172,10 @@ public class Player extends SmoothMover implements Comparable<Player> {
         }
     }
 
+    /**
+     * Method that decides the final score of the BombsAway mini-game based on time 
+     * and how players die
+     */
     protected void playBombsAway() {
         score = getWorldOfType(BombsAway.class).getTime();
         if (this.isTouching(Bomb.class)){
@@ -201,7 +223,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
     }
 
     /**
-     * compare players based on score
+     * Method that compares players based on score
+     * 
      * @param other player
      * @return -1 if this player has lower score, 1 if higher, 0 if equal
      */
