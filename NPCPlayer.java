@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class NPCPlayer extends Player {
-
     private Vector2 targetPos;
     private SimpleTimer timer;
     private int delay = 0;
@@ -71,13 +70,18 @@ public class NPCPlayer extends Player {
     private int moveDir = 0;
 
     protected void playBombsAway() {
+        //If this is touching a bomb, play the defeat sound effect and remove itself
+        //The score is equal to the time survived in Bombs Away
         super.playBombsAway();
 
         try {
+            //Initializing actors above, to the left, and to the right
             Actor up = null;
             Actor left = null;
             Actor right = null;
-
+            
+            //Check for bombs above, to the left, and to the right
+            //If bombs are present, set the actor to the Bomb class
             for (int i = -40; i <= 40; i+=5) {
                 if (up == null) {
                     for (int y=50;y<=200;y+=10) {
@@ -92,7 +96,11 @@ public class NPCPlayer extends Player {
                 if (right == null)
                     right = getOneObjectAtOffset(30, 50+i, Bomb.class);
             }
+            //If there is a bomb above:
             if (up != null) {
+                //If there are no bombs beside:
+                    //-if the bomb above is closer to the left, move right
+                    //else if the bomb above is closer to the right, move left
                 if (left==null && right==null) { 
                     if (up.getX() < getX()) {
                         moveDir = 1;
@@ -100,19 +108,23 @@ public class NPCPlayer extends Player {
                         moveDir = -1;
                     }
                 } else if (left != null) {
+                    //If there is a bomb to the left, move right
                     moveDir = 1;
                 } else if (right != null) {
+                    //If there is a bomb to the right, move left
                     moveDir = -1;
                 }
             } else {
+                //If there is no threat, do not move
                 moveDir = 0;
             }
+            //Move around the world
             move(new Vector2(moveDir * 3f, 0));
         } catch (IllegalStateException e) {
-
+            //The NPCs throw an IllegalStateException error if the player is defeated before them, thus the code is in a try and catch
         }
     }
-
+    
     public void resetTarget() {
         super.resetTarget();
         timer.mark();

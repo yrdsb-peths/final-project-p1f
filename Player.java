@@ -136,10 +136,16 @@ public class Player extends SmoothMover implements Comparable<Player> {
     }
 
     protected void playBombsAway() {
+        //Their score increases the more they survive
         score = getWorldOfType(BombsAway.class).getTime();
+        
+        //If the player is touching a bob-omb, they are defeated.
         if(this.isTouching(Bomb.class)){
+            //Play the defeat sound
             GreenfootSound death = new GreenfootSound("death.mp3");
             death.play();
+            
+            //Remove the player (since they are defeated)
             getWorld().removeObject(this);
         }
     }
