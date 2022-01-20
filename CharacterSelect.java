@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CharacterSelect here.
+ * Provide users with 4 player options
  * 
  * @author Kevin
  * @version (a version number or a date)

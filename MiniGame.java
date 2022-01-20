@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo) 
 import java.util.ArrayList;
 /**
- * Write a description of class MiniGame here.
+ * MiniGame Superclass - All mini-game classes inherit from it, contains basic functions 
+ * of each game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class MiniGame extends World
 {
-    
     protected ArrayList<Player> players;
     /**
      * Constructor for objects of class MiniGame.
@@ -22,6 +22,11 @@ public class MiniGame extends World
         setPaintOrder(HumanPlayer.class, NPCPlayer.class);
     }
 
+    /**
+     * Method to set up all players - 1 human player and 3 npc players
+     * 
+     * @param scale Scale of players added
+     */
     protected void setupPlayers(float scale) {
         players = new ArrayList<Player>();
         ArrayList<MapCharacter> ref = WorldMap.instance.getPlayers();
@@ -35,6 +40,9 @@ public class MiniGame extends World
     }
 
     private boolean isFirstAct = true;
+    /**
+     * Method that calls the firstAct method if the isFirstAct boolearn is true, and sets it to false after.
+     */
     public void act() {
         if (isFirstAct) {
             firstAct();
@@ -46,12 +54,17 @@ public class MiniGame extends World
         
     }
     
+    /**
+     * Method to get game name
+     * 
+     * @return game name - Unnamed MiniGame
+     */
     public String toString() {
         return "Unnamed MiniGame";
     }
 
     /**
-     * update world scores
+     * Method that sorts player scores and update world scores
      */
     protected void updateWorld() {
         MainSound.stop();

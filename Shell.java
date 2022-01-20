@@ -3,20 +3,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Shell object that moves left / right to attack player
  * 
- * @param int initDir -1 for left, 1 for right
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class Shell extends SmoothMover
 {
-    
     private final int leftBorder = 150;
     private final int rightBorder = 850;
     
     private Animation anim;
     private float speed = 4f;
 
+    /**
+     * Constructor for the Shell class - sets random colors of shells and speed
+     * 
+     *  @param int initDir -1 for left, 1 for right
+     */
     public Shell(int initDir) {
         // randomly choose color
-        int r = Utils.random(1,4);
+        int r = Utils.random(1,4); 
         String col;
         switch (r) {
             case 1: col = "red"; break;
@@ -27,10 +32,14 @@ public class Shell extends SmoothMover
         }
         this.anim = new Animation(this, "shell/" + col, 4, 24, 2f);
         this.speed *= initDir;
-        
     }
 
     private boolean firstAct = true;
+    /**
+     * Method that controls the whole path of shells.
+     * Spawn shells from one side of the border and remove them once they reach the 
+     * other side of the border
+     */
     public void act() {
         if (firstAct) {
             firstAct = false;

@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SpeedyShells here.
+ * A dodge mini game that challenges players to dodge all shells, 
+ * and becomes more challenging over time
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class SpeedyShells extends MiniGame
 {
-
     private int lDelay, rDelay;
     private SimpleTimer lTimer, rTimer;
     private static final int groundLevel = 600 - 110;
@@ -18,7 +18,7 @@ public class SpeedyShells extends MiniGame
     private Counter timeCount;
     
     /**
-     * Constructor for objects of class SpeedyShells.
+     * Constructor for objects of class SpeedyShells - prepares background, difficulty and music.
      * 
      */
     public SpeedyShells() {
@@ -31,8 +31,11 @@ public class SpeedyShells extends MiniGame
         MainSound.play();
     }
     
+    /**
+     * Method that sets up players and their locations, time counter, various timers, and 
+     * various delay control variables
+     */
     protected void firstAct() {
-
         setupPlayers(3f);
         int pos=350, distance=100;
         for (Player p : players) {
@@ -52,6 +55,10 @@ public class SpeedyShells extends MiniGame
         timer.mark(); 
     }
 
+    /**
+     * Method that increases the difficulty level based on 2 timers, and tracks the gaming time based on 2 other timers
+     * End the game and updates world when time limit is reached or all players are eliminated,
+     */
     public void act() {
         super.act();
         if (lTimer.millisElapsed() > lDelay) {
@@ -78,14 +85,29 @@ public class SpeedyShells extends MiniGame
         timeCount.setValue((30000 - timer.millisElapsed()) / 1000);
     }
 
+    /**
+     * Method to get time
+     * 
+     * @return timer.millisElapsed()
+     */
     public int getTime() {
         return timer.millisElapsed();
     }
     
+    /**
+     * Method to get ground level
+     * 
+     * @return groundLevel
+     */
     public static int getGround() {
         return groundLevel;
     }
 
+    /**
+     * Method to get game name
+     * 
+     * @return game name - SpeedyShells
+     */
     public String toString() {
         return "SpeedyShells";
     }

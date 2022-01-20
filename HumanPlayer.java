@@ -1,17 +1,28 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Different player control methods and player speed are determined according to 
+ * different games
  * 
- * 
+ * @author Eric Zhang
+ * @version January 2022 
  */
 public class HumanPlayer extends Player
 {
-
+    /**
+     * Constructor for the HumanPlayer class - calls its superclass
+     * 
+     * @param name player name (eg mario, luigi)
+     * @param scale player sprite size scale
+     */
     public HumanPlayer(String name, float scale) {
         super(name, scale);
     } 
 
+    /**
+     * Method that particularly control the movements and speed of players in the 
+     * MemoryMach mini-game. Allows users to play using WASD keys.
+     */
     protected void playMemoryMatch() {
         super.playMemoryMatch();
         float speed = 3f;
@@ -29,6 +40,10 @@ public class HumanPlayer extends Player
         move(d);
     }
 
+    /**
+     * Method that particularly control the movements and speed of players in the 
+     * Look mini-game. Allows users to travel to 5 positions using WASD keys.
+     */
     protected void playLook() {
         super.playLook();
         int w = getWorld().getWidth();
@@ -45,6 +60,10 @@ public class HumanPlayer extends Player
         }
     }
 
+    /**
+     * Method that particularly control the movements and speed of players in the 
+     * BombsAway mini-game. Allows users to move left and right using AD keys.
+     */
     protected void playBombsAway() {
         super.playBombsAway();
         float speed = 3f;
@@ -59,6 +78,10 @@ public class HumanPlayer extends Player
     }
 
     private int spaceFrames = 0;
+    /**
+     * Method that particularly control the jumping frames of players in the 
+     * SpeedyShells mini-game. Allows users to jump low or high using the space key.
+     */
     protected void playSpeedyShells() {
         super.playSpeedyShells();
         // get space key down
