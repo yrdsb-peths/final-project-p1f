@@ -10,3 +10,4 @@ VERSION or DATE: 1.0.0
 HOW TO START THIS PROJECT: Open the Greenfoot file, right-click on TitleScreen and select "Create new instance".
 AUTHORS: Kevin Wang, Eric Zhang, Victoria Zhang, Tanya Gu
 USER INSTRUCTIONS: To start playing Village Party, click on a character's sprite on the Character Select Screen. Follow the tutorials throughout the game to learn how to play the minigames, collect points, and win.
+SPECIFICS: Recursive merge sort can be found in class Utils.
