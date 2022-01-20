@@ -1,10 +1,12 @@
 #BlueJ class context
 comment0.target=Dice
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Dice\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Controls\ animated\ dice\ in\ the\ world\ map\r\n\ \r\n\ @author\ Eric\ Zhang\ \r\n\ @version\ January\ 2022\r\n
 comment1.params=
 comment1.target=Dice()
+comment1.text=\r\n\ Constructor\ for\ the\ Dice\ class\ -\ initializes\ dice\ rolling\ \ \r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Method\ that\ controls\ dice\ animation\r\n
 comment3.params=
 comment3.target=void\ stopRoll()
 comment3.text=\r\n\ Method\ that\ stops\ the\ roll\r\n

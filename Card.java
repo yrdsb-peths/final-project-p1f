@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class Cards here.
+ * Provide cards to flip in the MemoryMatch mini-game
  * 
  * @author Eric Zhang, Tanya Gu
  * @version January 2022

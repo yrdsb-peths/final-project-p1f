@@ -1,8 +1,8 @@
 /**
- * Write a description of class MapNode here.
+ * Nodes on maps where players stop on
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public abstract class MapNode  
 {

@@ -1,14 +1,19 @@
 #BlueJ class context
 comment0.target=DicePopUp
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ DicePopUp\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Displays\ players'\ dice\ before\ playing\ each\ mini-game.\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\ \r\n
 comment1.params=player
 comment1.target=DicePopUp(MapCharacter)
+comment1.text=\r\n\ Constructor\ for\ the\ ScorePopUp\ class\ -\ calls\ its\ superclass\ and\ initializes\ player\ images\ \r\n\ \r\n\ @param\ player\ player\ to\ roll\ dice\r\n
 comment2.params=
 comment2.target=void\ firstAct()
+comment2.text=\r\n\ Method\ that\ displays\ current\ player\ dice\r\n
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ Method\ that\ controls\ dice\ disappearance\ when\ finished\r\n
 comment4.params=
 comment4.target=void\ onExit()
+comment4.text=\r\n\ Method\ to\ exit\ dice\ screen\r\n
 comment5.params=
 comment5.target=int\ rollResult()
+comment5.text=\r\n\ Method\ to\ return\ the\ result\ of\ dice\ roll\r\n\ \r\n\ @return\ dice.rollResult()\r\n
 numComments=6

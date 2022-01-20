@@ -1,8 +1,8 @@
 /**
- * Write a description of class EmptyNode here.
+ * Nodes on the world map that does nothing to players - just act as a stop
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class EmptyNode extends MapNode 
 {

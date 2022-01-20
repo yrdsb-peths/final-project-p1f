@@ -6,8 +6,8 @@ import java.util.LinkedList;
 /**
  * Write a description of class WorldMap here.
  * 
- * @author (your name)
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class WorldMap extends World
 {
@@ -26,7 +26,7 @@ public class WorldMap extends World
     private SimpleTimer timer;
      
     /**
-     * WorldMap Constructor
+     * WorldMap Constructor - sets up timer, rounds, players and path for players to walk
      *
      */
     public WorldMap() {
@@ -96,6 +96,10 @@ public class WorldMap extends World
     }
     
     boolean test=false;
+    /**
+     * Method that controls dice all components of the map, including players, rounds, dice,
+     * and pop-ups
+     */
     public void act() {
         if (test) return;
 
@@ -105,7 +109,7 @@ public class WorldMap extends World
         if (scorePopUp != null) {
             return;
         }
-        if (roundsLeft == 0) {
+        if (roundsLeft == 0) { // game ends
             Greenfoot.setWorld(new GameOverScreen(playersRef));
             return;
         }
@@ -159,7 +163,7 @@ public class WorldMap extends World
 
     private MiniGame prevGame;
     /**
-     * return instance of a random minigame
+     * Method that returns instance of a random minigame
      */
     private MiniGame getRandomMiniGame() {
         MiniGame game;
@@ -183,12 +187,20 @@ public class WorldMap extends World
         return game;
     }
     
+    /**
+     * Method that adds score to players
+     * 
+     * @param addedCoins list of coins that will be added
+     */
     public void addScores(ArrayList<Player> addedCoins) {
         scorePopUp = new ScorePopUp(playersRef, addedCoins);
         addObject(scorePopUp, 0, 0);
         updateCoinLabels();
     }
 
+    /**
+     * Method that updates the coin labels of players
+     */
     public void updateCoinLabels() {
         for (int i=0;i<coinLabels.size();i++) {
             String v = String.valueOf(playersRef.get(i).getCoins());
@@ -197,7 +209,7 @@ public class WorldMap extends World
     }
 
     /**
-     * create all nodes in path
+     * Method that creates all nodes in path
      */
     private void setupPath() {
         path = new ArrayList<MapNode>();
@@ -217,6 +229,9 @@ public class WorldMap extends World
         path.add(new GoodNode(140, 280));
     }
 
+    /**
+     * Method that draws the world, players and players'coins
+     */
     private void drawWorld() {
         GreenfootImage img = new GreenfootImage("world_map.png");
         coinLabels = new ArrayList<Label>();
@@ -229,6 +244,9 @@ public class WorldMap extends World
         setBackground(img);
     }
     
+    /**
+     * Method that plays background music
+     */
     public void startSound() {
         MainSound.setSound(new GreenfootSound("MainTheme.wav"));
         MainSound.play();

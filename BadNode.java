@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class BadNode here.
+ * Nodes on the world map that make players loose coins
  * 
- * @author Victoria, Eric
- * @version (a version number or a date)
+ * @author Victoria Zhang, Eric Zhang
+ * @version January 2022
  */
 public class BadNode extends MapNode 
 {

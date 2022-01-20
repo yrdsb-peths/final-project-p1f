@@ -8,7 +8,7 @@ public class MainSound {
     private static GreenfootSound sound;
     
     /**
-     * sets the current sound
+     * Method that sets the current sound
      * 
      * @param GreenfootSound sound
      */
@@ -18,7 +18,7 @@ public class MainSound {
     }
     
     /**
-     * plays the sound on repeat
+     * Method that plays the sound on repeat
      * 
      */
     public static void play() {
@@ -26,7 +26,7 @@ public class MainSound {
     }
     
     /**
-     * stops the current sound playing (does nothing if there is no sound)
+     * Method that stops the current sound playing (does nothing if there is no sound)
      * 
      */
     public static void stop() {
@@ -36,7 +36,7 @@ public class MainSound {
     }
 
     /**
-     * set volume
+     * Method that sets volume
      */
     public static void setVolume(int volume) {
         sound.setVolume(volume);

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MapCharacter here.
+ * Decides how animated players act in the world map
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022 
  */
 public abstract class MapCharacter extends SmoothMover implements Comparable<MapCharacter>
 {
@@ -23,6 +23,11 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         this("Unnamed");
     }
     
+    /**
+     * Constructor for the MapCharacter superclass 
+     * 
+     * @param name name of character
+     */
     public MapCharacter(String name) {
         this.name = name;
         pathIdx = 0;
@@ -32,12 +37,16 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         coins = 5;
     }
     
+    /**
+     * Method that updates characters' animation 
+     */
     public void act() {
         updateAnim();
     }
 
     /**
-     * follows the path of the world map
+     * Method thatfollows the path of the world map
+     * 
      * @return boolean true if the character has reached the next node in the path
      */
     public boolean followPath() {
@@ -53,6 +62,9 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         return false;
     }
     
+    /**
+     * Method to enable animated characters to move
+     */
     private void updateAnim() {
         if (lastMove.getExactX() > 0) {
             dir = Direction.RIGHT;
@@ -73,7 +85,7 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
     
     /**
-     * based on name
+     * Method that setups animation based on character name
      */
     private void setupAnim() {
         String file = "";
@@ -94,8 +106,9 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * compare to other characters
+     * Method that compares to other characters
      * (will be sorted in decreasing order)
+     * 
      * @param MapCharacter other
      * @return int -1 if this character is less than other, 0 if equal, 1 if greater
      */
@@ -114,7 +127,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     public abstract boolean closePopUp();
 
     /**
-     * add coins to the character
+     * Method to add coins to the character
+     * 
      * @param int coins
      */
     public void addCoins(int coins) {
@@ -126,7 +140,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
     
     /**
-     * get the coins of character
+     * Method to get the coins of character
+     * 
      * @return int coins
      */
     public int getCoins() { 
@@ -134,7 +149,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * gets the name of the character
+     * Method to get the name of the character
+     * 
      * @return String name
      */
     public String getName() { 
@@ -142,7 +158,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * gets the state of the character
+     * Method to get the state of the character
+     * 
      * @return State mapCharacterState
      */
     public State getState() { 
@@ -150,7 +167,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * sets the state of the character
+     * Method to set the state of the character
+     * 
      * @param State mapCharacterState
      */
     public void setState(State state) { 
@@ -158,7 +176,8 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * sets how many steps the character should take
+     * Method to set how many steps the character should take
+     * 
      * @param steps number of steps
      */
     public void setSteps(int steps) { 
@@ -166,14 +185,15 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
     }
 
     /**
-     * decreases the number of steps the character has left
+     * Method to decreases the number of steps the character has left
      */
     public void decreaseStep() { 
         this.steps--; 
     }
 
     /**
-     * returns the character's default image
+     * Method that returns the character's default image
+     * 
      * @return GreenfootImage image
      */
     public GreenfootImage getRightImage() { 

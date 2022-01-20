@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class PopUp here.
+ * Displays various pop-up screens throughout the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022 
  */
 public class PopUp extends Actor
 {
@@ -13,6 +13,9 @@ public class PopUp extends Actor
     protected Boolean canClose;
     private Boolean closed;
     
+    /**
+     * Constructor for the PopUp superclass 
+     */
     public PopUp() {
         setupBG();
         canClose = true;
@@ -20,6 +23,9 @@ public class PopUp extends Actor
     } 
 
     boolean isFirstAct = true;
+    /**
+     * Method that controls actions and exit status of pop-ups
+     */
     public void act() {
         if (isFirstAct) {
             firstAct();
@@ -30,12 +36,18 @@ public class PopUp extends Actor
         }
     }
 
+    /**
+     * Method to exit pop-ups
+     */
     protected void onExit() {
         closed = true;
         getWorld().removeObject(exitButton);
         getWorld().removeObject(this);
     }
 
+    /**
+     * Method that sets up a panel for pop-ups
+     */
     protected void setupBG() {
         panel = new GreenfootImage(WorldMap.instance.getWidth(), WorldMap.instance.getHeight());
         panel.setColor(new Color(0, 0, 0, 200));
@@ -44,7 +56,7 @@ public class PopUp extends Actor
     }
 
     /**
-     * called on the first act update after popup is added to the world
+     * Method called on the first act update after popup is added to the world
      */
     public void firstAct() {
         isFirstAct = false;
@@ -53,6 +65,11 @@ public class PopUp extends Actor
         WorldMap.instance.addObject(exitButton, 850, 550);
     }
 
+    /**
+     * Method that checks if is closed
+     * 
+     * @return boolean true if is closed
+     */
     public boolean isClosed() {
         return closed;
     }

@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class GoodNode here.
+ * Nodes on the world map that win players coins
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class GoodNode extends MapNode 
 { 

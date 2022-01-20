@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Card
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Cards\ here.\r\n\ \r\n\ @author\ Eric\ Zhang,\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
+comment0.text=\r\n\ Provide\ cards\ to\ flip\ in\ the\ MemoryMatch\ mini-game\r\n\ \r\n\ @author\ Eric\ Zhang,\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
 comment1.params=id
 comment1.target=Card(int)
 comment1.text=\r\n\ Constructor\ for\ the\ Card\ class\r\n\ \r\n\ @param\ id\ ID\ for\ each\ card\ \ \ \ \r\n

@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=Coin
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Coins\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Animates\ coin\ to\ spin\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\r\n
 comment1.params=
 comment1.target=Coin()
 comment1.text=\r\n\ Constructor\ for\ Coin\ Class\ -\ sets\ the\ image\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Called\ every\ act;\ Make\ the\ images\ animated\r\n
+comment2.text=\r\n\ Method\ that\ animates\ the\ images\r\n
 comment3.params=amnt
 comment3.target=void\ setSpin(int)
-comment3.text=\r\n\ spin\ the\ coin\ a\ certain\ amount\ of\ times\r\n\ @param\ amnt\ the\ amount\ of\ times\r\n
+comment3.text=\r\n\ Method\ that\ spins\ the\ coin\ a\ certain\ amount\ of\ times\r\n\ \r\n\ @param\ amnt\ the\ amount\ of\ times\r\n
 numComments=4

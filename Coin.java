@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Coins here.
+ * Animates coin to spin
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class Coin extends Actor
 {
@@ -19,7 +19,7 @@ public class Coin extends Actor
     }
 
     /**
-     * Called every act; Make the images animated
+     * Method that animates the images
      */
     public void act() {
         if (spinAmount > 0) {
@@ -31,7 +31,8 @@ public class Coin extends Actor
     }
 
     /**
-     * spin the coin a certain amount of times
+     * Method that spins the coin a certain amount of times
+     * 
      * @param amnt the amount of times
      */
     public void setSpin(int amnt) {

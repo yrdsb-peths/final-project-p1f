@@ -15,5 +15,5 @@ comment4.target=Player\ searchScores(java.lang.String)
 comment4.text=\r\n\ Method\ to\ search\ for\ player's\ index\ in\ addedCoins\ arraylist\r\n\ \r\n\ @return\ Player\ player\ object\ with\ scores\r\n
 comment5.params=
 comment5.target=void\ onExit()
-comment5.text=\r\n\ Method\ to\ exist\ score\ board\r\n
+comment5.text=\r\n\ Method\ to\ exit\ score\ board\r\n
 numComments=6

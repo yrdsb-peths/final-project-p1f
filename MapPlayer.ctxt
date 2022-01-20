@@ -1,15 +1,16 @@
 #BlueJ class context
 comment0.target=MapPlayer
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MapPlayer\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Controls\ human\ player's\ dice\ in\ world\ map\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\ \r\n
 comment1.params=name
 comment1.target=MapPlayer(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ the\ MapPlayer\ class\ -\ calls\ its\ superclass\r\n\ \r\n\ @param\ name\ player\ name\ \r\n
 comment2.params=dice
 comment2.target=boolean\ stopDice(Dice)
-comment2.text=\r\n\ return\ true\ when\ player\ clicks\r\n\ @param\ dice\r\n
+comment2.text=\r\n\ Method\ that\ returns\ true\ when\ player\ clicks\r\n\ \r\n\ @param\ dice\r\n
 comment3.params=dice
 comment3.target=void\ startDice(Dice)
-comment3.text=\r\n\ do\ nothing\ when\ dice\ starts\ rolling\r\n
+comment3.text=\r\n\ Method\ that\ does\ nothing\ when\ dice\ starts\ rolling\r\n
 comment4.params=
 comment4.target=boolean\ closePopUp()
-comment4.text=\r\n\ dont\ close\ pop\ up,\r\n\ will\ be\ handled\ by\ button\ in\ PopUp\r\n\ @return\ false\r\n
+comment4.text=\r\n\ Method\ that\ doesn't\ close\ pop\ up,\r\n\ will\ be\ handled\ by\ button\ in\ PopUp\r\n\ \r\n\ @return\ false\r\n
 numComments=5

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Dice here.
+ * Controls animated dice in the world map
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang 
+ * @version January 2022
  */
 public class Dice extends Actor
 {
@@ -13,6 +13,10 @@ public class Dice extends Actor
     
     private GreenfootSound diceRolling = new GreenfootSound("Dice_Rolling.mp3");
     private GreenfootSound rollingEnded = new GreenfootSound("Rolling_Ended.mp3");
+    
+    /**
+     * Constructor for the Dice class - initializes dice rolling  
+     */
     public Dice() {
         // upload dice here
         rollAnim = new Animation(this, "Dice/", 6, 20, 2);
@@ -20,6 +24,9 @@ public class Dice extends Actor
         startRoll();
     }
     
+    /**
+     * Method that controls dice animation
+     */
     public void act() {
         rollAnim.periodicResize(paused); 
         rollAnim.animate();
@@ -58,5 +65,4 @@ public class Dice extends Actor
     public void hide() {
         getWorld().removeObject(this);
     }
-    
 }

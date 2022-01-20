@@ -2,8 +2,8 @@ import greenfoot.*;
 /**
  * Super good node! Like hitting a jackpot (not really)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Eric Zhang
+ * @version January 2022
  */
 public class SuperNode extends MapNode 
 { 

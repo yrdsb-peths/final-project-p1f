@@ -104,7 +104,7 @@ public class ScorePopUp extends PopUp
     }
 
     /**
-     * Method to exist score board
+     * Method to exit score board
      */
     protected void onExit() {
         super.onExit();
