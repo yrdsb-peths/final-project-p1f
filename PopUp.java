@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PopUp extends Actor
 {
     protected GreenfootImage panel;
-    private Button exitButton;
+    protected Button exitButton;
     protected Boolean canClose;
     private Boolean closed;
     

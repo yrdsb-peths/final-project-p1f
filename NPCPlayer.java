@@ -73,43 +73,65 @@ public class NPCPlayer extends Player {
     protected void playBombsAway() {
         super.playBombsAway();
 
-        try {
-            Actor up = null;
-            Actor left = null;
-            Actor right = null;
+        if (getWorld() == null) return;
+        Actor up = null;
+        Actor left = null;
+        Actor right = null;
 
-            for (int i = -40; i <= 40; i+=5) {
-                if (up == null) {
-                    for (int y=50;y<=200;y+=10) {
-                        if (getOneObjectAtOffset(i, -y, Bomb.class) != null) {
-                            up = getOneObjectAtOffset(i, -150, Bomb.class);
-                            break;
-                        }
+        for (int i = -40; i <= 40; i+=5) {
+            if (up == null) {
+                for (int y=50;y<=200;y+=10) {
+                    if (getOneObjectAtOffset(i, -y, Bomb.class) != null) {
+                        up = getOneObjectAtOffset(i, -150, Bomb.class);
+                        break;
                     }
                 }
-                if (left == null)
-                    left = getOneObjectAtOffset(-30, 50+i, Bomb.class);
-                if (right == null)
-                    right = getOneObjectAtOffset(30, 50+i, Bomb.class);
             }
-            if (up != null) {
-                if (left==null && right==null) { 
-                    if (up.getX() < getX()) {
-                        moveDir = 1;
-                    } else if (up.getX() > getX()) {
-                        moveDir = -1;
-                    }
-                } else if (left != null) {
+            if (left == null)
+                left = getOneObjectAtOffset(-30, 50+i, Bomb.class);
+            if (right == null)
+                right = getOneObjectAtOffset(30, 50+i, Bomb.class);
+        }
+        if (up != null) {
+            if (left==null && right==null) { 
+                if (up.getX() < getX()) {
                     moveDir = 1;
-                } else if (right != null) {
+                } else if (up.getX() > getX()) {
                     moveDir = -1;
                 }
-            } else {
-                moveDir = 0;
+            } else if (left != null) {
+                moveDir = 1;
+            } else if (right != null) {
+                moveDir = -1;
             }
-            move(new Vector2(moveDir * 3f, 0));
-        } catch (IllegalStateException e) {
+        } else {
+            moveDir = 0;
+        }
+        move(new Vector2(moveDir * 3f, 0)); 
+    }
 
+    protected void playSpeedyShells() {
+        super.playSpeedyShells();
+
+        if (getWorld()==null) return;
+
+        if (touchShellGround()) {
+            // detects shell
+            Actor left = getOneObjectAtOffset(-50, 30, Shell.class);
+            Actor right = getOneObjectAtOffset(50, 30, Shell.class); 
+            if (left!=null || right!=null) {
+                float r = Utils.random();
+                // 10% chance of "missing jump"
+                if (r < 0.1f) {
+                    return;
+                }
+                r = Utils.random();
+                // 50% chance to jump high / low
+                if (r < 0.5f) 
+                    jumpHighShell();
+                else
+                    jumpShell();
+            }
         }
     }
 

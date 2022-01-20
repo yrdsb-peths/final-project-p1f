@@ -26,6 +26,10 @@ public class DicePopUp extends PopUp
         WorldMap.instance.addObject(dice, 500, 300);
         player.startDice(dice);
         canClose = false;
+
+        if (player.getClass() == MapNPC.class) {
+            WorldMap.instance.removeObject(exitButton);
+        }
     }
 
     public void act() {

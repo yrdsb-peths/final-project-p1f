@@ -31,7 +31,6 @@ public class WorldMap extends World
      */
     public WorldMap() {
         super(1000, 600, 1);
-        setPaintOrder(Button.class, Dice.class, PopUp.class, MapPlayer.class, MapNPC.class);
         instance = this; 
 
         setupPath();
@@ -167,11 +166,12 @@ public class WorldMap extends World
         
         MainSound.stop();
         while (true) {
-            int r = Utils.random(1, 3);
+            int r = Utils.random(1, 4);
             switch (r) {
                 case 1: game = new MemoryMatch(); break;
                 case 2: game = new Look(); break;
                 case 3: game = new BombsAway(); break;
+                case 4: game = new SpeedyShells(); break;
                 default: game = new MemoryMatch(); break;
                 // add other minigames here
             }

@@ -12,6 +12,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
     private float scale;
     private int score;
     protected Animation lWalk, rWalk, lIdle, rIdle;
+    
+    protected GreenfootSound jumpSound = new GreenfootSound("jump.mp3");
 
     protected enum Direction {
         LEFT, RIGHT
@@ -31,17 +33,40 @@ public class Player extends SmoothMover implements Comparable<Player> {
         dir = Direction.RIGHT;
         animState = AnimState.IDLE;
         setupAnim();
+        jumpSound.setVolume(40);
     }
 
     public void act() {
         if (getWorld().getClass() == MemoryMatch.class) {
             playMemoryMatch();
+            anim2D();
         } else if (getWorld().getClass() == Look.class) {
             playLook();
+            anim2D();
         } else if (getWorld().getClass() == BombsAway.class) {
             playBombsAway();
+            anim1D();
+        } else if (getWorld().getClass() == SpeedyShells.class) {
+            playSpeedyShells();
+            anim1D();
         }
         updateAnim();
+    }
+
+    private void anim1D() {
+        if (lastMove.getExactX() == 0) {
+            animState = AnimState.IDLE;
+        } else {
+            animState = AnimState.MOVE;
+        }
+    }
+
+    private void anim2D() {
+        if (lastMove.getExactX() == 0 && lastMove.getExactY() == 0) {
+            animState = AnimState.IDLE;
+        } else {
+            animState = AnimState.MOVE;
+        }
     }
 
     protected void updateAnim() {
@@ -49,12 +74,6 @@ public class Player extends SmoothMover implements Comparable<Player> {
             dir = Direction.RIGHT;
         } else if (lastMove.getExactX() < 0) {
             dir = Direction.LEFT;
-        }
-
-        if (lastMove.getExactX() == 0 && lastMove.getExactY() == 0) {
-            animState = AnimState.IDLE;
-        } else {
-            animState = AnimState.MOVE;
         }
 
         if (animState == AnimState.IDLE) {
@@ -137,11 +156,48 @@ public class Player extends SmoothMover implements Comparable<Player> {
 
     protected void playBombsAway() {
         score = getWorldOfType(BombsAway.class).getTime();
-        if(this.isTouching(Bomb.class)){
+        if (this.isTouching(Bomb.class)){
             GreenfootSound death = new GreenfootSound("death.mp3");
             death.play();
             getWorld().removeObject(this);
         }
+    }
+
+    protected float yVel = 0;
+    protected void playSpeedyShells() { 
+        // gravity
+        yVel += 0.5f;
+        if (yVel > 10) {
+            yVel = 10f;
+        }
+        move(new Vector2(0, yVel)); 
+        if (touchShellGround()) {
+            yVel = 0;
+            setLocation(getExactX(), SpeedyShells.getGround()-20);
+        }
+        
+        // update score
+        score = getWorldOfType(SpeedyShells.class).getTime();
+        // if touching shell, this player loses
+        if (this.isTouching(Shell.class)) {
+            GreenfootSound death = new GreenfootSound("death.mp3");
+            death.play();
+            getWorld().removeObject(this);
+        }
+    }
+
+    protected void jumpShell() {
+        jumpSound.play();
+        yVel = -9.5f;
+    }
+    
+    protected void jumpHighShell() {
+        jumpSound.play();
+        yVel = -13;
+    }
+    
+    protected boolean touchShellGround() {
+        return getExactY() >= SpeedyShells.getGround()-20;
     }
 
     /**

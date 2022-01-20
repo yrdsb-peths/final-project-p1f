@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
+
 /**
  * A dodge mini game that challenges players to dodge all bombs, 
  * which becomes more challenging over time
