@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class CharacterSelect here.
  * 
- * @author (your name) 
+ * @author Kevin
  * @version (a version number or a date)
  */
 public class CharacterSelect extends World
@@ -41,6 +41,10 @@ public class CharacterSelect extends World
         addObject(koopaR, 388, 463);
     }
     
+    /**
+     * Allows the player to select 1 out of 4 avaliable characters.
+     * The selection must be done before the game continues to WorldMap.
+     */
     public void act(){
         if(CharSelectChar.getNumClicks() >= 1) {
             MainSound.stop();
