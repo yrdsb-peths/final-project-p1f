@@ -44,11 +44,14 @@ public class GameOverScreen extends World
      * Method that animates the background and checks if the 
      * re-play button is clicked, if so, return to title screen
      */
-    int imageIndex = 0; 
+    int imageIndex = 0, fr = 0;
     public void act() {
-        setBackground(bkg[imageIndex]);
-        Greenfoot.delay(5);
-        imageIndex = (imageIndex + 1) % bkg.length;
+        if (fr == 5) {
+            setBackground(bkg[imageIndex]);
+            imageIndex = (imageIndex + 1) % bkg.length;
+            fr = 0;
+        }
+        fr++;
         
         if (Greenfoot.mouseClicked(backToTitle)) { 
             Greenfoot.setWorld(new TitleScreen());

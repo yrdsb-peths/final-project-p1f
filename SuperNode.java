@@ -1,14 +1,14 @@
 import greenfoot.*;
 /**
- * Write a description of class GoodNode here.
+ * Super good node! Like hitting a jackpot (not really)
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class GoodNode extends MapNode 
+public class SuperNode extends MapNode 
 { 
     private GreenfootSound goodNodeSound = new GreenfootSound("goodNodeSound.wav");
-    public GoodNode(float x, float y) {
+    public SuperNode(float x, float y) {
         super(x, y);
     }
 
@@ -22,13 +22,13 @@ public class GoodNode extends MapNode
     }
     
     /**
-     * Character that lands on a GoodNode is rewarded by gaining coins.
+     * Character that lands on a super node gets a whopping 10 coins
      * 
      * @param character Character who activated the GoodNode
      */
     public void activate(MapCharacter character) {
         // do good to player
-        character.addCoins(3);
+        character.addCoins(10);
         goodNodeSound.play();
     }
     

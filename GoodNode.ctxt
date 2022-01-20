@@ -8,5 +8,5 @@ comment2.target=void\ pass(MapCharacter)
 comment2.text=\r\n\ Countes\ the\ number\ of\ steps\ a\ character\ has\ used.\r\n\ \r\n\ @param\ character\ Character\ who\ passed\ the\ GoodNode\r\n
 comment3.params=character
 comment3.target=void\ activate(MapCharacter)
-comment3.text=\r\n\ Character\ that\ lands\ on\ a\ BadNode\ is\ rewarded\ by\ gaining\ 3\ coins.\r\n\ \r\n\ @param\ character\ Character\ who\ activated\ the\ GoodNode\r\n
+comment3.text=\r\n\ Character\ that\ lands\ on\ a\ GoodNode\ is\ rewarded\ by\ gaining\ coins.\r\n\ \r\n\ @param\ character\ Character\ who\ activated\ the\ GoodNode\r\n
 numComments=4

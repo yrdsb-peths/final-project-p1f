@@ -73,7 +73,7 @@ public class WorldMap extends World
             }
         }
         
-        for (Actor p : playersRef) {
+        for (MapCharacter p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
         
@@ -213,28 +213,8 @@ public class WorldMap extends World
         path.add(new GoodNode(680, 100));
         path.add(new BadNode(500, 100));
         path.add(new GoodNode(315, 100));
-        path.add(new GoodNode(140, 100)); // shop node
+        path.add(new SuperNode(140, 100)); // top left
         path.add(new GoodNode(140, 280));
-        /*
-        // old map path
-        path.add(new EmptyNode(335, 70));
-        path.add(new GoodNode(340, 120));
-        path.add(new GoodNode(340, 250));
-        path.add(new GameNode(340, 375));
-        path.add(new EmptyNode(340, 415));
-        path.add(new BadNode(525, 415));
-        path.add(new GoodNode(660, 415));
-        path.add(new GoodNode(800, 415));
-        path.add(new EmptyNode(915, 415));
-        path.add(new GameNode(910, 365));
-        path.add(new BadNode(910, 260));
-        path.add(new EmptyNode(870, 260));
-        path.add(new GoodNode(870, 150));
-        path.add(new EmptyNode(870, 70));
-        path.add(new GoodNode(790, 10));
-        path.add(new GameNode(630, 10));
-        path.add(new BadNode(490, 10));
-        */
     }
 
     private void drawWorld() {

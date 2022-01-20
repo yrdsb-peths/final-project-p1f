@@ -22,13 +22,13 @@ public class BadNode extends MapNode
     } 
     
     /**
-     * Character that lands on a BadNode is punished by losing 3 coins.
+     * Character that lands on a BadNode is punished by losing coins.
      * 
      * @param character Character who activated the BadNode
      */
     public void activate(MapCharacter character) {
         // do something bad to character
-        character.addCoins(-3);
+        character.addCoins(-5);
         badNodeSound.play();
     }
     

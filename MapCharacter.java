@@ -29,7 +29,7 @@ public abstract class MapCharacter extends SmoothMover implements Comparable<Map
         dir = Direction.RIGHT;
         state = State.IDLE;
         setupAnim();
-        coins = 0;
+        coins = 5;
     }
     
     public void act() {
