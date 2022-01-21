@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Level
+comment0.text=\r\n\ Updates\ levels\ for\ the\ look\ mini-game\r\n\ \r\n\ @author\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
+comment1.params=
+comment1.target=Level()
+comment1.text=\r\n\ Constructor\ for\ the\ Level\ class\ -\ sets\ images\r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Method\ that\ sets\ images\ based\ on\ the\ level\r\n
+numComments=3

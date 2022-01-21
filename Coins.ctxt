@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Coins
+comment0.text=\r\n\ Animates\ the\ coin\r\n\ \r\n\ @author\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
+comment1.params=
+comment1.target=Coins()
+comment1.text=\r\n\ Constructor\ for\ Coins\ Class\ -\ sets\ the\ image\ and\ time\ limit\r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Method\ that\ animates\ the\ coin\ for\ 2\ second\ if\ the\ coinSpin\ boolean\ is\ true\r\n
+numComments=3

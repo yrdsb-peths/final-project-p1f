@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=SpeedyShells
+comment0.text=\r\n\ A\ dodge\ mini\ game\ that\ challenges\ players\ to\ dodge\ all\ shells,\ \r\n\ and\ becomes\ more\ challenging\ over\ time\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\r\n
+comment1.params=
+comment1.target=SpeedyShells()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SpeedyShells\ -\ prepares\ background,\ difficulty\ and\ music.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ firstAct()
+comment2.text=\r\n\ Method\ that\ sets\ up\ players\ and\ their\ locations,\ time\ counter,\ various\ timers,\ and\ \r\n\ various\ delay\ control\ variables\r\n
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ Method\ that\ increases\ the\ difficulty\ level\ based\ on\ 2\ timers,\ and\ tracks\ the\ gaming\ time\ based\ on\ 2\ other\ timers\r\n\ End\ the\ game\ and\ updates\ world\ when\ time\ limit\ is\ reached\ or\ all\ players\ are\ eliminated,\r\n
+comment4.params=
+comment4.target=int\ getTime()
+comment4.text=\r\n\ Method\ to\ get\ time\r\n\ \r\n\ @return\ timer.millisElapsed()\r\n
+comment5.params=
+comment5.target=int\ getGround()
+comment5.text=\r\n\ Method\ to\ get\ ground\ level\r\n\ \r\n\ @return\ groundLevel\r\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\r\n\ Method\ to\ get\ game\ name\r\n\ \r\n\ @return\ game\ name\ -\ SpeedyShells\r\n
+numComments=7
