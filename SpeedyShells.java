@@ -83,6 +83,9 @@ public class SpeedyShells extends MiniGame
         difficulty++;
 
         timeCount.setValue((30000 - timer.millisElapsed()) / 1000);
+        if (timeCount.getValue() <= 0) {
+            timeCount.setValue(0);
+        }
     }
 
     /**

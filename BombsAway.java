@@ -54,6 +54,10 @@ public class BombsAway extends MiniGame
         if (timer.millisElapsed() > 1000) { // time count down every second
             timeCount.add(-1);
             timer.mark();
+            if (timeCount.getValue() < 0) {
+                // dont allow negative time
+                timeCount.setValue(0);
+            }
         }
         if (bombTimer.millisElapsed() > delay) {
             float difficulty = (levelTimer.millisElapsed() / 10000) + 1;

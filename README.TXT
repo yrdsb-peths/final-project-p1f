@@ -9,5 +9,12 @@ PURPOSE OF PROJECT: To create a game using Recursion, Sorting algorithms, and Da
 VERSION or DATE: 1.0.0
 HOW TO START THIS PROJECT: Open the Greenfoot file, right-click on TitleScreen and select "Create new instance".
 AUTHORS: Kevin Wang, Eric Zhang, Victoria Zhang, Tanya Gu
-USER INSTRUCTIONS: To start playing Village Party, click on a character's sprite on the Character Select Screen. Follow the tutorials throughout the game to learn how to play the minigames, collect points, and win.
-SPECIFICS: Recursive merge sort can be found in class Utils.
+USER INSTRUCTIONS: 
+  To start playing Village Party, click on a character's sprite on the Character Select Screen. 
+  Follow the tutorials throughout the game to learn how to play the minigames, collect points, and win.
+SPECIFICS: 
+  Recursive merge sort method can be found in class Utils. [Line 90]
+  The sort method is used in:
+    -ScorePopUp for sorting the player's total scores after a minigame, 
+    -MiniGame for sorting the player's minigame scores then adding corresponding coins to their totals 
+    -At the end of the game to see which player has the largest score
