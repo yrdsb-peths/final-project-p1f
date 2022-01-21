@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=MiniGame
+comment0.text=\r\n\ MiniGame\ Superclass\ -\ All\ mini-game\ classes\ inherit\ from\ it,\ contains\ basic\ functions\ \r\n\ of\ each\ game.\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\r\n
+comment1.params=
+comment1.target=MiniGame()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MiniGame.\r\n\ \r\n
+comment2.params=scale
+comment2.target=void\ setupPlayers(float)
+comment2.text=\r\n\ Method\ to\ set\ up\ all\ players\ -\ 1\ human\ player\ and\ 3\ npc\ players\r\n\ \r\n\ @param\ scale\ Scale\ of\ players\ added\r\n
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ Method\ that\ calls\ the\ firstAct\ method\ if\ the\ isFirstAct\ boolearn\ is\ true,\ and\ sets\ it\ to\ false\ after.\r\n
+comment4.params=
+comment4.target=void\ firstAct()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=\r\n\ Method\ to\ get\ game\ name\r\n\ \r\n\ @return\ game\ name\ -\ Unnamed\ MiniGame\r\n
+comment6.params=
+comment6.target=void\ updateWorld()
+comment6.text=\r\n\ Method\ that\ sorts\ player\ scores\ and\ update\ world\ scores\r\n
+numComments=7

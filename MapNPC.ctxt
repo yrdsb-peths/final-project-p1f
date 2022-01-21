@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=MapNPC
+comment0.text=\r\n\ Controls\ NPC's\ dice\ in\ world\ map\r\n\ \r\n\ @author\ Eric\ Zhang\r\n\ @version\ January\ 2022\ \r\n
+comment1.params=name
+comment1.target=MapNPC(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ the\ MapNPC\ class\ -\ calls\ its\ superclass\ and\ initializes\ a\ timer\r\n\ \r\n\ @param\ name\ npc\ name\ \r\n
+comment2.params=dice
+comment2.target=void\ startDice(Dice)
+comment2.text=\r\n\ Method\ that\ starts\ a\ timer\ for\ when\ "npc"\ clicks\ dice\r\n
+comment3.params=dice
+comment3.target=boolean\ stopDice(Dice)
+comment3.text=\r\n\ Method\ that\ stops\ dice\ after\ a\ certain\ time\r\n\ \r\n\ @param\ dice\ dice\ of\ npc\r\n\ @return\ true/false\ if\ dice\ should\ stop\r\n
+comment4.params=
+comment4.target=boolean\ closePopUp()
+comment4.text=\r\n\ Method\ that\ lets\ pop\ up\ know\ it\ can\ close,\ when\ "npc"\ clicks\ dice\r\n\ (aka\ after\ certain\ amount\ of\ time)\r\n\ \r\n\ @return\ boolean\ true\ if\ timer's\ millis\ time\ elapsed\ is\ greater\ than\ 1000\r\n
+numComments=5

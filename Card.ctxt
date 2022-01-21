@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Card
+comment0.text=\r\n\ Provide\ cards\ to\ flip\ in\ the\ MemoryMatch\ mini-game\r\n\ \r\n\ @author\ Eric\ Zhang,\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
+comment1.params=id
+comment1.target=Card(int)
+comment1.text=\r\n\ Constructor\ for\ the\ Card\ class\r\n\ \r\n\ @param\ id\ ID\ for\ each\ card\ \ \ \ \r\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Method\ that\ tracks\ wait\ time\ and\ flip\ cards\ if\ given\ conditions\ are\ true\r\n
+comment3.params=
+comment3.target=void\ cdTimeCountDown()
+comment3.text=\r\n\ Method\ that\ flips\ cards\ based\ on\ their\ status\ after\ 1\ second\ of\ wait\ time\r\n
+comment4.params=
+comment4.target=void\ flip()
+comment4.text=\r\n\ Method\ that\ flips\ a\ card\ if\ one's\ status\ is\ active\r\n\ Check\ if\ cards\ match\ when\ 2\ cards\ are\ flipped\ open\r\n
+comment5.params=file
+comment5.target=void\ setCardImage(java.lang.String)
+comment5.text=\r\n\ Method\ that\ resizes\ all\ cards\ images\r\n
+comment6.params=
+comment6.target=void\ checkMatch()
+comment6.text=\r\n\ Method\ that\ check\ if\ cards\ match\ based\ on\ their\ ids\ and\ determine\ if\ \r\n\ they\ should\ be\ flipped\ back\ or\ can\ no\ longer\ be\ flipped\ \r\n
+numComments=7

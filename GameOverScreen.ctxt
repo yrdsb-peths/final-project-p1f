@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=GameOverScreen
+comment0.text=\r\n\ Animated\ game\ over\ screen\ -\ determines\ the\ winning\ player\ and\ allows\ user\ to\ re-play\r\n\ \r\n\ @author\ Victoria\ Zhang,\ Eric\ Zhang,\ Tanya\ Gu\r\n\ @version\ January\ 2022\r\n
+comment1.params=playersRef
+comment1.target=GameOverScreen(java.util.ArrayList)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GameOverScreen.\r\n\ \r\n\ @param\ playersRef\ Players\ of\ the\ game\r\n
+comment2.params=
+comment2.target=void\ act()
+numComments=3
