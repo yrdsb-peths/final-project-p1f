@@ -7,8 +7,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SamuelSays extends MiniGame
 {
-    private static FlagManSign flagSign = new FlagManSign();
-    private static FlagMan flagMan = new FlagMan();
+    private FlagManSign flagSign = new FlagManSign();
+    private FlagMan flagMan = new FlagMan();
     
     //initializing the player
     GreenfootImage unknownSign = new GreenfootImage("uniFlag.png");
@@ -16,7 +16,7 @@ public class SamuelSays extends MiniGame
     
     GreenfootImage background = new GreenfootImage("SamuelSays.png");
     
-    private static SimpleTimer timer = new SimpleTimer();
+    private static SimpleTimer levelTimer = new SimpleTimer();
     /**
      * Constructor for objects of class ShyGuySays.
      * 
@@ -36,6 +36,7 @@ public class SamuelSays extends MiniGame
         addObject(flagSign, 185, 254);
         
         MainSound.setSound(new GreenfootSound("The Wide, Wide Ocean  Mario Party Music Extended OST Music [Music OST][Original Soundtrack].mp3"));
+        MainSound.setVolume(50);
         MainSound.play();
     }
     
@@ -46,18 +47,20 @@ public class SamuelSays extends MiniGame
             addObject(p, pos, 470);
             pos += distance;
         }
-        timer.mark();
+        levelTimer.mark();
     }
 
     public void act(){
         super.act();
-        if((timer.millisElapsed() >= 60000) || getObjects(Player.class).size() == 0){
+        if((levelTimer.millisElapsed() >= 60000) || getObjects(Player.class).size() == 0){
+            removeObject(flagMan);
+            removeObject(flagSign);
             updateWorld();
         }
     }
     
     public static int getTime(){
-        return timer.millisElapsed();
+        return levelTimer.millisElapsed();
     }
     
     public String toString(){

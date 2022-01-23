@@ -51,6 +51,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
             case "Luigi":
                 samuelL = new GreenfootImage("Luigi/LuigiL1.png");
                 samuelR = new GreenfootImage("Luigi/LuigiR1.png");
+                samuelL.scale(48, 72);
+                samuelR.scale(48, 72);
                 break;
             case "KoopaRed":
                 samuelL = new GreenfootImage("Koopa/redL1.png");

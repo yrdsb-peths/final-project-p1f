@@ -169,6 +169,8 @@ public class WorldMap extends World
         MiniGame game;
         
         MainSound.stop();
+        
+        /**
         while (true) {
             int r = Utils.random(1, 5);
             switch (r) {
@@ -185,6 +187,8 @@ public class WorldMap extends World
             }
         }
         prevGame = game;
+        */
+        game = new SamuelSays();
         return game;
     }
     
