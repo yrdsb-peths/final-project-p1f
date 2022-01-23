@@ -16,4 +16,6 @@ comment4.text=\r\n\ Method\ that\ particularly\ control\ the\ movements\ and\ sp
 comment5.params=
 comment5.target=void\ playSpeedyShells()
 comment5.text=\r\n\ Method\ that\ particularly\ control\ the\ jumping\ frames\ of\ players\ in\ the\ \r\n\ SpeedyShells\ mini-game.\ Allows\ users\ to\ jump\ low\ or\ high\ using\ the\ space\ key.\r\n
-numComments=6
+comment6.params=
+comment6.target=void\ playSamuelSays()
+numComments=7
