@@ -19,7 +19,7 @@ public class FlagManSign extends FlagMan
     private enum Direction { LEFT, RIGHT, UNKNOWN };
     private static Direction direction = Direction.LEFT; 
 
-    private int nextCheck = 9500;
+    private int nextCheck = 1000;
 
     private SimpleTimer timer = new SimpleTimer();
 

@@ -117,6 +117,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
             updateAnim();
         } else if (getWorld().getClass() == SamuelSays.class){
             playSamuelSays();
+        } else if (getWorld().getClass() == GameOverScreen.class){
+            //Just so that there is an image on the end screen
+            updateAnim();
         }
     }
 
