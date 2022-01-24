@@ -169,13 +169,15 @@ public class WorldMap extends World
         MiniGame game;
         
         MainSound.stop();
+
         while (true) {
-            int r = Utils.random(1, 4);
+            int r = Utils.random(1, 5);
             switch (r) {
                 case 1: game = new MemoryMatch(); break;
                 case 2: game = new Look(); break;
                 case 3: game = new BombsAway(); break;
                 case 4: game = new SpeedyShells(); break;
+                case 5: game = new SamuelSays(); break;
                 default: game = new MemoryMatch(); break;
                 // add other minigames here
             }
@@ -184,6 +186,7 @@ public class WorldMap extends World
             }
         }
         prevGame = game;
+        
         return game;
     }
     

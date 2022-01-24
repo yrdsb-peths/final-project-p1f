@@ -139,6 +139,35 @@ public class NPCPlayer extends Player {
             }
         }
     }
+    
+    private boolean acted = false;
+    protected void playSamuelSays(){
+        super.playSamuelSays();
+        if((!acted) && (FlagManSign.getJustChecked())){
+            int rightOrWrong = Greenfoot.getRandomNumber(10) + 1; //[1 - 10]
+            //80% chance to get it right
+            if(rightOrWrong <= 8){
+                if(FlagManSign.getDirection().equals("LEFT")){
+                    playerDirection = PlayerDirection.LEFT;
+                }
+                else{
+                    playerDirection = PlayerDirection.RIGHT;
+                }
+            }
+            else{
+                if(FlagManSign.getDirection().equals("LEFT")){
+                    playerDirection = PlayerDirection.RIGHT;
+                }
+                else{
+                    playerDirection = PlayerDirection.LEFT;
+                }
+            }
+            acted = true;
+        }
+        if(!FlagManSign.getJustChecked()){
+            acted = false;
+        }
+    }
 
     public void resetTarget() {
         super.resetTarget();

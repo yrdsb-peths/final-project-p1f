@@ -102,5 +102,14 @@ public class HumanPlayer extends Player
                 spaceFrames--;
         }
     }
-
+    
+    protected void playSamuelSays(){
+        super.playSamuelSays();
+        if(Greenfoot.isKeyDown("a")){
+            playerDirection = PlayerDirection.LEFT;
+        }
+        if(Greenfoot.isKeyDown("d")){
+            playerDirection = PlayerDirection.RIGHT;
+        }
+    }
 }
