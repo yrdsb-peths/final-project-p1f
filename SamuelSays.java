@@ -36,7 +36,6 @@ public class SamuelSays extends MiniGame
         addObject(flagSign, 185, 254);
         
         MainSound.setSound(new GreenfootSound("The Wide, Wide Ocean  Mario Party Music Extended OST Music [Music OST][Original Soundtrack].mp3"));
-        MainSound.setVolume(50);
         MainSound.play();
     }
     
@@ -52,7 +51,7 @@ public class SamuelSays extends MiniGame
 
     public void act(){
         super.act();
-        if((levelTimer.millisElapsed() >= 60000) || getObjects(Player.class).size() == 0){
+        if((levelTimer.millisElapsed() >= 35000) || getObjects(Player.class).size() == 0){
             removeObject(flagMan);
             removeObject(flagSign);
             updateWorld();
