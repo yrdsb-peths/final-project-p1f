@@ -52,7 +52,7 @@ public class SamuelSays extends MiniGame
 
     public void act(){
         super.act();
-        if((levelTimer.millisElapsed() >= 60000) || getObjects(Player.class).size() == 0){
+        if((levelTimer.millisElapsed() >= 35000) || getObjects(Player.class).size() == 0){
             removeObject(flagMan);
             removeObject(flagSign);
             updateWorld();

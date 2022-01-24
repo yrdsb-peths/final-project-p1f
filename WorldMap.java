@@ -168,8 +168,6 @@ public class WorldMap extends World
     private MiniGame getRandomMiniGame() {
         MiniGame game;
         
-        MainSound.stop();
-
         while (true) {
             int r = Utils.random(1, 5);
             switch (r) {
