@@ -51,6 +51,7 @@ public class MemoryMatch extends MiniGame
         int[] cardVal = {1,1,2,2,3,3,4,4,5,5,6,6};
         shuffle(cardVal);
         int i = 0;
+        // create grid of cards
         for (int x=100; x<=900; x+=155) {
             for (int y=200; y<=500; y+=290) {
                 addObject(new Card(cardVal[i]), x, y);

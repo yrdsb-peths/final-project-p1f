@@ -37,18 +37,19 @@ public class WorldMap extends World
         
         //Uses sprites based on input name
         playersRef = new ArrayList<MapCharacter>();
-        //playersRef.add(new MapPlayer("Mario"));
-        //playersRef.add(new MapNPC("Luigi"));
         
         if (CharSelectChar.playerChoice != null) {
+            // add player chosen character
             playersRef.add(new MapPlayer(CharSelectChar.playerChoice));
         } else {
+            // default if theres no chosen (for debugging)
             playersRef.add(new MapPlayer("Mario"));
         }
         for (int i=0;i<3;i++) {
             while (true) {
                 int r = Utils.random(1, 6);
                 MapNPC p;
+                // randomly create NPCs (no duplicates)
                 switch (r) {
                     case 1: p = new MapNPC("Mario"); break;
                     case 2: p = new MapNPC("Luigi"); break;
@@ -73,6 +74,7 @@ public class WorldMap extends World
             }
         }
         
+        // players start near first node in path
         for (MapCharacter p : playersRef) {
             addObject(p, path.get(0).getX(), path.get(0).getY()-60);
         }
@@ -121,39 +123,36 @@ public class WorldMap extends World
             }
             roundsLeft--;
             roundsText.setValue(String.valueOf(roundsLeft) + " Rounds Left"); 
-            // should make tutoiral popup -> minigame
-            // eg new TutorialPopUp(minigame name) 
+            // make tutorial popup -> minigame
             if (rounds!=roundsLeft+1) {
                 tutorialPopUp = new TutorialPopUp(getRandomMiniGame());
                 addObject(tutorialPopUp, 0, 0);
-                // Greenfoot.setWorld(getRandomMiniGame());
             }
         }
         if (player == null) {
+            // select next player
             player = players.remove();
-        } 
-        // boolean finishedTurn = player.takeTurn();
-        // if finished, init next player
+        }
         
-        // take turn code (put in MapPlayer and MapNPC)
+        // currently selected player take turn
         if (player.getState() == MapCharacter.State.DICE) {
             if (dicePopUp.isClosed()) {
+                // move player when dice popup closed
                 int steps = dicePopUp.rollResult();
                 player.setSteps(steps);
                 player.setState(MapCharacter.State.MOVE);
                 timer.mark();
             }
         } else if (player.getState() == MapCharacter.State.MOVE) {
-            // if finished path
+            // if finished path, player is idle, deselect player
             if (player.followPath()) {
                 timer.mark();
                 player.setState(MapCharacter.State.IDLE);
                 player = null;
             }
         } else {
-            // player.dice()
-            // maybe declare which player's turn it is
             if (timer.millisElapsed() > 1000) {
+                // roll player dice
                 player.setState(MapCharacter.State.DICE);
                 dicePopUp = new DicePopUp(player);
                 addObject(dicePopUp, 0, 0);
@@ -177,7 +176,7 @@ public class WorldMap extends World
                 case 4: game = new SpeedyShells(); break;
                 case 5: game = new SamuelSays(); break;
                 default: game = new MemoryMatch(); break;
-                // add other minigames here
+                // add more minigames here
             }
             if (prevGame == null || prevGame.getClass() != game.getClass()) {
                 break;

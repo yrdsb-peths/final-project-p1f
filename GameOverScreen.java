@@ -47,6 +47,7 @@ public class GameOverScreen extends World
     int imageIndex = 0, fr = 0;
     public void act() {
         if (fr == 5) {
+            // animate bkg image
             setBackground(bkg[imageIndex]);
             imageIndex = (imageIndex + 1) % bkg.length;
             fr = 0;

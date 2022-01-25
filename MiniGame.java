@@ -40,9 +40,6 @@ public class MiniGame extends World
     }
 
     private boolean isFirstAct = true;
-    /**
-     * Method that calls the firstAct method if the isFirstAct boolearn is true, and sets it to false after.
-     */
     public void act() {
         if (isFirstAct) {
             firstAct();
@@ -50,6 +47,9 @@ public class MiniGame extends World
         }
     }
     
+    /**
+     * Will be called in first act method (meant to be overridden)
+     */
     protected void firstAct() {
         
     }

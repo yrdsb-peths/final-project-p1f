@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class CharacterSelect extends World
 {
-    private GreenfootSound charSelect = new GreenfootSound("CharacterSelectr.mp3");
     
     private GreenfootImage charSelectBackground = new GreenfootImage("backgroundSelect.png");
     /**

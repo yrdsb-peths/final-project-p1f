@@ -61,6 +61,7 @@ public class SpeedyShells extends MiniGame
      */
     public void act() {
         super.act();
+        // left / right pipes spawn at random intervals
         if (lTimer.millisElapsed() > lDelay) {
             lTimer.mark();
             lDelay = Utils.random(2000, 10000 - (difficulty / 2));
@@ -72,11 +73,13 @@ public class SpeedyShells extends MiniGame
             addObject(new Shell(-1), 0, 0);
         }
         if (gameOverDelay == null) {
+            // if time up / players eliminated, end game
             if (timer.millisElapsed() >= 30000 || getObjects(Player.class).size() == 0) { 
                 gameOverDelay = new SimpleTimer();
                 gameOverDelay.mark();
             }
         } else {
+            // delay 3 seconds before switch world
             if (gameOverDelay.millisElapsed() >= 3000)
                 updateWorld();
         }

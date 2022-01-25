@@ -96,7 +96,7 @@ public class Utils
         List<T> temp = new ArrayList<T>(ar);
         List<Integer> tempI = new ArrayList<Integer>(index);
 
-        // merge(ar, lo, mid, hi);
+        // merge(ar, lo, mid, hi)
         int i=lo, j=mid+1, k=lo;
         while (i <= mid && j <= hi) {
             if (temp.get(i).compareTo(temp.get(j)) >= 0) {

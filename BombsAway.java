@@ -59,17 +59,19 @@ public class BombsAway extends MiniGame
                 timeCount.setValue(0);
             }
         }
+        // spawn bomb timer
         if (bombTimer.millisElapsed() > delay) {
             float difficulty = (levelTimer.millisElapsed() / 10000) + 1;
             delay = (int) Utils.random(1000 / difficulty, 3000 / difficulty);
             bombTimer.mark();
             addObject(new Bomb(2f + difficulty), Utils.random(1000), 0); // denser bombs
         }
+        // game over when time runs out or no player is left
         if (gameOverTimer == null) {
             if (levelTimer.millisElapsed() >= time * 1000 || getObjects(Player.class).size() == 0) {
                 gameOverTimer = new SimpleTimer();
             }
-        } else {
+        } else { // delay before switch world
             if (gameOverTimer.millisElapsed() >= 3000) {
                 updateWorld();
             }

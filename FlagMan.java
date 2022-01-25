@@ -17,6 +17,7 @@ public class FlagMan extends Actor
     }
     
     public void act(){
+        // change dir based on sign direction
         if(FlagManSign.getUnknown()){
             setImage(lFlagMan);
         }

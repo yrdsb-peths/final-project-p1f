@@ -71,8 +71,7 @@ public class Animation
         
         // hoverFrame >= 0 means that we are in hover state
         if (hoverFrame >= 0) {
-            float a = 3f;
-            float s = 1 + (float)Math.sin(a * hoverFrame * Math.PI / 180) / 20f;
+            float s = 1 + (float)Math.sin(scale * hoverFrame * Math.PI / 180) / 20f;
             setImage(frames[frameIdx], s);
             hoverFrame++;
         } else {

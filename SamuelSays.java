@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class ShyGuySays here.
+ * SamuelSays minigame
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -16,14 +16,13 @@ public class SamuelSays extends MiniGame
     
     GreenfootImage background = new GreenfootImage("SamuelSays.png");
     
-    private static SimpleTimer levelTimer = new SimpleTimer();
+    private SimpleTimer levelTimer = new SimpleTimer();
     /**
      * Constructor for objects of class ShyGuySays.
      * 
      */
     public SamuelSays()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    {
         super();
         
         this.setBackground(background);
@@ -52,6 +51,7 @@ public class SamuelSays extends MiniGame
 
     public void act(){
         super.act();
+        // if timer is up or no players left, end game
         if((levelTimer.millisElapsed() >= 35000) || getObjects(Player.class).size() == 0){
             removeObject(flagMan);
             removeObject(flagSign);
@@ -59,7 +59,11 @@ public class SamuelSays extends MiniGame
         }
     }
     
-    public static int getTime(){
+    /**
+     * return timer of the game
+     * @return 
+     */
+    public int getTime(){
         return levelTimer.millisElapsed();
     }
     

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class FlagManSign here.
+ * FlagManSign changes direction for player to follow
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -43,8 +43,8 @@ public class FlagManSign extends FlagMan
 
         //give the player the direction
         if((timer.millisElapsed() >= nextCheck - 1000) && (!hasSamuelSaid)){
-            int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 11]
-            //60% chance of saying Simon Says
+            int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 1]
+            // 50% chance of saying Simon Says
             if(doesSamuelSay == 0){
                 samuelSays.play();
                 samuelSaid = true;
@@ -55,7 +55,7 @@ public class FlagManSign extends FlagMan
             hasSamuelSaid = true;
         }
         if(timer.millisElapsed() >= nextCheck) {
-            //unknown sign, then randomize
+            // empty sign, then randomize direction
             int leftOrRight = Greenfoot.getRandomNumber(2); //[0, 1]
 
             if(leftOrRight > 0){
@@ -84,7 +84,7 @@ public class FlagManSign extends FlagMan
             FlagManSign.justChecked = true;
         }
 
-        //Check if the player did good
+        // Check if the player did good
         if((timer.millisElapsed() >= 2000) && (FlagManSign.justChecked)){
             FlagManSign.check = true;
         }

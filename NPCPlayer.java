@@ -24,6 +24,9 @@ public class NPCPlayer extends Player {
         timer = new SimpleTimer();
     }
 
+    /**
+     * NPCs randomly move between cards
+     */
     protected void playMemoryMatch() {
         super.playMemoryMatch();
         if (targetPos == null || moveTowards(targetPos, 3f)) {
@@ -40,6 +43,9 @@ public class NPCPlayer extends Player {
         }
     }
 
+    /**
+     * Method that moves player towards one of the 4 suits
+     */
     protected void playLook() {
         super.playLook();
         if (lookTarget == null && timer.millisElapsed() > delay) {
@@ -75,6 +81,9 @@ public class NPCPlayer extends Player {
 
     private int moveDir = 0;
 
+    /**
+     * NPC moves away from the bombs when detected above, left, or right
+     */
     protected void playBombsAway() {
         super.playBombsAway();
 
@@ -115,6 +124,9 @@ public class NPCPlayer extends Player {
         move(new Vector2(moveDir * 3f, 0)); 
     }
 
+    /**
+     * NPC detects shells and jump (high / low)
+     */
     protected void playSpeedyShells() {
         super.playSpeedyShells();
 
@@ -141,6 +153,9 @@ public class NPCPlayer extends Player {
     }
     
     private boolean acted = false;
+    /**
+     * NPC change direction according to sign
+     */
     protected void playSamuelSays(){
         super.playSamuelSays();
         if((!acted) && (FlagManSign.getJustChecked())){

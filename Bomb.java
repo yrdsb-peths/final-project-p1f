@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bombs here.
+ * Bombs that fall from sky
  * 
  * @author Kevin Wang
  * @version January 2022

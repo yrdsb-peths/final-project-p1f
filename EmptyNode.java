@@ -1,5 +1,5 @@
 /**
- * Nodes on the world map that does nothing to players - just act as a stop
+ * Nodes on the world map that does nothing to players - just act as a "turning point"
  * 
  * @author Eric Zhang
  * @version January 2022

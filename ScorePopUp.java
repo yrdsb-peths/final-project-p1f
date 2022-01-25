@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Displays players' ranking of scores after playing each mini-game.

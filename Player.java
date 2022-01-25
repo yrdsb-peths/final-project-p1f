@@ -41,57 +41,6 @@ public class Player extends SmoothMover implements Comparable<Player> {
         setupAnim();
         jumpSound.setVolume(40);
         
-        switch(name){
-            case "Mario":
-                samuelL = new GreenfootImage("Mario/MarioL1.png");
-                samuelR = new GreenfootImage("Mario/MarioR1.png");
-                samuelL.scale(48, 72);
-                samuelR.scale(48, 72);
-                break;
-            case "Luigi":
-                samuelL = new GreenfootImage("Luigi/LuigiL1.png");
-                samuelR = new GreenfootImage("Luigi/LuigiR1.png");
-                samuelL.scale(48, 72);
-                samuelR.scale(48, 72);
-                break;
-            case "KoopaRed":
-                samuelL = new GreenfootImage("Koopa/redL1.png");
-                samuelR = new GreenfootImage("Koopa/redR1.png");
-                toScale = 3;
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-            case "KoopaGreen":
-                samuelL = new GreenfootImage("Koopa/greenL1.png");
-                samuelR = new GreenfootImage("Koopa/greenR1.png");
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-            case "KoopaYellow":
-                samuelL = new GreenfootImage("Koopa/yellowL1.png");
-                samuelR = new GreenfootImage("Koopa/yellowR1.png");
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-            case "KoopaPurple":
-                samuelL = new GreenfootImage("Koopa/purpleL1.png");
-                samuelR = new GreenfootImage("Koopa/purpleR1.png");
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-            case "KoopaSilver":
-                samuelL = new GreenfootImage("Koopa/silverL1.png");
-                samuelR = new GreenfootImage("Koopa/silverR1.png");
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-            default:
-                samuelL = new GreenfootImage("Mario/MarioL1.png");
-                samuelR = new GreenfootImage("Mario/MarioR1.png");
-                samuelL.scale(48, 96);
-                samuelR.scale(48, 96);
-                break;
-        }
         bad.setVolume(50);
     }
 
@@ -269,11 +218,6 @@ public class Player extends SmoothMover implements Comparable<Player> {
         }
     }
     
-    protected GreenfootImage samuelL;
-    protected GreenfootImage samuelR;
-    
-    private int toScale;
-    
     private boolean firstAct = true;
     
     protected enum PlayerDirection{ LEFT, RIGHT};
@@ -282,19 +226,23 @@ public class Player extends SmoothMover implements Comparable<Player> {
     private GreenfootSound bad = new GreenfootSound("death.mp3");
     private GreenfootSound good = new GreenfootSound("good.mp3");
     
+    /**
+     * Switch direction left / right and check direction correct
+     */
     protected void playSamuelSays(){
-       score = getWorldOfType(SamuelSays.class).getTime();
-       if(firstAct){
-            setImage(samuelL);
+        score = getWorldOfType(SamuelSays.class).getTime();
+        if (firstAct) {
+            lIdle.animate();
             firstAct = false;
-       }
-       if(playerDirection == PlayerDirection.LEFT){
-            setImage(samuelL);
-       }
-       if(playerDirection == PlayerDirection.RIGHT){
-            setImage(samuelR);
-       }
-       if(FlagManSign.getCheck()){
+        }
+        if(playerDirection == PlayerDirection.LEFT) {
+            lIdle.animate();
+        }
+        if(playerDirection == PlayerDirection.RIGHT) {
+            rIdle.animate();
+        }
+        if(FlagManSign.getCheck()){
+            // check if player is facing the correct direction
             if(String.valueOf(playerDirection).equals(FlagManSign.getDirection())){
                 good.play();
             }else{
@@ -304,17 +252,25 @@ public class Player extends SmoothMover implements Comparable<Player> {
         }
     }
 
-
+    /**
+     * method - small jump (SpeedyShells)
+     */
     protected void jumpShell() {
         jumpSound.play();
         yVel = -9.5f;
     }
     
+    /**
+     * method - big jump (SpeedyShells)
+     */
     protected void jumpHighShell() {
         jumpSound.play();
         yVel = -13;
     }
     
+    /**
+     * return true if touching ground (SpeedyShells)
+     */
     protected boolean touchShellGround() {
         return getExactY() >= SpeedyShells.getGround()-20;
     }

@@ -20,7 +20,7 @@ public class HumanPlayer extends Player
     } 
 
     /**
-     * Method that particularly control the movements and speed of players in the 
+     * Method that control the movements and speed of players in the 
      * MemoryMach mini-game. Allows users to play using WASD keys.
      */
     protected void playMemoryMatch() {
@@ -41,7 +41,7 @@ public class HumanPlayer extends Player
     }
 
     /**
-     * Method that particularly control the movements and speed of players in the 
+     * Method that control the movements and speed of players in the 
      * Look mini-game. Allows users to travel to 5 positions using WASD keys.
      */
     protected void playLook() {
@@ -61,7 +61,7 @@ public class HumanPlayer extends Player
     }
 
     /**
-     * Method that particularly control the movements and speed of players in the 
+     * Method that control the movements and speed of players in the 
      * BombsAway mini-game. Allows users to move left and right using AD keys.
      */
     protected void playBombsAway() {
@@ -79,7 +79,7 @@ public class HumanPlayer extends Player
 
     private int spaceFrames = 0;
     /**
-     * Method that particularly control the jumping frames of players in the 
+     * Method that control the jumping frames of players in the 
      * SpeedyShells mini-game. Allows users to jump low or high using the space key.
      */
     protected void playSpeedyShells() {
@@ -103,6 +103,9 @@ public class HumanPlayer extends Player
         }
     }
     
+    /**
+     * Method that controls direction player faces using a and d
+     */
     protected void playSamuelSays(){
         super.playSamuelSays();
         if(Greenfoot.isKeyDown("a")){
