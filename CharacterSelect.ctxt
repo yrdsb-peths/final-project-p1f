@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=CharacterSelect
-comment0.text=\r\n\ Provide\ users\ with\ 4\ player\ options\r\n\ \r\n\ @author\ Kevin\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Provide\ users\ with\ 4\ player\ options\r\n\ \r\n\ @author\ Kevin\ Wang\r\n\ @version\ Version\ 1.3\r\n
 comment1.params=
 comment1.target=CharacterSelect()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CharacterSelect.\r\n\ \r\n

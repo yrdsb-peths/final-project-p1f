@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Provide users with 4 player options
  * 
- * @author Kevin
- * @version (a version number or a date)
+ * @author Kevin Wang
+ * @version Version 1.3
  */
 public class CharacterSelect extends World
 {

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class FlagMan here.
+ * The Flag Man, who holds the Flag Man's Sign. Changes direction when the sign does.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Wang 
+ * @version January 2022
  */
 public class FlagMan extends Actor
 {
@@ -18,11 +18,11 @@ public class FlagMan extends Actor
     
     public void act(){
         // change dir based on sign direction
-        if(FlagManSign.getUnknown()){
+        if(getWorldOfType(SamuelSays.class).getFlagManSign().getUnknown()){
             setImage(lFlagMan);
         }
-        else if(FlagManSign.getSamuelSaid()){
-            if(FlagManSign.getDirection().equals("LEFT")){
+        else if(getWorldOfType(SamuelSays.class).getFlagManSign().getSamuelSaid()){
+            if(getWorldOfType(SamuelSays.class).getFlagManSign().getDirection().equals("LEFT")){
                 setImage(lFlagMan);
             }
             else{
@@ -30,7 +30,7 @@ public class FlagMan extends Actor
             }
         }
         else{
-            if(FlagManSign.getDirection().equals("LEFT")){
+            if(getWorldOfType(SamuelSays.class).getFlagManSign().getDirection().equals("LEFT")){
                 setImage(rFlagMan);
             }
             else{

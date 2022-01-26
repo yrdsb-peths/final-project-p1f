@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Bomb
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bombs\ here.\r\n\ \r\n\ @author\ Kevin\ Wang\r\n\ @version\ January\ 2022\r\n
+comment0.text=\r\n\ Bombs\ that\ fall\ from\ sky\r\n\ \r\n\ @author\ Kevin\ Wang\r\n\ @version\ January\ 2022\r\n
 comment1.params=scale
 comment1.target=Bomb(float)
 comment1.text=\r\n\ Constructor\ for\ the\ Bomb\ class\ -\ sets\ and\ scales\ bomb\ images\r\n\ \r\n\ @param\ scale\ Scale\ of\ the\ bombs\r\n
