@@ -22,6 +22,7 @@ public class FlagMan extends Actor
             setImage(lFlagMan);
         }
         else if(getWorldOfType(SamuelSays.class).getFlagManSign().getSamuelSaid()){
+            //to match the sign's orientation
             if(getWorldOfType(SamuelSays.class).getFlagManSign().getDirection().equals("LEFT")){
                 setImage(lFlagMan);
             }
@@ -30,6 +31,7 @@ public class FlagMan extends Actor
             }
         }
         else{
+            //flip the other way if samuel says did not say, to match the sign
             if(getWorldOfType(SamuelSays.class).getFlagManSign().getDirection().equals("LEFT")){
                 setImage(rFlagMan);
             }

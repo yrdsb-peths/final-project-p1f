@@ -40,6 +40,8 @@ public class BombsAway extends MiniGame
             addObject(p, pos, 470);
             pos += distance;
         }
+        
+        //adds the timer
         addObject(timeCount,300,90);
         timeCount.setValue(time);
         levelTimer.mark();
@@ -51,7 +53,7 @@ public class BombsAway extends MiniGame
      */
     public void act() {
         super.act();
-        if (timer.millisElapsed() > 1000) { // time count down every second
+        if (timer.millisElapsed() > 1000) { // time counts down every second
             timeCount.add(-1);
             timer.mark();
             if (timeCount.getValue() < 0) {

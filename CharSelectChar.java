@@ -9,7 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharSelectChar extends Actor
 {
     private static int numClicks;
+    
+    //initialized as Mario as the default
     public static String playerChoice = "Mario";
+    
+    //private storage of what character this is
     private String thisName;
     
     /**
