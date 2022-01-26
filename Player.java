@@ -226,6 +226,8 @@ public class Player extends SmoothMover implements Comparable<Player> {
     private GreenfootSound bad = new GreenfootSound("death.mp3");
     private GreenfootSound good = new GreenfootSound("good.mp3");
     
+    protected SamuelSays thisSamuel; 
+    
     /**
      * Switch direction left / right and check direction correct
      */
@@ -234,6 +236,7 @@ public class Player extends SmoothMover implements Comparable<Player> {
         if (firstAct) {
             lIdle.animate();
             firstAct = false;
+            thisSamuel = getWorldOfType(SamuelSays.class);
         }
         if(playerDirection == PlayerDirection.LEFT) {
             lIdle.animate();
@@ -241,9 +244,9 @@ public class Player extends SmoothMover implements Comparable<Player> {
         if(playerDirection == PlayerDirection.RIGHT) {
             rIdle.animate();
         }
-        if(FlagManSign.getCheck()){
+        if(thisSamuel.getFlagManSign().getCheck()){
             // check if player is facing the correct direction
-            if(String.valueOf(playerDirection).equals(FlagManSign.getDirection())){
+            if(String.valueOf(playerDirection).equals(thisSamuel.getFlagManSign().getDirection())){
                 good.play();
             }else{
                 bad.play();

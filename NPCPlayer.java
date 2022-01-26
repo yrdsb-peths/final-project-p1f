@@ -158,11 +158,11 @@ public class NPCPlayer extends Player {
      */
     protected void playSamuelSays(){
         super.playSamuelSays();
-        if((!acted) && (FlagManSign.getJustChecked())){
+        if((!acted) && (thisSamuel.getFlagManSign().getJustChecked())){
             int rightOrWrong = Greenfoot.getRandomNumber(10) + 1; //[1 - 10]
             //80% chance to get it right
             if(rightOrWrong <= 8){
-                if(FlagManSign.getDirection().equals("LEFT")){
+                if(thisSamuel.getFlagManSign().getDirection().equals("LEFT")){
                     playerDirection = PlayerDirection.LEFT;
                 }
                 else{
@@ -170,7 +170,7 @@ public class NPCPlayer extends Player {
                 }
             }
             else{
-                if(FlagManSign.getDirection().equals("LEFT")){
+                if(thisSamuel.getFlagManSign().getDirection().equals("LEFT")){
                     playerDirection = PlayerDirection.RIGHT;
                 }
                 else{
@@ -179,7 +179,7 @@ public class NPCPlayer extends Player {
             }
             acted = true;
         }
-        if(!FlagManSign.getJustChecked()){
+        if(!thisSamuel.getFlagManSign().getJustChecked()){
             acted = false;
         }
     }

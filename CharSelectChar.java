@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CharSelectChars here.
+ * The characters that can be clicked on the character select screen.
  * 
  * @author Kevin Wang
  * @version January 2022

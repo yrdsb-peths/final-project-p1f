@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * FlagManSign changes direction for player to follow
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Wang
+ * @version January 2022
  */
 public class FlagManSign extends FlagMan
 {
@@ -17,21 +17,21 @@ public class FlagManSign extends FlagMan
     GreenfootSound samuelRight = new GreenfootSound("SamuelRight.mp3");
 
     private enum Direction { LEFT, RIGHT, UNKNOWN };
-    private static Direction direction = Direction.LEFT; 
+    private Direction direction = Direction.LEFT; 
 
-    private int nextCheck = 1000;
+    private int nextCheck = 3000;
 
     private SimpleTimer timer = new SimpleTimer();
 
-    private static boolean justChecked = false;
+    private boolean justChecked = false;
 
     private boolean hasSamuelSaid = false;
 
-    private static boolean samuelSaid = false;
+    private boolean samuelSaid = false;
 
-    private static boolean check = false;
+    private boolean check = false;
 
-    private boolean firstAct = false;
+    private boolean firstAct = true;
 
     public FlagManSign(){    }
 
@@ -39,82 +39,84 @@ public class FlagManSign extends FlagMan
         if(firstAct){
             timer.mark();
             direction = Direction.UNKNOWN;
+            firstAct = false;
         }
-
         //give the player the direction
-        if((timer.millisElapsed() >= nextCheck - 1000) && (!hasSamuelSaid)){
-            int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 1]
-            // 50% chance of saying Simon Says
-            if(doesSamuelSay == 0){
-                samuelSays.play();
-                samuelSaid = true;
-            }
-            else{
-                samuelSaid = false;
-            }
-            hasSamuelSaid = true;
-        }
-        if(timer.millisElapsed() >= nextCheck) {
-            // empty sign, then randomize direction
-            int leftOrRight = Greenfoot.getRandomNumber(2); //[0, 1]
-
-            if(leftOrRight > 0){
-                if(samuelSaid){
-                    FlagManSign.direction = Direction.LEFT;
+        else{
+            if((timer.millisElapsed() >= nextCheck - 1000) && (!hasSamuelSaid)){
+                int doesSamuelSay = Greenfoot.getRandomNumber(2); //[0, 1]
+                // 50% chance of saying Simon Says
+                if(doesSamuelSay == 0){
+                    samuelSays.play();
+                    samuelSaid = true;
                 }
                 else{
-                    FlagManSign.direction = Direction.RIGHT;
+                    samuelSaid = false;
                 }
-                setImage(leftSign);
-                samuelLeft.play();
+                hasSamuelSaid = true;
             }
-            else{
-                if(samuelSaid){
-                    FlagManSign.direction = Direction.RIGHT;
+            if(timer.millisElapsed() >= nextCheck) {
+                // empty sign, then randomize direction
+                int leftOrRight = Greenfoot.getRandomNumber(2); //[0, 1]
+
+                if(leftOrRight > 0){
+                    if(samuelSaid){
+                        direction = Direction.LEFT;
+                    }
+                    else{
+                        direction = Direction.RIGHT;
+                    }
+                    setImage(leftSign);
+                    samuelLeft.play();
                 }
                 else{
-                    FlagManSign.direction = Direction.LEFT;
+                    if(samuelSaid){
+                        direction = Direction.RIGHT;
+                    }
+                    else{
+                        direction = Direction.LEFT;
+                    }
+                    setImage(rightSign);
+                    samuelRight.play();
                 }
-                setImage(rightSign);
-                samuelRight.play();
+                timer.mark();
+                nextCheck = Greenfoot.getRandomNumber(2000) + 4000; // [4000, 6000]
+
+                justChecked = true;
             }
-            timer.mark();
-            nextCheck = Greenfoot.getRandomNumber(2000) + 4000; // [4000, 6000]
 
-            FlagManSign.justChecked = true;
-        }
-
-        // Check if the player did good
-        if((timer.millisElapsed() >= 2000) && (FlagManSign.justChecked)){
-            FlagManSign.check = true;
-        }
-        if((timer.millisElapsed() >= 2500) && (FlagManSign.justChecked)){
-            FlagManSign.check = false;
-            //cleaning up for next cycle
-            setImage(unknownSign);
-            FlagManSign.direction = Direction.UNKNOWN;
-            FlagManSign.justChecked = false;
-            hasSamuelSaid = false;
+            // Check if the player did good
+            if((timer.millisElapsed() >= 2000) && (this.justChecked)){
+                this.check = true;
+            }
+            if((timer.millisElapsed() >= 2500) && (this.justChecked)){
+                this.check = false;
+                //cleaning up for next cycle
+                setImage(unknownSign);
+                direction = Direction.UNKNOWN;
+                justChecked = false;
+                hasSamuelSaid = false;
+            }
         }
     }
 
-    public static String getDirection(){
-        return String.valueOf(FlagManSign.direction);
+    public String getDirection(){
+        return String.valueOf(this.direction);
     }
 
-    public static boolean getJustChecked(){
-        return FlagManSign.justChecked;
+    public boolean getJustChecked(){
+        return justChecked;
     }
 
-    public static boolean getSamuelSaid(){
+    public boolean getSamuelSaid(){
         return samuelSaid;
     }
 
-    public static boolean getCheck(){
-        return FlagManSign.check;
+    public boolean getCheck(){
+        return check;
     }
 
-    public static boolean getUnknown(){
+    public boolean getUnknown(){
         return direction == Direction.UNKNOWN;
     }
 }
